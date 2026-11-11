@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-11-11T14:34",
- "offers": 26,
+ "generated_at": "2026-11-11T21:14",
+ "offers": 28,
  "events": 3,
  "sources": [
   {
@@ -9,7 +9,7 @@
    "kind": "page",
    "ok": true,
    "cards": 20,
-   "kept": 6,
+   "kept": 1,
    "error": ""
   },
   {
@@ -99,7 +99,7 @@
    "kind": "telegram",
    "ok": true,
    "cards": 20,
-   "kept": 0,
+   "kept": 1,
    "error": ""
   },
   {
