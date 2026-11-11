@@ -1,7 +1,7 @@
 {
- "generated_at": "2026-11-11T05:24",
- "offers": 16,
- "events": 1,
+ "generated_at": "2026-11-11T13:48",
+ "offers": 24,
+ "events": 2,
  "sources": [
   {
    "id": "emploitic",
@@ -9,7 +9,7 @@
    "kind": "page",
    "ok": true,
    "cards": 20,
-   "kept": 1,
+   "kept": 5,
    "error": ""
   },
   {
@@ -28,7 +28,7 @@
    "ok": false,
    "cards": 0,
    "kept": 0,
-   "error": "aucun element lu (site change ou requete bloquee)"
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.optioncarriere.dz', port=443): Max retries exceeded with url: /emploi?s=&l=Alger (Caused by ConnectTimeoutError(<HTTPSCo"
   },
   {
    "id": "sfnemploi",
@@ -72,7 +72,7 @@
    "kind": "telegram",
    "ok": true,
    "cards": 20,
-   "kept": 7,
+   "kept": 10,
    "error": ""
   },
   {
