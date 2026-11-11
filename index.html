@@ -1,0 +1,1184 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JobRadar DZ — منصة ورادار عروض التوظيف والفرص الذكية بالجزائر</title>
+<meta name="description" content="منصة تفاعلية لرصد أحدث فرص العمل والوظائف المؤقتة بالجزائر العاصمة مع ربط مباشر بمحطات الميترو والترامواي ورسائل تقديم فورية.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #090d16;
+  --bg-card: #111726;
+  --bg-card-hover: #172033;
+  --bg-subtle: #192236;
+  --ink: #f1f5f9;
+  --ink-mut: #94a3b8;
+  --line: #222f47;
+  --pri: #2563eb;
+  --pri-glow: rgba(37, 99, 235, 0.35);
+  --pri-light: #38bdf8;
+  --ok: #10b981;
+  --ok-bg: rgba(16, 185, 129, 0.15);
+  --warn: #f59e0b;
+  --warn-bg: rgba(245, 158, 11, 0.15);
+  --bad: #ef4444;
+  --accent: #8b5cf6;
+  --radius: 16px;
+  --font-ar: "Cairo", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-en: "Inter", sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font-ar);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(circle at 15% 10%, rgba(37,99,235,0.18) 0%, transparent 40%),
+    radial-gradient(circle at 85% 80%, rgba(139,92,246,0.14) 0%, transparent 40%);
+  background-attachment: fixed;
+}
+
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; border: none; cursor: pointer; background: none; }
+
+/* Header & Nav */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(9, 13, 22, 0.85);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+  padding: 14px 24px;
+}
+.nav-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.brand-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--pri), var(--pri-light));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  box-shadow: 0 4px 16px var(--pri-glow);
+}
+.brand-text h1 {
+  font-size: 19px;
+  font-weight: 900;
+  background: linear-gradient(135deg, #fff, var(--pri-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.2;
+}
+.brand-text span {
+  font-size: 12px;
+  color: var(--ink-mut);
+  font-weight: 600;
+}
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.live-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--line);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+}
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--ok);
+  animation: pulse 1.6s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.25); }
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-size: 13.5px;
+  font-weight: 700;
+  transition: all 0.2s;
+}
+.btn-pri {
+  background: var(--pri);
+  color: #fff;
+  box-shadow: 0 4px 14px var(--pri-glow);
+}
+.btn-pri:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+.btn-outline {
+  border: 1px solid var(--line);
+  background: var(--bg-card);
+  color: var(--ink);
+}
+.btn-outline:hover {
+  border-color: var(--pri-light);
+  color: var(--pri-light);
+}
+
+/* Hero Section */
+.hero {
+  max-width: 1300px;
+  margin: 30px auto 20px;
+  padding: 0 20px;
+  text-align: center;
+}
+.hero h2 {
+  font-size: 34px;
+  font-weight: 900;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+}
+.hero h2 span {
+  background: linear-gradient(135deg, var(--pri-light), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero p {
+  color: var(--ink-mut);
+  font-size: 16px;
+  max-width: 680px;
+  margin: 0 auto 24px;
+}
+
+/* Gamification Bar */
+.gamification-strip {
+  max-width: 1300px;
+  margin: 0 auto 24px;
+  padding: 0 20px;
+}
+.game-card {
+  background: linear-gradient(135deg, rgba(37,99,235,0.12), rgba(139,92,246,0.12));
+  border: 1px solid rgba(56,189,248,0.25);
+  border-radius: var(--radius);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.game-profile {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.flame {
+  font-size: 32px;
+  filter: drop-shadow(0 0 10px rgba(245,158,11,0.6));
+}
+.xp-wrapper {
+  width: 160px;
+  height: 8px;
+  background: var(--bg-subtle);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 6px;
+}
+.xp-bar {
+  height: 100%;
+  width: 45%;
+  background: linear-gradient(90deg, var(--pri), var(--pri-light));
+  border-radius: 999px;
+}
+.badges-list {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.badge-pill {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  background: rgba(56,189,248,0.15);
+  color: var(--pri-light);
+  border: 1px solid rgba(56,189,248,0.3);
+}
+
+/* Search & Quick Filters */
+.search-container {
+  max-width: 900px;
+  margin: 0 auto 30px;
+  padding: 0 20px;
+}
+.search-box {
+  background: var(--bg-card);
+  border: 1.5px solid var(--line);
+  border-radius: 18px;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  transition: all 0.2s;
+}
+.search-box:focus-within {
+  border-color: var(--pri-light);
+  box-shadow: 0 8px 32px var(--pri-glow);
+}
+.search-box input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 15.5px;
+  padding: 10px;
+}
+.quick-tags {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+.quick-tag {
+  background: var(--bg-subtle);
+  border: 1px solid var(--line);
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  color: var(--ink-mut);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.quick-tag:hover, .quick-tag.active {
+  background: var(--pri);
+  color: #fff;
+  border-color: var(--pri);
+}
+
+/* Main Layout */
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 20px 60px;
+}
+
+/* Transit & Gig Hub Sections */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 18px;
+  margin-bottom: 28px;
+}
+.feature-box {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+}
+.feature-box h3 {
+  font-size: 16.5px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.stations-scroller {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  scrollbar-width: thin;
+}
+.station-btn {
+  white-space: nowrap;
+  background: var(--bg-subtle);
+  border: 1px solid var(--line);
+  padding: 7px 13px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  transition: all 0.15s;
+}
+.station-btn:hover {
+  border-color: var(--pri-light);
+  color: var(--pri-light);
+}
+
+/* Filters Toolbar */
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  background: var(--bg-card);
+  padding: 12px 18px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+}
+.toolbar-filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.select-filter {
+  background: var(--bg-subtle);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  padding: 7px 12px;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 13.5px;
+  outline: none;
+}
+.offers-count {
+  font-size: 13.5px;
+  color: var(--ink-mut);
+  font-weight: 700;
+}
+
+/* Offers Grid */
+.offers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 18px;
+}
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+  transition: all 0.25s;
+  position: relative;
+}
+.card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(56,189,248,0.4);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+.card-source {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--pri-light);
+}
+.score-pill {
+  background: rgba(37,99,235,0.2);
+  color: var(--pri-light);
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+  border: 1px solid rgba(56,189,248,0.3);
+}
+.chips-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 6px 0;
+}
+.chip {
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--bg-subtle);
+  color: var(--ink-mut);
+}
+.chip-transit {
+  background: rgba(16,185,129,0.15);
+  color: var(--ok);
+  border: 1px solid rgba(16,185,129,0.3);
+}
+.chip-salary {
+  background: rgba(245,158,11,0.15);
+  color: var(--warn);
+  border: 1px solid rgba(245,158,11,0.3);
+}
+.chip-gig {
+  background: rgba(139,92,246,0.15);
+  color: var(--accent);
+  border: 1px solid rgba(139,92,246,0.3);
+}
+
+.card-text {
+  font-size: 14px;
+  color: #cbd5e1;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.55;
+  cursor: pointer;
+}
+.card-text.expanded {
+  -webkit-line-clamp: unset;
+}
+
+.contacts-box {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 12.5px;
+  padding: 8px 10px;
+  background: var(--bg-subtle);
+  border-radius: 8px;
+}
+.contacts-box span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+}
+.action-btn {
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.15s;
+}
+.action-wa {
+  background: #10b981;
+  color: #fff;
+}
+.action-wa:hover {
+  background: #059669;
+}
+.action-pitch {
+  background: var(--bg-subtle);
+  border: 1px solid var(--line);
+  color: var(--ink);
+}
+.action-pitch:hover {
+  border-color: var(--pri);
+  color: var(--pri-light);
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(8px);
+  z-index: 200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal-overlay.open {
+  display: flex;
+}
+.modal-box {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  max-width: 620px;
+  width: 100%;
+  padding: 24px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  animation: modalIn 0.2s ease-out;
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+.modal-header h3 {
+  font-size: 18px;
+  font-weight: 800;
+}
+.pitch-group {
+  margin-bottom: 16px;
+}
+.pitch-group label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.pitch-textarea {
+  width: 100%;
+  background: var(--bg-subtle);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px;
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 13px;
+  outline: none;
+  resize: vertical;
+}
+
+/* Footer */
+footer {
+  border-top: 1px solid var(--line);
+  background: var(--bg-card);
+  padding: 24px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--ink-mut);
+}
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1e293b;
+  border: 1px solid var(--pri-light);
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  display: none;
+  z-index: 300;
+}
+
+@media (max-width: 768px) {
+  .hero h2 { font-size: 26px; }
+  .offers-grid { grid-template-columns: 1fr; }
+  .nav-actions .btn-outline { display: none; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <div class="brand">
+      <div class="brand-icon">⚡</div>
+      <div class="brand-text">
+        <h1>JobRadar DZ</h1>
+        <span>رادار التوظيف والفرص الذكية بالجزائر</span>
+      </div>
+    </div>
+    <div class="nav-actions">
+      <div class="live-pill">
+        <span class="dot"></span>
+        <span>مباشر على الإنترنت</span>
+      </div>
+      <a href="https://t.me/searchamarbot" target="_blank" rel="noopener" class="btn btn-pri">
+        <span>✈️ بوت تيليغرام</span>
+      </a>
+      <button class="btn btn-outline" onclick="openAddModal()">
+        <span>➕ أضف عرض عمل</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <h2>رادار التوظيف <span>الأذكى في الجزائر</span></h2>
+  <p>رصد فوري لفرص العمل بالعاصمة، ربط مباشر مع محطات الميترو والترامواي، وتوليد فوري لرسائل التقديم عبر واتساب والإيميل.</p>
+</section>
+
+<!-- Gamification Hero -->
+<section class="gamification-strip">
+  <div class="game-card">
+    <div class="game-profile">
+      <span class="flame" id="gameFlame">🔥 1</span>
+      <div>
+        <div style="font-weight:800;font-size:15px" id="gameLevel">المستوى 1: باحث نشط 🌱</div>
+        <div style="font-size:12px;color:var(--ink-mut)">
+          <span id="gameXp">35</span> XP • التقديم القادم يمنحك +15 XP
+        </div>
+        <div class="xp-wrapper"><div class="xp-bar" id="gameXpBar"></div></div>
+      </div>
+    </div>
+    <div class="badges-list" id="gameBadges">
+      <span class="badge-pill">🎯 أول تقديم</span>
+      <span class="badge-pill">🚇 ابن العاصمة</span>
+      <span class="badge-pill">🎪 سفير المعارض</span>
+    </div>
+  </div>
+</section>
+
+<!-- Search Box & Tags -->
+<section class="search-container">
+  <div class="search-box">
+    <span style="font-size:18px">🔍</span>
+    <input type="search" id="searchInput" placeholder="ابحث بالوظيفة أو البلدية: animateur, vendeur, باب الزوار, مطعم, SAFEX..." oninput="filterOffers()">
+  </div>
+  <div class="quick-tags">
+    <span class="quick-tag" onclick="quickFilter('safex')">🎪 معارض SAFEX</span>
+    <span class="quick-tag" onclick="quickFilter('bab ezzouar')">🚇 باب الزوار</span>
+    <span class="quick-tag" onclick="quickFilter('commercial')">💼 مبيعات و Showroom</span>
+    <span class="quick-tag" onclick="quickFilter('serveur')">🍽️ مطاعم ومقاهي</span>
+    <span class="quick-tag" onclick="quickFilter('livreur')">🛵 توصيل</span>
+    <span class="quick-tag" onclick="quickFilter('developpeur')">💻 برمجة وتقنية</span>
+    <span class="quick-tag" onclick="resetFilters()">🔄 الكل</span>
+  </div>
+</section>
+
+<main class="container">
+  <!-- Features: Transit & Gig Hub -->
+  <div class="features-grid">
+    <div class="feature-box">
+      <h3>🚇 رادار خط الميترو والترامواي بالعاصمة</h3>
+      <div class="stations-scroller">
+        <button class="station-btn" onclick="quickFilter('bab ezzouar')">🚇 باب الزوار</button>
+        <button class="station-btn" onclick="quickFilter('safex')">🚊 قصر المعارض</button>
+        <button class="station-btn" onclick="quickFilter('tafourah')">🚇 تافورة / البريد</button>
+        <button class="station-btn" onclick="quickFilter('ruisseau')">🚇 رويسو / المعدومين</button>
+        <button class="station-btn" onclick="quickFilter('1er mai')">🚇 أول ماي</button>
+        <button class="station-btn" onclick="quickFilter('el harrach')">🚇 الحراش</button>
+      </div>
+    </div>
+    <div class="feature-box">
+      <h3>🎪 رادار العمل المؤقت والحر (Gig Hub)</h3>
+      <div class="stations-scroller">
+        <button class="station-btn" onclick="quickFilter('معارض')">🏛️ صالونات ومعارض</button>
+        <button class="station-btn" onclick="quickFilter('يومي')">⚡ أجر يومي Extra</button>
+        <button class="station-btn" onclick="quickFilter('توصيل')">🛵 توصيل طرود</button>
+        <button class="station-btn" onclick="quickFilter('طالب')">🎓 مناسب للطلاب</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filters Toolbar -->
+  <div class="toolbar">
+    <div class="toolbar-filters">
+      <select class="select-filter" id="filterStatus" onchange="filterOffers()">
+        <option value="all">كافة العروض</option>
+        <option value="starred">⭐ العروض المفضلة</option>
+        <option value="applied">✅ تم التقديم لها</option>
+      </select>
+      <select class="select-filter" id="filterPlatform" onchange="filterOffers()">
+        <option value="all">كافة المنصات</option>
+        <option value="telegram">✈️ تيليغرام</option>
+        <option value="web">🌐 مواقع التوظيف</option>
+        <option value="facebook">📘 فيسبوك</option>
+      </select>
+      <select class="select-filter" id="filterSpecial" onchange="filterOffers()">
+        <option value="all">كافة التصنيفات</option>
+        <option value="transit">🚇 قرب محطات الميترو والترامواي</option>
+        <option value="salary">💰 عروض براتب محدد</option>
+        <option value="gig">🎪 عمل مؤقت أو معارض</option>
+      </select>
+    </div>
+    <div class="offers-count" id="offersCount">جاري تحميل العروض...</div>
+  </div>
+
+  <!-- Offers Grid -->
+  <div class="offers-grid" id="offersGrid"></div>
+</main>
+
+<!-- Pitch Modal -->
+<div class="modal-overlay" id="pitchModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 id="pitchModalTitle">📋 رسالة التقديم الذكية المخصصة</h3>
+      <button onclick="closeModal('pitchModal')" style="font-size:22px;color:var(--ink-mut)">✕</button>
+    </div>
+    <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap">
+      <a id="pitchWaBtn" class="btn btn-pri action-wa" target="_blank" rel="noopener">
+        <span>💬 إرسال عبر واتساب الآن</span>
+      </a>
+      <a id="pitchMailBtn" class="btn btn-outline" target="_blank" rel="noopener">
+        <span>✉️ إرسال عبر الإيميل</span>
+      </a>
+    </div>
+    <div class="pitch-group">
+      <label>
+        <span>💬 رسالة واتساب (فرنسية):</span>
+        <button class="btn btn-outline" style="padding:2px 8px;font-size:11px" onclick="copyText('pitchWaFr')">نسخ</button>
+      </label>
+      <textarea id="pitchWaFr" class="pitch-textarea" rows="5" style="direction:ltr"></textarea>
+    </div>
+    <div class="pitch-group">
+      <label>
+        <span>💬 رسالة واتساب (عربية):</span>
+        <button class="btn btn-outline" style="padding:2px 8px;font-size:11px" onclick="copyText('pitchWaAr')">نسخ</button>
+      </label>
+      <textarea id="pitchWaAr" class="pitch-textarea" rows="5"></textarea>
+    </div>
+    <div class="pitch-group">
+      <label>
+        <span>✉️ بريد إلكتروني رسمي:</span>
+        <button class="btn btn-outline" style="padding:2px 8px;font-size:11px" onclick="copyText('pitchEmail')">نسخ</button>
+      </label>
+      <textarea id="pitchEmail" class="pitch-textarea" rows="5" style="direction:ltr"></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- Add Job Offer Modal -->
+<div class="modal-overlay" id="addModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3>➕ إضافة عرض توظيف جديد</h3>
+      <button onclick="closeModal('addModal')" style="font-size:22px;color:var(--ink-mut)">✕</button>
+    </div>
+    <form onsubmit="submitNewOffer(event)">
+      <div class="pitch-group">
+        <label>المسمى الوظيفي / العنوان:</label>
+        <input type="text" id="addTitle" class="pitch-textarea" required placeholder="مثال: منشط ومضيف معرض، بائع بمحل، مطور...">
+      </div>
+      <div class="pitch-group">
+        <label>المنطقة / البلدية:</label>
+        <input type="text" id="addLocation" class="pitch-textarea" required placeholder="مثال: باب الزوار (قرب الميترو)، قصر المعارض SAFEX...">
+      </div>
+      <div class="pitch-group">
+        <label>رقم الهاتف أو واتساب للتواصل:</label>
+        <input type="text" id="addPhone" class="pitch-textarea" required placeholder="0550123456">
+      </div>
+      <div class="pitch-group">
+        <label>الراتب المقترح (اختياري):</label>
+        <input type="text" id="addSalary" class="pitch-textarea" placeholder="مثال: 35,000 دج أو 2500 دج/يوم">
+      </div>
+      <div class="pitch-group">
+        <label>تفاصيل العرض والشروط:</label>
+        <textarea id="addDetails" class="pitch-textarea" rows="4" required placeholder="اكتب متطلبات الوظيفة وساعات العمل..."></textarea>
+      </div>
+      <button type="submit" class="btn btn-pri" style="width:100%;justify-content:center;padding:12px">
+        <span>نشر العرض فوراً في الرادار</span>
+      </button>
+    </form>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<footer>
+  <div class="footer-links">
+    <a href="https://t.me/searchamarbot" target="_blank" rel="noopener">بوت تيليغرام الرسمي (@searchamarbot)</a>
+    <span>•</span>
+    <a href="#transit">رادار مواصلات العاصمة</a>
+    <span>•</span>
+    <a href="javascript:void(0)" onclick="openAddModal()">أصحاب العمل والشركات</a>
+  </div>
+  <p>© 2026 JobRadar DZ — محرك ورادار التوظيف المستقل بالجزائر. جميع الحقوق محفوظة.</p>
+</footer>
+
+<script>
+let ALL_OFFERS = [];
+let USER_PROFILE = JSON.parse(localStorage.getItem('jobradar_profile') || '{"xp":35,"level":1,"streak":1,"applied":[],"starred":[]}');
+
+function saveProfile(){
+  localStorage.setItem('jobradar_profile', JSON.stringify(USER_PROFILE));
+  updateProfileUI();
+}
+
+function updateProfileUI(){
+  document.getElementById('gameFlame').textContent = '🔥 ' + USER_PROFILE.streak;
+  document.getElementById('gameXp').textContent = USER_PROFILE.xp;
+  const lvl = Math.floor(USER_PROFILE.xp / 100) + 1;
+  const titles = ["باحث نشط 🌱", "مستكشف متمرس ⚡", "محترف التقديم 💼", "خبير سوق العمل 🏆"];
+  document.getElementById('gameLevel').textContent = `المستوى ${lvl}: ${titles[Math.min(lvl-1, titles.length-1)]}`;
+  document.getElementById('gameXpBar').style.width = (USER_PROFILE.xp % 100) + '%';
+}
+
+function toast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.display = 'block';
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.style.display = 'none', 3000);
+}
+
+function copyText(id){
+  const el = document.getElementById(id);
+  el.select();
+  navigator.clipboard.writeText(el.value).then(() => toast('تم نسخ النص بنجاح ✔'));
+}
+
+function closeModal(id){
+  document.getElementById(id).classList.remove('open');
+}
+
+function openAddModal(){
+  document.getElementById('addModal').classList.add('open');
+}
+
+// Fallback initial dataset in case fetch is offline
+const INITIAL_FALLBACK = [
+  {
+    "uid": "off_1",
+    "found_at": "2026-11-10T14:30",
+    "source": "قناة توظيف الجزائر العاصمة",
+    "platform": "telegram",
+    "score": 10,
+    "salary": "2500 دج / يوم",
+    "commute_tag": "🚇 قرب ترامواي قصر المعارض (SAFEX)",
+    "gig_badge": "🎪 تنظيم معارض وفعاليات",
+    "phones": "0550 12 34 56",
+    "emails": "recrutement.safex.alger@gmail.com",
+    "whatsapp_url": "https://wa.me/213550123456",
+    "url": "https://t.me/searchamarbot",
+    "text": "مطلوب 6 منشطين ومضيفات استقبال للمشاركة في تنظيم الصالون الدولي بقصر المعارض الصنوبر البحري (SAFEX) الجزائر العاصمة. الدوام كامل، الأجر يومي فوري مع وجبة الغداء، يشترط الجدية وحسن المظهر والتفرغ."
+  },
+  {
+    "uid": "off_2",
+    "found_at": "2026-11-10T12:15",
+    "source": "Emploitic Alger",
+    "platform": "web",
+    "score": 9,
+    "salary": "45,000 دج شهرياً",
+    "commute_tag": "🚇 قرب محطة ميترو باب الزوار",
+    "gig_badge": "",
+    "phones": "0661 23 45 67",
+    "emails": "contact@showroom-alger.dz",
+    "whatsapp_url": "https://wa.me/213661234567",
+    "url": "https://emploitic.com",
+    "text": "Recrutement d'un commercial showroom et vendeur pour magasin d'électroménager et technologie à Bab Ezzouar (proche station métro et centre commercial). Profil dynamique avec bon sens relationnel."
+  },
+  {
+    "uid": "off_3",
+    "found_at": "2026-11-09T18:00",
+    "source": "مجموعة توظيف العاصمة",
+    "platform": "facebook",
+    "score": 8,
+    "salary": "35,000 دج + عمولات",
+    "commute_tag": "🚇 قرب محطة تافورة والبريد المركزي",
+    "gig_badge": "⚡ دوام مرن",
+    "phones": "0770 98 76 54",
+    "emails": "rh.tafourah@gmail.com",
+    "whatsapp_url": "https://wa.me/213770987654",
+    "url": "https://facebook.com",
+    "text": "مطعم راقٍ بقلب العاصمة تافورة يبحث عن نادل ومساعد قاعة للعمل، يشترط اللباقة والحرص على النظافة. الإقامة غير متوفرة، الأفضلية للقاطنين بمحاذاة خط الميترو."
+  },
+  {
+    "uid": "off_4",
+    "found_at": "2026-11-09T10:00",
+    "source": "JobRadar Cloud",
+    "platform": "web",
+    "score": 9,
+    "salary": "70,000 دج شهرياً",
+    "commute_tag": "🚌 حيدرة / بن عكنون",
+    "gig_badge": "💻 تقنية وبرمجة",
+    "phones": "0555 44 33 22",
+    "emails": "jobs@tech-agency.dz",
+    "whatsapp_url": "https://wa.me/213555443322",
+    "url": "https://linkedin.com",
+    "text": "Agence digitale à Hydra recrute un développeur web fullstack (Python / JavaScript / React). Possibilité de travail hybride (présentiel + télétravail). Envoyez vos réalisations et CV."
+  }
+];
+
+async function loadOffers(){
+  try {
+    const res = await fetch('data/offers.json');
+    if(res.ok){
+      const data = await res.json();
+      if(Array.isArray(data) && data.length > 0){
+        ALL_OFFERS = data;
+      } else {
+        ALL_OFFERS = INITIAL_FALLBACK;
+      }
+    } else {
+      ALL_OFFERS = INITIAL_FALLBACK;
+    }
+  } catch(e) {
+    ALL_OFFERS = INITIAL_FALLBACK;
+  }
+
+  // Load custom community offers from localStorage
+  const custom = JSON.parse(localStorage.getItem('jobradar_custom_offers') || '[]');
+  ALL_OFFERS = [...custom, ...ALL_OFFERS];
+
+  filterOffers();
+  updateProfileUI();
+}
+
+function filterOffers(){
+  const q = document.getElementById('searchInput').value.trim().toLowerCase();
+  const st = document.getElementById('filterStatus').value;
+  const pl = document.getElementById('filterPlatform').value;
+  const sp = document.getElementById('filterSpecial').value;
+
+  const filtered = ALL_OFFERS.filter(o => {
+    // Status match
+    if(st === 'starred' && !USER_PROFILE.starred.includes(o.uid)) return false;
+    if(st === 'applied' && !USER_PROFILE.applied.includes(o.uid)) return false;
+
+    // Platform match
+    if(pl !== 'all' && o.platform !== pl) return false;
+
+    // Special match
+    if(sp === 'transit' && !(o.commute_tag && (o.commute_tag.includes('ميترو') || o.commute_tag.includes('ترامواي')))) return false;
+    if(sp === 'salary' && !o.salary) return false;
+    if(sp === 'gig' && !o.gig_badge) return false;
+
+    // Query search
+    if(q){
+      const corpus = (o.text + ' ' + (o.source||'') + ' ' + (o.salary||'') + ' ' + (o.commute_tag||'') + ' ' + (o.gig_badge||'')).toLowerCase();
+      if(!corpus.includes(q)) return false;
+    }
+    return true;
+  });
+
+  document.getElementById('offersCount').textContent = `تم العثور على ${filtered.length} فرصة عمل`;
+  renderOffers(filtered);
+}
+
+function renderOffers(offers){
+  const grid = document.getElementById('offersGrid');
+  if(!offers.length){
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:50px;color:var(--ink-mut);font-size:16px">لم نجد عروض تطابق هذا البحث حالياً. جرب كلمات أخرى أو تصفح كافة العروض!</div>';
+    return;
+  }
+
+  const platformIcons = {
+    web: '🌐 موقع',
+    telegram: '✈️ تيليغرام',
+    facebook: '📘 فيسبوك',
+    instagram: '📸 إنستغرام'
+  };
+
+  grid.innerHTML = offers.map(o => {
+    const isApplied = USER_PROFILE.applied.includes(o.uid);
+    const isStarred = USER_PROFILE.starred.includes(o.uid);
+
+    return `
+      <div class="card ${isApplied ? 'applied' : ''}">
+        <div>
+          <div class="card-header">
+            <span class="card-source">${platformIcons[o.platform] || '📡'} ${escapeHtml(o.source || 'عرض معتمد')}</span>
+            <span class="score-pill">⭐ ${o.score || 9}/10</span>
+          </div>
+
+          <div class="chips-row">
+            ${o.salary ? `<span class="chip chip-salary">💰 ${escapeHtml(o.salary)}</span>` : ''}
+            ${o.commute_tag ? `<span class="chip chip-transit">${escapeHtml(o.commute_tag)}</span>` : ''}
+            ${o.gig_badge ? `<span class="chip chip-gig">${escapeHtml(o.gig_badge)}</span>` : ''}
+            ${isApplied ? `<span class="chip" style="background:#10b981;color:#fff">✅ تم التقديم</span>` : ''}
+            ${isStarred ? `<span class="chip" style="background:#f59e0b;color:#fff">⭐ مفضلة</span>` : ''}
+          </div>
+
+          <div class="card-text" onclick="this.classList.toggle('expanded')">
+            ${escapeHtml(o.text)}
+          </div>
+        </div>
+
+        <div>
+          <div class="contacts-box">
+            ${o.phones ? `<span>📞 ${escapeHtml(o.phones)}</span>` : ''}
+            ${o.emails ? `<span>✉️ ${escapeHtml(o.emails)}</span>` : ''}
+          </div>
+
+          <div class="card-actions">
+            ${o.whatsapp_url ? `
+              <a href="${escapeHtml(o.whatsapp_url)}" target="_blank" rel="noopener" class="action-btn action-wa" onclick="markApplied('${o.uid}')">
+                💬 واتساب
+              </a>
+            ` : ''}
+            <button class="action-btn action-pitch" onclick="openPitchModal('${o.uid}')">
+              📋 رسالة تقديم جاهزة
+            </button>
+            <button class="action-btn action-pitch" onclick="toggleStarred('${o.uid}')">
+              ${isStarred ? '⭐ محفوظة' : '☆ حفظ'}
+            </button>
+            ${o.url ? `
+              <a href="${escapeHtml(o.url)}" target="_blank" rel="noopener" class="action-btn action-pitch" style="color:var(--pri-light)">
+                🔗 الإعلان
+              </a>
+            ` : ''}
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function quickFilter(term){
+  document.getElementById('searchInput').value = term;
+  filterOffers();
+  window.scrollTo({ top: document.querySelector('.toolbar').offsetTop - 80, behavior: 'smooth' });
+}
+
+function resetFilters(){
+  document.getElementById('searchInput').value = '';
+  document.getElementById('filterStatus').value = 'all';
+  document.getElementById('filterPlatform').value = 'all';
+  document.getElementById('filterSpecial').value = 'all';
+  filterOffers();
+}
+
+function toggleStarred(uid){
+  const idx = USER_PROFILE.starred.indexOf(uid);
+  if(idx > -1){
+    USER_PROFILE.starred.splice(idx, 1);
+    toast('تمت إزالة العرض من المفضلة');
+  } else {
+    USER_PROFILE.starred.push(uid);
+    USER_PROFILE.xp += 5;
+    toast('⭐ تم حفظ العرض في المفضلة (+5 XP)');
+  }
+  saveProfile();
+  filterOffers();
+}
+
+function markApplied(uid){
+  if(!USER_PROFILE.applied.includes(uid)){
+    USER_PROFILE.applied.push(uid);
+    USER_PROFILE.xp += 15;
+    toast('🎉 أحسنت! تم تسجيل تقديمك (+15 XP)');
+    saveProfile();
+    filterOffers();
+  }
+}
+
+function openPitchModal(uid){
+  const o = ALL_OFFERS.find(x => x.uid === uid);
+  if(!o) return;
+
+  const role = extractRole(o.text);
+  const applicantName = "عمار حيمور";
+
+  const waFr = `Bonjour,\n\nJe me permets de vous contacter suite à votre annonce pour le poste de *${role}* (${o.source || 'JobRadar'}).\nJe suis basé à Alger, sérieux, dynamique et immédiatement disponible pour rejoindre votre équipe.\n\nSerait-il possible de vous transmettre mon CV ?\n\nBien cordialement,\n${applicantName}`;
+  const waAr = `السلام عليكم ورحمة الله،\n\nأتواصل معكم بخصوص إعلانكم لتوظيف *${role}* (${o.source || 'JobRadar'}).\nأنا مقيم بالجزائر العاصمة، جاد ونشيط ومستعد للالتحاق بالعمل فوراً.\n\nيسعدني تزويدكم بسيرتي الذاتية (CV) ومناقشة تفاصيل العمل معكم.\n\nمع خالص التقدير،\n${applicantName}`;
+  const emailSubject = `Candidature au poste de ${role} - ${applicantName}`;
+  const emailBody = `Madame, Monsieur,\n\nVivement intéressé par votre offre d'emploi pour le poste de ${role},\nje vous soumets ma candidature avec enthousiasme.\nRésidant à Alger et disponible immédiatement, je saurai mettre ma rigueur et mon dynamisme au service de votre structure.\n\nDans l'attente d'un échange favorable, je vous prie d'agréer mes salutations distinguées.\n\n${applicantName}\nAlger, Algérie`;
+
+  document.getElementById('pitchModalTitle').textContent = `📋 رسالة تقديم لوظيفة: ${role}`;
+  document.getElementById('pitchWaFr').value = waFr;
+  document.getElementById('pitchWaAr').value = waAr;
+  document.getElementById('pitchEmail').value = `Subject: ${emailSubject}\n\n${emailBody}`;
+
+  const cleanPhone = (o.phones || '').replace(/\D/g, '');
+  const waLink = cleanPhone ? `https://wa.me/${cleanPhone.startsWith('0') ? '213' + cleanPhone.slice(1) : cleanPhone}?text=${encodeURIComponent(waFr)}` : (o.whatsapp_url || '');
+  const waBtn = document.getElementById('pitchWaBtn');
+  if(waLink){
+    waBtn.href = waLink;
+    waBtn.style.display = 'inline-flex';
+    waBtn.onclick = () => markApplied(uid);
+  } else {
+    waBtn.style.display = 'none';
+  }
+
+  const mailBtn = document.getElementById('pitchMailBtn');
+  if(o.emails){
+    mailBtn.href = `mailto:${o.emails}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+    mailBtn.style.display = 'inline-flex';
+    mailBtn.onclick = () => markApplied(uid);
+  } else {
+    mailBtn.style.display = 'none';
+  }
+
+  document.getElementById('pitchModal').classList.add('open');
+}
+
+function extractRole(text){
+  const t = text.toLowerCase();
+  const roles = ["animateur", "hotesse", "vendeur", "serveur", "commercial", "livreur", "caissier", "developpeur", "comptable", "منشط", "مضيف", "بائع", "نادل", "مطور", "سائق"];
+  for(const r of roles){
+    if(t.includes(r)) return r.charAt(0).toUpperCase() + r.slice(1);
+  }
+  return "Poste Proposé";
+}
+
+function submitNewOffer(e){
+  e.preventDefault();
+  const title = document.getElementById('addTitle').value.trim();
+  const loc = document.getElementById('addLocation').value.trim();
+  const phone = document.getElementById('addPhone').value.trim();
+  const sal = document.getElementById('addSalary').value.trim();
+  const details = document.getElementById('addDetails').value.trim();
+
+  const newPost = {
+    uid: 'custom_' + Date.now(),
+    found_at: new Date().toISOString(),
+    source: 'مجتمع JobRadar (نشر مباشر)',
+    platform: 'web',
+    score: 10,
+    salary: sal,
+    commute_tag: loc.includes('ميترو') || loc.includes('ترامواي') ? `🚇 ${loc}` : loc,
+    gig_badge: title.includes('معرض') || title.includes('يومي') ? '🎪 عمل مجتمعي فوري' : '',
+    phones: phone,
+    emails: '',
+    whatsapp_url: `https://wa.me/213${phone.replace(/\D/g,'').slice(-9)}`,
+    url: '',
+    text: `${title} — ${loc}.\n${details}\nللتواصل: ${phone}`
+  };
+
+  const custom = JSON.parse(localStorage.getItem('jobradar_custom_offers') || '[]');
+  custom.unshift(newPost);
+  localStorage.setItem('jobradar_custom_offers', JSON.stringify(custom));
+
+  ALL_OFFERS.unshift(newPost);
+  closeModal('addModal');
+  toast('🎉 تم نشر العرض بنجاح في المنصة!');
+  filterOffers();
+  e.target.reset();
+}
+
+function escapeHtml(s){
+  return String(s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+loadOffers();
+</script>
+</body>
+</html>
