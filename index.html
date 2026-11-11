@@ -1194,69 +1194,8 @@ function processNextAnimationDispatch(){
   }
 }
 
-// Fallback initial dataset in case fetch is offline
-const INITIAL_FALLBACK = [
-  {
-    "uid": "off_1",
-    "found_at": "2026-11-10T14:30",
-    "source": "قناة توظيف الجزائر العاصمة",
-    "platform": "telegram",
-    "score": 10,
-    "salary": "2500 دج / يوم",
-    "commute_tag": "🚇 قرب ترامواي قصر المعارض (SAFEX)",
-    "gig_badge": "🎪 تنظيم معارض وفعاليات",
-    "phones": "0550 12 34 56",
-    "emails": "recrutement.safex.alger@gmail.com",
-    "whatsapp_url": "https://wa.me/213550123456",
-    "url": "https://t.me/searchamarbot",
-    "text": "مطلوب 6 منشطين ومضيفات استقبال للمشاركة في تنظيم الصالون الدولي بقصر المعارض الصنوبر البحري (SAFEX) الجزائر العاصمة. الدوام كامل، الأجر يومي فوري مع وجبة الغداء، يشترط الجدية وحسن المظهر والتفرغ."
-  },
-  {
-    "uid": "off_2",
-    "found_at": "2026-11-10T12:15",
-    "source": "Emploitic Alger",
-    "platform": "web",
-    "score": 9,
-    "salary": "45,000 دج شهرياً",
-    "commute_tag": "🚇 قرب محطة ميترو باب الزوار",
-    "gig_badge": "",
-    "phones": "0661 23 45 67",
-    "emails": "contact@showroom-alger.dz",
-    "whatsapp_url": "https://wa.me/213661234567",
-    "url": "https://emploitic.com",
-    "text": "Recrutement d'un commercial showroom et vendeur pour magasin d'électroménager et technologie à Bab Ezzouar (proche station métro et centre commercial). Profil dynamique avec bon sens relationnel."
-  },
-  {
-    "uid": "off_3",
-    "found_at": "2026-11-09T18:00",
-    "source": "مجموعة توظيف العاصمة",
-    "platform": "facebook",
-    "score": 8,
-    "salary": "35,000 دج + عمولات",
-    "commute_tag": "🚇 قرب محطة تافورة والبريد المركزي",
-    "gig_badge": "⚡ دوام مرن",
-    "phones": "0770 98 76 54",
-    "emails": "rh.tafourah@gmail.com",
-    "whatsapp_url": "https://wa.me/213770987654",
-    "url": "https://facebook.com",
-    "text": "مطعم راقٍ بقلب العاصمة تافورة يبحث عن نادل ومساعد قاعة للعمل، يشترط اللباقة والحرص على النظافة. الإقامة غير متوفرة، الأفضلية للقاطنين بمحاذاة خط الميترو."
-  },
-  {
-    "uid": "off_4",
-    "found_at": "2026-11-09T10:00",
-    "source": "JobRadar Cloud",
-    "platform": "web",
-    "score": 9,
-    "salary": "70,000 دج شهرياً",
-    "commute_tag": "🚌 حيدرة / بن عكنون",
-    "gig_badge": "💻 تقنية وبرمجة",
-    "phones": "0555 44 33 22",
-    "emails": "jobs@tech-agency.dz",
-    "whatsapp_url": "https://wa.me/213555443322",
-    "url": "https://linkedin.com",
-    "text": "Agence digitale à Hydra recrute un développeur web fullstack (Python / JavaScript / React). Possibilité de travail hybride (présentiel + télétravail). Envoyez vos réalisations et CV."
-  }
-];
+// Pas de fausses offres de démonstration : si le fichier est introuvable, le site l'indique honnêtement.
+const INITIAL_FALLBACK = [];
 
 async function loadOffers(){
   try {
@@ -1275,9 +1214,17 @@ async function loadOffers(){
     ALL_OFFERS = INITIAL_FALLBACK;
   }
 
+  // État du collecteur : date de la dernière mise à jour (affichée avec le nombre d'offres)
+  try {
+    const st = await fetch('data/status.json');
+    if (st.ok) { const j = await st.json(); window.LAST_UPDATE = (j.generated_at || '').replace('T', ' '); window.SRC_STATUS = j.sources || []; }
+  } catch (e) { /* pas de statut : rien à afficher */ }
+
   // Load custom community offers from localStorage
   const custom = JSON.parse(localStorage.getItem('jobradar_custom_offers') || '[]');
   ALL_OFFERS = [...custom, ...ALL_OFFERS];
+  // Priorité : événementiel / animation d'abord, puis meilleure note.
+  ALL_OFFERS.sort((a, b) => (b.event ? 1 : 0) - (a.event ? 1 : 0) || (b.score || 0) - (a.score || 0));
 
   // Update Animation offer badges count
   const animCount = getAnimationOffers().length;
@@ -1323,7 +1270,7 @@ function filterOffers(){
     return true;
   });
 
-  document.getElementById('offersCount').textContent = `تم العثور على ${filtered.length} فرصة عمل`;
+  document.getElementById('offersCount').textContent = `تم العثور على ${filtered.length} فرصة عمل` + (window.LAST_UPDATE ? ` · آخر تحديث ${window.LAST_UPDATE}` : '');
   renderOffers(filtered);
 }
 
