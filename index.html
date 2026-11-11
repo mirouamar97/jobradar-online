@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>JobRadar DZ — منصة ورادار عروض التوظيف والفرص الذكية بالجزائر</title>
-<meta name="description" content="منصة تفاعلية لرصد أحدث فرص العمل والوظائف المؤقتة بالجزائر العاصمة مع ربط مباشر بمحطات الميترو والترامواي ورسائل تقديم فورية.">
+<meta name="description" content="منصة تفاعلية لرصد أحدث فرص العمل والوظائف المؤقتة بالجزائر العاصمة مع ميزة المراسلة التلقائية لفرص الأنيماتور والمعارض.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -52,10 +52,10 @@ header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(9, 13, 22, 0.85);
+  background: rgba(9, 13, 22, 0.9);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line);
-  padding: 14px 24px;
+  padding: 12px 24px;
 }
 .nav-inner {
   max-width: 1300px;
@@ -141,6 +141,16 @@ header {
   background: #1d4ed8;
   transform: translateY(-1px);
 }
+.btn-anim {
+  background: linear-gradient(135deg, #f59e0b, #ef4444);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(245,158,11,0.4);
+  animation: pulseBtn 2.2s infinite;
+}
+@keyframes pulseBtn {
+  0%, 100% { transform: scale(1); box-shadow: 0 4px 16px rgba(245,158,11,0.4); }
+  50% { transform: scale(1.02); box-shadow: 0 4px 22px rgba(239,68,68,0.6); }
+}
 .btn-outline {
   border: 1px solid var(--line);
   background: var(--bg-card);
@@ -154,14 +164,14 @@ header {
 /* Hero Section */
 .hero {
   max-width: 1300px;
-  margin: 30px auto 20px;
+  margin: 24px auto 16px;
   padding: 0 20px;
   text-align: center;
 }
 .hero h2 {
   font-size: 34px;
   font-weight: 900;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   letter-spacing: -0.5px;
 }
 .hero h2 span {
@@ -171,9 +181,37 @@ header {
 }
 .hero p {
   color: var(--ink-mut);
-  font-size: 16px;
-  max-width: 680px;
-  margin: 0 auto 24px;
+  font-size: 15.5px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* Animation Dispatcher Callout Banner */
+.anim-callout {
+  max-width: 1300px;
+  margin: 18px auto 24px;
+  padding: 0 20px;
+}
+.anim-banner {
+  background: linear-gradient(135deg, rgba(245,158,11,0.18), rgba(239,68,68,0.16));
+  border: 1.5px solid rgba(245,158,11,0.45);
+  border-radius: var(--radius);
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  box-shadow: 0 8px 30px rgba(245,158,11,0.15);
+}
+.anim-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.anim-icon {
+  font-size: 38px;
+  filter: drop-shadow(0 0 10px rgba(245,158,11,0.6));
 }
 
 /* Gamification Bar */
@@ -393,6 +431,10 @@ header {
   border-color: rgba(56,189,248,0.4);
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
+.card.is-anim {
+  border-color: rgba(245,158,11,0.5);
+  background: linear-gradient(180deg, rgba(245,158,11,0.06), var(--bg-card));
+}
 .card-header {
   display: flex;
   align-items: flex-start;
@@ -444,6 +486,12 @@ header {
   background: rgba(139,92,246,0.15);
   color: var(--accent);
   border: 1px solid rgba(139,92,246,0.3);
+}
+.chip-anim {
+  background: rgba(245,158,11,0.2);
+  color: #fcd34d;
+  border: 1px solid rgba(245,158,11,0.5);
+  font-weight: 700;
 }
 
 .card-text {
@@ -509,11 +557,11 @@ header {
   color: var(--pri-light);
 }
 
-/* Modal */
+/* Modals */
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.75);
+  background: rgba(0,0,0,0.8);
   backdrop-filter: blur(8px);
   z-index: 200;
   display: none;
@@ -626,6 +674,9 @@ footer {
       </div>
     </div>
     <div class="nav-actions">
+      <button class="btn btn-anim" onclick="openAnimationAutoMessenger()">
+        <span>🎪 مراسلة عروض الأنيماسيون (<b id="animCountNav">0</b>)</span>
+      </button>
       <div class="live-pill">
         <span class="dot"></span>
         <span>مباشر على الإنترنت</span>
@@ -642,7 +693,32 @@ footer {
 
 <section class="hero">
   <h2>رادار التوظيف <span>الأذكى في الجزائر</span></h2>
-  <p>رصد فوري لفرص العمل بالعاصمة، ربط مباشر مع محطات الميترو والترامواي، وتوليد فوري لرسائل التقديم عبر واتساب والإيميل.</p>
+  <p>رصد فوري لفرص العمل بالعاصمة، ربط مباشر مع محطات الميترو والترامواي، وميزة المراسلة التلقائية لفرص الأنيماتور والمعارض.</p>
+</section>
+
+<!-- Animation Dispatcher Callout Banner -->
+<section class="anim-callout">
+  <div class="anim-banner">
+    <div class="anim-info">
+      <div class="anim-icon">🎪</div>
+      <div>
+        <h3 style="font-size:18px;font-weight:900;color:#fcd34d;margin-bottom:3px">
+          ميزة المراسلة التلقائية لفرص التنشيط والمعارض (Animation Auto-Messenger)
+        </h3>
+        <p style="font-size:13.5px;color:#e2e8f0;margin:0">
+          تم رصد <b id="animCountHero" style="color:#f59e0b">0 فرصة أنيماسيون ومعارض</b> بالعاصمة. يمكنك بنقرة واحدة إرسال رسائل التقديم المخصصة لجميع أصحاب العروض عبر واتساب والإيميل!
+        </p>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <button class="btn btn-pri" style="background:#f59e0b;color:#111;font-weight:800;border:none" onclick="openAnimationAutoMessenger()">
+        <span>🚀 تشغيل مركز المراسلة التلقائية</span>
+      </button>
+      <button class="btn btn-outline" onclick="filterAnimationOnly()">
+        <span>🔍 تصفية عروض الأنيماسيون فقط</span>
+      </button>
+    </div>
+  </div>
 </section>
 
 <!-- Gamification Hero -->
@@ -662,6 +738,7 @@ footer {
       <span class="badge-pill">🎯 أول تقديم</span>
       <span class="badge-pill">🚇 ابن العاصمة</span>
       <span class="badge-pill">🎪 سفير المعارض</span>
+      <span class="badge-pill">⚡ مراسل فائق السرعة</span>
     </div>
   </div>
 </section>
@@ -673,12 +750,12 @@ footer {
     <input type="search" id="searchInput" placeholder="ابحث بالوظيفة أو البلدية: animateur, vendeur, باب الزوار, مطعم, SAFEX..." oninput="filterOffers()">
   </div>
   <div class="quick-tags">
-    <span class="quick-tag" onclick="quickFilter('safex')">🎪 معارض SAFEX</span>
+    <span class="quick-tag" onclick="filterAnimationOnly()">🎪 عروض الأنيماسيون والمعارض</span>
+    <span class="quick-tag" onclick="quickFilter('safex')">🏛️ SAFEX قصر المعارض</span>
     <span class="quick-tag" onclick="quickFilter('bab ezzouar')">🚇 باب الزوار</span>
     <span class="quick-tag" onclick="quickFilter('commercial')">💼 مبيعات و Showroom</span>
     <span class="quick-tag" onclick="quickFilter('serveur')">🍽️ مطاعم ومقاهي</span>
     <span class="quick-tag" onclick="quickFilter('livreur')">🛵 توصيل</span>
-    <span class="quick-tag" onclick="quickFilter('developpeur')">💻 برمجة وتقنية</span>
     <span class="quick-tag" onclick="resetFilters()">🔄 الكل</span>
   </div>
 </section>
@@ -700,7 +777,7 @@ footer {
     <div class="feature-box">
       <h3>🎪 رادار العمل المؤقت والحر (Gig Hub)</h3>
       <div class="stations-scroller">
-        <button class="station-btn" onclick="quickFilter('معارض')">🏛️ صالونات ومعارض</button>
+        <button class="station-btn" onclick="filterAnimationOnly()">🎪 تنشيط معارض وصالونات</button>
         <button class="station-btn" onclick="quickFilter('يومي')">⚡ أجر يومي Extra</button>
         <button class="station-btn" onclick="quickFilter('توصيل')">🛵 توصيل طرود</button>
         <button class="station-btn" onclick="quickFilter('طالب')">🎓 مناسب للطلاب</button>
@@ -724,6 +801,7 @@ footer {
       </select>
       <select class="select-filter" id="filterSpecial" onchange="filterOffers()">
         <option value="all">كافة التصنيفات</option>
+        <option value="animation">🎪 عروض الأنيماسيون فقط</option>
         <option value="transit">🚇 قرب محطات الميترو والترامواي</option>
         <option value="salary">💰 عروض براتب محدد</option>
         <option value="gig">🎪 عمل مؤقت أو معارض</option>
@@ -735,6 +813,85 @@ footer {
   <!-- Offers Grid -->
   <div class="offers-grid" id="offersGrid"></div>
 </main>
+
+<!-- Animation Auto-Messenger Modal -->
+<div class="modal-overlay" id="animModal">
+  <div class="modal-box" style="max-width:850px">
+    <div class="modal-header">
+      <div>
+        <h3 style="font-size:20px;display:flex;align-items:center;gap:8px">
+          <span>🎪</span> مركز المراسلة التلقائية لفرص الأنيماتور والمعارض
+        </h3>
+        <p style="font-size:12.5px;color:var(--ink-mut);margin-top:2px">
+          إرسال سريع وتسلسلي لرسائل التقديم المخصصة عبر واتساب والإيميل لجميع العروض المؤهلة
+        </p>
+      </div>
+      <button onclick="closeModal('animModal')" style="font-size:24px;color:var(--ink-mut)">✕</button>
+    </div>
+
+    <!-- Candidate Pitch Studio -->
+    <div style="background:var(--bg-subtle);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:18px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+        <div>
+          <label style="font-size:12.5px;font-weight:700;display:block;margin-bottom:4px">اسم المترشح:</label>
+          <input type="text" id="animCandidateName" value="عمار حيمور" class="pitch-textarea" style="padding:8px" oninput="updateAnimPreview()">
+        </div>
+        <div>
+          <label style="font-size:12.5px;font-weight:700;display:block;margin-bottom:4px">رقم الهاتف:</label>
+          <input type="text" id="animCandidatePhone" value="0550 12 34 56" class="pitch-textarea" style="padding:8px" oninput="updateAnimPreview()">
+        </div>
+      </div>
+      <div>
+        <label style="font-size:12.5px;font-weight:700;display:block;margin-bottom:4px">نوع رسالة التقديم (Animation Pitch):</label>
+        <select id="animPitchType" class="pitch-textarea" style="padding:8px" onchange="updateAnimPreview()">
+          <option value="safex">🎪 منشط ومضيف أجنحة ومعارض (SAFEX & Salons)</option>
+          <option value="commercial">🛍️ منشط مبيعات وتجاري (Street Marketing & Promo)</option>
+          <option value="general">✨ منشط عام وفعاليات ومناسبات</option>
+        </select>
+      </div>
+      <div style="margin-top:10px">
+        <label style="font-size:12px;color:var(--ink-mut);display:flex;justify-content:space-between">
+          <span>معاينة نص الرسالة التلقائية المجهزة:</span>
+          <button class="btn btn-outline" style="padding:2px 8px;font-size:11px" onclick="copyText('animPreviewText')">نسخ</button>
+        </label>
+        <textarea id="animPreviewText" class="pitch-textarea" rows="4" style="margin-top:4px;font-size:12.5px;direction:ltr" readonly></textarea>
+      </div>
+    </div>
+
+    <!-- Sequential Batch Sender Action Bar -->
+    <div style="background:linear-gradient(135deg, rgba(245,158,11,0.18), rgba(239,68,68,0.18));border:1px solid rgba(245,158,11,0.4);border-radius:14px;padding:14px 18px;margin-bottom:18px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <div>
+        <div style="font-size:15px;font-weight:800;color:#fcd34d">⚡ الإرسال التسلسلي الآلي (Auto-Send Sequence)</div>
+        <div style="font-size:12px;color:var(--ink-mut)">يفتح لك محادثة واتساب لكل صاحب عمل تباعاً مع الرسالة مجهزة وجاهزة للإرسال فوراً!</div>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-pri action-wa" style="padding:10px 18px;font-size:14px" onclick="startSequentialAnimationDispatch()">
+          <span>🚀 ابدأ المراسلة التسلسلية الآن</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Dispatch Progress Bar (Hidden by default) -->
+    <div id="animProgressBox" style="display:none;margin-bottom:16px;background:var(--bg-subtle);padding:12px;border-radius:10px;border:1px solid var(--line)">
+      <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;margin-bottom:6px">
+        <span id="animProgressText">جاري فتح المحادثات...</span>
+        <span id="animProgressPercent">0%</span>
+      </div>
+      <div style="height:8px;background:var(--line);border-radius:999px;overflow:hidden">
+        <div id="animProgressBar" style="height:100%;width:0%;background:linear-gradient(90deg, #10b981, #38bdf8);transition:width 0.3s"></div>
+      </div>
+    </div>
+
+    <!-- Offers Queue -->
+    <div>
+      <h4 style="font-size:15px;font-weight:800;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center">
+        <span>قائمة العروض المؤهلة للأنيماسيون (<span id="animQueueCount">0</span>)</span>
+        <button class="btn btn-outline" style="font-size:12px;padding:4px 10px" onclick="clearMessagedHistory()">إعادة تعيين سجل المراسلة</button>
+      </h4>
+      <div id="animQueueList" style="display:flex;flex-direction:column;gap:10px;max-height:380px;overflow-y:auto;padding-right:4px"></div>
+    </div>
+  </div>
+</div>
 
 <!-- Pitch Modal -->
 <div class="modal-overlay" id="pitchModal">
@@ -816,7 +973,7 @@ footer {
   <div class="footer-links">
     <a href="https://t.me/searchamarbot" target="_blank" rel="noopener">بوت تيليغرام الرسمي (@searchamarbot)</a>
     <span>•</span>
-    <a href="#transit">رادار مواصلات العاصمة</a>
+    <a href="javascript:void(0)" onclick="openAnimationAutoMessenger()">رادار الأنيماسيون</a>
     <span>•</span>
     <a href="javascript:void(0)" onclick="openAddModal()">أصحاب العمل والشركات</a>
   </div>
@@ -825,7 +982,22 @@ footer {
 
 <script>
 let ALL_OFFERS = [];
-let USER_PROFILE = JSON.parse(localStorage.getItem('jobradar_profile') || '{"xp":35,"level":1,"streak":1,"applied":[],"starred":[]}');
+let USER_PROFILE = JSON.parse(localStorage.getItem('jobradar_profile') || '{"xp":35,"level":1,"streak":1,"applied":[],"starred":[],"anim_messaged":[]}');
+if(!USER_PROFILE.anim_messaged) USER_PROFILE.anim_messaged = [];
+
+const ANIM_KEYWORDS = [
+  "animat", "hote", "safex", "salon", "stand", "foire", "evenement", "accueil", "promoteur", "promotrice",
+  "منشط", "منشطة", "مضيف", "مضيفة", "معرض", "معارض", "صالون", "سافكس", "ستاند", "استقبال", "تنشيط"
+];
+
+function isAnimationOffer(offer){
+  const text = (offer.text + ' ' + (offer.source || '') + ' ' + (offer.gig_badge || '')).toLowerCase();
+  return ANIM_KEYWORDS.some(k => text.includes(k));
+}
+
+function getAnimationOffers(){
+  return ALL_OFFERS.filter(isAnimationOffer);
+}
 
 function saveProfile(){
   localStorage.setItem('jobradar_profile', JSON.stringify(USER_PROFILE));
@@ -861,6 +1033,165 @@ function closeModal(id){
 
 function openAddModal(){
   document.getElementById('addModal').classList.add('open');
+}
+
+// Animation Auto-Messenger Modal Logic
+function openAnimationAutoMessenger(){
+  updateAnimPreview();
+  renderAnimationQueue();
+  document.getElementById('animModal').classList.add('open');
+}
+
+function updateAnimPreview(){
+  const name = document.getElementById('animCandidateName').value.trim() || 'عمار حيمور';
+  const phone = document.getElementById('animCandidatePhone').value.trim() || '0550 12 34 56';
+  const type = document.getElementById('animPitchType').value;
+
+  let text = "";
+  if(type === 'safex'){
+    text = `Bonjour,\n\nJe me permets de vous contacter suite à votre offre pour le poste d'animateur / hôte de stand au salon.\nJe suis basé à Alger, sérieux, dynamique, avec une excellente présentation et une bonne expérience dans l'accueil et l'animation des stands à la SAFEX.\nJe suis immédiatement disponible pour toute la durée de l'événement.\nPuis-je vous transmettre mon CV ?\n\nBien cordialement,\n${name}\n📞 ${phone}`;
+  } else if(type === 'commercial'){
+    text = `Bonjour,\n\nJe vous contacte concernant votre offre d'animateur commercial / vente.\nRésidant à Alger et doté d'un excellent sens du contact client et de la persuasion, je suis prêt à dynamiser vos ventes et représenter dignement votre marque.\nImmédiatement disponible.\n\nBien cordialement,\n${name}\n📞 ${phone}`;
+  } else {
+    text = `Bonjour,\n\nJe vous adresse ma candidature pour votre offre d'animation / événementiel.\nDynamique, polyvalent et habitué au contact avec le public, je suis disponible immédiatement pour rejoindre votre équipe sur Alger.\n\nBien cordialement,\n${name}\n📞 ${phone}`;
+  }
+
+  document.getElementById('animPreviewText').value = text;
+}
+
+function renderAnimationQueue(){
+  const animOffers = getAnimationOffers();
+  document.getElementById('animQueueCount').textContent = animOffers.length;
+  const list = document.getElementById('animQueueList');
+
+  if(!animOffers.length){
+    list.innerHTML = '<div style="text-align:center;padding:30px;color:var(--ink-mut)">لم يتم العثور على عروض أنيماسيون حالياً.</div>';
+    return;
+  }
+
+  list.innerHTML = animOffers.map(o => {
+    const isMessaged = USER_PROFILE.anim_messaged.includes(o.uid);
+    const hasPhone = Boolean(o.phones || o.whatsapp_url);
+    const cleanPhone = (o.phones || '').replace(/\D/g, '');
+    const waPhone = cleanPhone.startsWith('0') && cleanPhone.length === 10 ? '213' + cleanPhone.slice(1) : cleanPhone;
+    const msg = document.getElementById('animPreviewText').value;
+    const waUrl = waPhone ? `https://wa.me/${waPhone}?text=${encodeURIComponent(msg)}` : o.whatsapp_url;
+
+    return `
+      <div style="background:var(--bg-subtle);border:1px solid ${isMessaged ? 'var(--ok)' : 'var(--line)'};border-radius:12px;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <div style="flex:1;min-width:240px">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+            <span style="font-weight:800;font-size:14px;color:#fcd34d">${escapeHtml(extractRole(o.text))}</span>
+            <span class="chip" style="font-size:11px">${escapeHtml(o.source || 'عرض أنيماسيون')}</span>
+            ${isMessaged ? '<span class="chip" style="background:#10b981;color:#fff;font-size:11px">تمت المراسلة ✔</span>' : '<span class="chip" style="background:rgba(245,158,11,0.2);color:#fcd34d;font-size:11px">مؤهل للمراسلة</span>'}
+          </div>
+          <div style="font-size:12.5px;color:#cbd5e1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:440px">
+            ${escapeHtml(o.text)}
+          </div>
+          <div style="font-size:12px;color:var(--ink-mut);margin-top:4px">
+            ${o.phones ? `📞 ${escapeHtml(o.phones)}` : '<span style="color:#ef4444">لا يوجد هاتف مسجل</span>'}
+            ${o.commute_tag ? ` • 🚇 ${escapeHtml(o.commute_tag)}` : ''}
+          </div>
+        </div>
+        <div style="display:flex;gap:8px">
+          ${hasPhone ? `
+            <a href="${escapeHtml(waUrl)}" target="_blank" rel="noopener" class="btn btn-pri action-wa" style="padding:6px 12px;font-size:12px" onclick="recordAnimationMessaged('${o.uid}')">
+              <span>💬 إرسال واتساب</span>
+            </a>
+          ` : `
+            <button class="btn btn-outline" style="padding:6px 12px;font-size:12px;opacity:0.5" disabled>
+              <span>لا يوجد رقم</span>
+            </button>
+          `}
+          ${o.emails ? `
+            <a href="mailto:${o.emails}?subject=Candidature Animateur Stand - ${document.getElementById('animCandidateName').value}&body=${encodeURIComponent(msg)}" target="_blank" rel="noopener" class="btn btn-outline" style="padding:6px 12px;font-size:12px" onclick="recordAnimationMessaged('${o.uid}')">
+              <span>✉️ إيميل</span>
+            </a>
+          ` : ''}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function recordAnimationMessaged(uid){
+  if(!USER_PROFILE.anim_messaged.includes(uid)){
+    USER_PROFILE.anim_messaged.push(uid);
+  }
+  if(!USER_PROFILE.applied.includes(uid)){
+    USER_PROFILE.applied.push(uid);
+    USER_PROFILE.xp += 25; // Bonus XP for animation application
+    toast('🎉 أحسنت! تم إرسال رسالة التقديم بنجاح (+25 XP)');
+  }
+  saveProfile();
+  renderAnimationQueue();
+  filterOffers();
+}
+
+function clearMessagedHistory(){
+  if(confirm('هل تريد إعادة تعيين سجل مراسلة الأنيماسيون لإتاحة المراسلة مجدداً؟')){
+    USER_PROFILE.anim_messaged = [];
+    saveProfile();
+    renderAnimationQueue();
+    toast('تم إعادة تعيين سجل المراسلة.');
+  }
+}
+
+// Sequential Auto-Dispatch All Animation Offers
+let animDispatchIndex = 0;
+let animEligibleOffers = [];
+
+function startSequentialAnimationDispatch(){
+  const offersWithContact = getAnimationOffers().filter(o => o.phones || o.whatsapp_url);
+  if(!offersWithContact.length){
+    toast('لا توجد أرقام هواتف مسجلة في عروض الأنيماسيون حالياً.');
+    return;
+  }
+
+  animEligibleOffers = offersWithContact;
+  animDispatchIndex = 0;
+  
+  const box = document.getElementById('animProgressBox');
+  box.style.display = 'block';
+
+  toast('🚀 بدء المراسلة التسلسلية التلقائية عبر واتساب...');
+  processNextAnimationDispatch();
+}
+
+function processNextAnimationDispatch(){
+  if(animDispatchIndex >= animEligibleOffers.length){
+    toast('🎉 اكتملت المراسلة التلقائية لجميع عروض الأنيماسيون!');
+    document.getElementById('animProgressText').textContent = '✅ اكتملت المراسلة لجميع العروض!';
+    document.getElementById('animProgressBar').style.width = '100%';
+    document.getElementById('animProgressPercent').textContent = '100%';
+    renderAnimationQueue();
+    return;
+  }
+
+  const o = animEligibleOffers[animDispatchIndex];
+  const percent = Math.round(((animDispatchIndex + 1) / animEligibleOffers.length) * 100);
+  document.getElementById('animProgressBar').style.width = percent + '%';
+  document.getElementById('animProgressPercent').textContent = percent + '%';
+  document.getElementById('animProgressText').textContent = `جاري فتح محادثة (${animDispatchIndex + 1}/${animEligibleOffers.length}): ${escapeHtml(o.source || 'عرض أنيماسيون')}`;
+
+  // Open WhatsApp with pre-filled message
+  const msg = document.getElementById('animPreviewText').value;
+  let cleanPhone = (o.phones || '').replace(/\D/g, '');
+  if(cleanPhone.startsWith('0') && cleanPhone.length === 10){
+    cleanPhone = '213' + cleanPhone.slice(1);
+  }
+  const waUrl = cleanPhone ? `https://wa.me/${cleanPhone}?text=${encodeURIComponent(msg)}` : o.whatsapp_url;
+  if(waUrl){
+    window.open(waUrl, '_blank');
+    recordAnimationMessaged(o.uid);
+  }
+
+  animDispatchIndex++;
+  if(animDispatchIndex < animEligibleOffers.length){
+    setTimeout(processNextAnimationDispatch, 2500); // 2.5s pacing
+  } else {
+    setTimeout(processNextAnimationDispatch, 1000);
+  }
 }
 
 // Fallback initial dataset in case fetch is offline
@@ -948,8 +1279,20 @@ async function loadOffers(){
   const custom = JSON.parse(localStorage.getItem('jobradar_custom_offers') || '[]');
   ALL_OFFERS = [...custom, ...ALL_OFFERS];
 
+  // Update Animation offer badges count
+  const animCount = getAnimationOffers().length;
+  document.getElementById('animCountNav').textContent = animCount;
+  document.getElementById('animCountHero').textContent = `${animCount} فرصة أنيماسيون ومعارض`;
+
   filterOffers();
   updateProfileUI();
+}
+
+function filterAnimationOnly(){
+  document.getElementById('filterSpecial').value = 'animation';
+  document.getElementById('searchInput').value = '';
+  filterOffers();
+  window.scrollTo({ top: document.querySelector('.toolbar').offsetTop - 80, behavior: 'smooth' });
 }
 
 function filterOffers(){
@@ -967,6 +1310,7 @@ function filterOffers(){
     if(pl !== 'all' && o.platform !== pl) return false;
 
     // Special match
+    if(sp === 'animation' && !isAnimationOffer(o)) return false;
     if(sp === 'transit' && !(o.commute_tag && (o.commute_tag.includes('ميترو') || o.commute_tag.includes('ترامواي')))) return false;
     if(sp === 'salary' && !o.salary) return false;
     if(sp === 'gig' && !o.gig_badge) return false;
@@ -1000,9 +1344,10 @@ function renderOffers(offers){
   grid.innerHTML = offers.map(o => {
     const isApplied = USER_PROFILE.applied.includes(o.uid);
     const isStarred = USER_PROFILE.starred.includes(o.uid);
+    const isAnim = isAnimationOffer(o);
 
     return `
-      <div class="card ${isApplied ? 'applied' : ''}">
+      <div class="card ${isApplied ? 'applied' : ''} ${isAnim ? 'is-anim' : ''}">
         <div>
           <div class="card-header">
             <span class="card-source">${platformIcons[o.platform] || '📡'} ${escapeHtml(o.source || 'عرض معتمد')}</span>
@@ -1010,6 +1355,7 @@ function renderOffers(offers){
           </div>
 
           <div class="chips-row">
+            ${isAnim ? `<span class="chip chip-anim">🎪 أنيماسيون ومعارض</span>` : ''}
             ${o.salary ? `<span class="chip chip-salary">💰 ${escapeHtml(o.salary)}</span>` : ''}
             ${o.commute_tag ? `<span class="chip chip-transit">${escapeHtml(o.commute_tag)}</span>` : ''}
             ${o.gig_badge ? `<span class="chip chip-gig">${escapeHtml(o.gig_badge)}</span>` : ''}
@@ -1132,7 +1478,11 @@ function openPitchModal(uid){
 
 function extractRole(text){
   const t = text.toLowerCase();
-  const roles = ["animateur", "hotesse", "vendeur", "serveur", "commercial", "livreur", "caissier", "developpeur", "comptable", "منشط", "مضيف", "بائع", "نادل", "مطور", "سائق"];
+  const roles = [
+    "animateur", "animatrice", "hote", "hotesse", "vendeur", "serveur",
+    "commercial", "livreur", "caissier", "developpeur", "comptable",
+    "منشط", "مضيف", "بائع", "نادل", "مطور", "سائق"
+  ];
   for(const r of roles){
     if(t.includes(r)) return r.charAt(0).toUpperCase() + r.slice(1);
   }
@@ -1155,7 +1505,7 @@ function submitNewOffer(e){
     score: 10,
     salary: sal,
     commute_tag: loc.includes('ميترو') || loc.includes('ترامواي') ? `🚇 ${loc}` : loc,
-    gig_badge: title.includes('معرض') || title.includes('يومي') ? '🎪 عمل مجتمعي فوري' : '',
+    gig_badge: title.includes('معرض') || title.includes('يومي') || title.includes('منشط') ? '🎪 عمل مجتمعي فوري' : '',
     phones: phone,
     emails: '',
     whatsapp_url: `https://wa.me/213${phone.replace(/\D/g,'').slice(-9)}`,
