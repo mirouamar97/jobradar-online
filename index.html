@@ -693,7 +693,7 @@ footer {
 
 <section class="hero">
   <h2>رادار التوظيف <span>الأذكى في الجزائر</span></h2>
-  <p>رصد فوري لفرص العمل بالعاصمة، ربط مباشر مع محطات الميترو والترامواي، وميزة المراسلة التلقائية لفرص الأنيماتور والمعارض.</p>
+  <p>رصد فوري لفرص العمل بالعاصمة، وميزة المراسلة التلقائية لفرص الأنيماتور والمعارض.</p>
 </section>
 
 <!-- Animation Dispatcher Callout Banner -->
@@ -764,17 +764,6 @@ footer {
   <!-- Features: Transit & Gig Hub -->
   <div class="features-grid">
     <div class="feature-box">
-      <h3>🚇 رادار خط الميترو والترامواي بالعاصمة</h3>
-      <div class="stations-scroller">
-        <button class="station-btn" onclick="quickFilter('bab ezzouar')">🚇 باب الزوار</button>
-        <button class="station-btn" onclick="quickFilter('safex')">🚊 قصر المعارض</button>
-        <button class="station-btn" onclick="quickFilter('tafourah')">🚇 تافورة / البريد</button>
-        <button class="station-btn" onclick="quickFilter('ruisseau')">🚇 رويسو / المعدومين</button>
-        <button class="station-btn" onclick="quickFilter('1er mai')">🚇 أول ماي</button>
-        <button class="station-btn" onclick="quickFilter('el harrach')">🚇 الحراش</button>
-      </div>
-    </div>
-    <div class="feature-box">
       <h3>🎪 رادار العمل المؤقت والحر (Gig Hub)</h3>
       <div class="stations-scroller">
         <button class="station-btn" onclick="filterAnimationOnly()">🎪 تنشيط معارض وصالونات</button>
@@ -802,7 +791,6 @@ footer {
       <select class="select-filter" id="filterSpecial" onchange="filterOffers()">
         <option value="all">كافة التصنيفات</option>
         <option value="animation">🎪 عروض الأنيماسيون فقط</option>
-        <option value="transit">🚇 قرب محطات الميترو والترامواي</option>
         <option value="salary">💰 عروض براتب محدد</option>
         <option value="gig">🎪 عمل مؤقت أو معارض</option>
       </select>
@@ -946,7 +934,7 @@ footer {
       </div>
       <div class="pitch-group">
         <label>المنطقة / البلدية:</label>
-        <input type="text" id="addLocation" class="pitch-textarea" required placeholder="مثال: باب الزوار (قرب الميترو)، قصر المعارض SAFEX...">
+        <input type="text" id="addLocation" class="pitch-textarea" required placeholder="مثال: باب الزوار، قصر المعارض SAFEX...">
       </div>
       <div class="pitch-group">
         <label>رقم الهاتف أو واتساب للتواصل:</label>
@@ -1090,7 +1078,6 @@ function renderAnimationQueue(){
           </div>
           <div style="font-size:12px;color:var(--ink-mut);margin-top:4px">
             ${o.phones ? `📞 ${escapeHtml(o.phones)}` : '<span style="color:#ef4444">لا يوجد هاتف مسجل</span>'}
-            ${o.commute_tag ? ` • 🚇 ${escapeHtml(o.commute_tag)}` : ''}
           </div>
         </div>
         <div style="display:flex;gap:8px">
@@ -1258,13 +1245,12 @@ function filterOffers(){
 
     // Special match
     if(sp === 'animation' && !isAnimationOffer(o)) return false;
-    if(sp === 'transit' && !(o.commute_tag && (o.commute_tag.includes('ميترو') || o.commute_tag.includes('ترامواي')))) return false;
     if(sp === 'salary' && !o.salary) return false;
     if(sp === 'gig' && !o.gig_badge) return false;
 
     // Query search
     if(q){
-      const corpus = (o.text + ' ' + (o.source||'') + ' ' + (o.salary||'') + ' ' + (o.commute_tag||'') + ' ' + (o.gig_badge||'')).toLowerCase();
+      const corpus = (o.text + ' ' + (o.source||'') + ' ' + (o.salary||'') + ' ' + (o.gig_badge||'')).toLowerCase();
       if(!corpus.includes(q)) return false;
     }
     return true;
@@ -1304,7 +1290,7 @@ function renderOffers(offers){
           <div class="chips-row">
             ${isAnim ? `<span class="chip chip-anim">🎪 أنيماسيون ومعارض</span>` : ''}
             ${o.salary ? `<span class="chip chip-salary">💰 ${escapeHtml(o.salary)}</span>` : ''}
-            ${o.commute_tag ? `<span class="chip chip-transit">${escapeHtml(o.commute_tag)}</span>` : ''}
+            ${o.place ? `<span class="chip">📍 ${escapeHtml(o.place)}</span>` : ''}
             ${o.gig_badge ? `<span class="chip chip-gig">${escapeHtml(o.gig_badge)}</span>` : ''}
             ${isApplied ? `<span class="chip" style="background:#10b981;color:#fff">✅ تم التقديم</span>` : ''}
             ${isStarred ? `<span class="chip" style="background:#f59e0b;color:#fff">⭐ مفضلة</span>` : ''}
@@ -1451,7 +1437,7 @@ function submitNewOffer(e){
     platform: 'web',
     score: 10,
     salary: sal,
-    commute_tag: loc.includes('ميترو') || loc.includes('ترامواي') ? `🚇 ${loc}` : loc,
+    place: loc,
     gig_badge: title.includes('معرض') || title.includes('يومي') || title.includes('منشط') ? '🎪 عمل مجتمعي فوري' : '',
     phones: phone,
     emails: '',
