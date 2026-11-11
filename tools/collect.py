@@ -256,14 +256,6 @@ def score_offer(text: str, date: str, rules: dict, now: datetime) -> dict:
     return res
 
 
-_METRO = ["safex", "pins maritimes", "bab ezzouar", "el harrach", "tafourah", "grande poste", "1er mai", "ruisseau",
-          "belouizdad", "hussein dey", "mohammadia", "bordj el kiffan", "caroubier", "agha", "bachdjarah", "hai el badr",
-          "باب الزوار", "الحراش", "المحمدية"]
-
-
-def commute_tag(text: str) -> str:
-    tn = normalize(text)
-    return "\U0001F687 قرب الميترو / الترامواي" if any(has(tn, s) for s in _METRO) else ""
 
 
 # ----------------------------------------------------------------------------- extraction (BeautifulSoup)
@@ -393,7 +385,7 @@ def build_record(item: dict, source_name: str, rules: dict, now: datetime) -> di
     return {
         "uid": uid_of(item), "found_at": now.strftime("%Y-%m-%dT%H:%M"), "source": source_name, "platform": item["platform"],
         "score": r["score"], "url": item["url"], "phones": ", ".join(phones), "emails": ", ".join(emails(text)),
-        "text": text[:1500], "status": "new", "salary": "", "commute_tag": commute_tag(text),
+        "text": text[:1500], "status": "new", "salary": "",
         "whatsapp_url": ("https://wa.me/213" + re.sub(r"\D", "", phones[0])[1:]) if phones else "",
         "gig_badge": "\U0001F3AA معارض وأحداث" if r["event"] else "",
         "event": r["event"], "years_required": r["years"], "senior": r["years"] >= 3,
