@@ -1,0 +1,133 @@
+{
+ "generated_at": "2026-11-11T05:14",
+ "offers": 16,
+ "events": 1,
+ "sources": [
+  {
+   "id": "emploitic",
+   "name": "Emploitic",
+   "kind": "page",
+   "ok": true,
+   "cards": 20,
+   "kept": 1,
+   "error": ""
+  },
+  {
+   "id": "algeriejob",
+   "name": "AlgerieJob",
+   "kind": "page",
+   "ok": false,
+   "cards": 0,
+   "kept": 0,
+   "error": "HTTPError: 403 Client Error: Forbidden for url: https://www.algeriejob.com/recherche-jobs-algerie/"
+  },
+  {
+   "id": "optioncarriere",
+   "name": "OptionCarriere Alger",
+   "kind": "page",
+   "ok": false,
+   "cards": 0,
+   "kept": 0,
+   "error": "aucun element lu (site change ou requete bloquee)"
+  },
+  {
+   "id": "sfnemploi",
+   "name": "SFN Emploi Alger",
+   "kind": "page",
+   "ok": true,
+   "cards": 30,
+   "kept": 0,
+   "error": ""
+  },
+  {
+   "id": "emploitic_animateur",
+   "name": "Emploitic animateur",
+   "kind": "page",
+   "ok": true,
+   "cards": 20,
+   "kept": 1,
+   "error": ""
+  },
+  {
+   "id": "emploitic_evenementiel",
+   "name": "Emploitic événementiel",
+   "kind": "page",
+   "ok": true,
+   "cards": 20,
+   "kept": 1,
+   "error": ""
+  },
+  {
+   "id": "emploitic_hotesse",
+   "name": "Emploitic hôtesse",
+   "kind": "page",
+   "ok": true,
+   "cards": 20,
+   "kept": 4,
+   "error": ""
+  },
+  {
+   "id": "tg_jobs_dz7",
+   "name": "JOBS DZ (Telegram)",
+   "kind": "telegram",
+   "ok": true,
+   "cards": 20,
+   "kept": 7,
+   "error": ""
+  },
+  {
+   "id": "tg_annexedzjob",
+   "name": "Annexe-dz (Telegram)",
+   "kind": "telegram",
+   "ok": true,
+   "cards": 20,
+   "kept": 2,
+   "error": ""
+  },
+  {
+   "id": "tg_rcrdz1",
+   "name": "Recrutement-dz (Telegram)",
+   "kind": "telegram",
+   "ok": false,
+   "cards": 0,
+   "kept": 0,
+   "error": "aucun element lu (site change ou requete bloquee)"
+  },
+  {
+   "id": "tg_sfnemploi",
+   "name": "SFN Emploi (Telegram)",
+   "kind": "telegram",
+   "ok": true,
+   "cards": 20,
+   "kept": 0,
+   "error": ""
+  },
+  {
+   "id": "s_salons",
+   "name": "Recherche - salons Alger",
+   "kind": "search",
+   "ok": false,
+   "cards": 0,
+   "kept": 0,
+   "error": "aucun element lu (site change ou requete bloquee)"
+  },
+  {
+   "id": "s_events",
+   "name": "Recherche - événementiel Alger",
+   "kind": "search",
+   "ok": false,
+   "cards": 0,
+   "kept": 0,
+   "error": "aucun element lu (site change ou requete bloquee)"
+  },
+  {
+   "id": "s_etudiant",
+   "name": "Recherche - emploi étudiant Alger",
+   "kind": "search",
+   "ok": false,
+   "cards": 0,
+   "kept": 0,
+   "error": "aucun element lu (site change ou requete bloquee)"
+  }
+ ]
+}

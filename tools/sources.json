@@ -1,0 +1,82 @@
+{
+ "pages": [
+  {
+   "id": "emploitic",
+   "name": "Emploitic",
+   "url": "https://emploitic.com/offres-d-emploi?region=alger",
+   "link_contains": "/offres-d-emploi/"
+  },
+  {
+   "id": "algeriejob",
+   "name": "AlgerieJob",
+   "url": "https://www.algeriejob.com/recherche-jobs-algerie/"
+  },
+  {
+   "id": "optioncarriere",
+   "name": "OptionCarriere Alger",
+   "url": "https://www.optioncarriere.dz/emploi?s=&l=Alger"
+  },
+  {
+   "id": "sfnemploi",
+   "name": "SFN Emploi Alger",
+   "url": "https://sfnemploi.com/wilaya/alger/"
+  },
+  {
+   "id": "emploitic_animateur",
+   "name": "Emploitic animateur",
+   "url": "https://emploitic.com/offres-d-emploi/q-animateur",
+   "link_contains": "/offres-d-emploi/"
+  },
+  {
+   "id": "emploitic_evenementiel",
+   "name": "Emploitic événementiel",
+   "url": "https://emploitic.com/offres-d-emploi/q-%C3%A9v%C3%A9nementiel",
+   "link_contains": "/offres-d-emploi/"
+  },
+  {
+   "id": "emploitic_hotesse",
+   "name": "Emploitic hôtesse",
+   "url": "https://emploitic.com/offres-d-emploi/q-h%C3%B4tesse",
+   "link_contains": "/offres-d-emploi/"
+  }
+ ],
+ "telegram": [
+  {
+   "id": "tg_jobs_dz7",
+   "name": "JOBS DZ (Telegram)",
+   "channel": "Jobs_dz7"
+  },
+  {
+   "id": "tg_annexedzjob",
+   "name": "Annexe-dz (Telegram)",
+   "channel": "annexedzjob"
+  },
+  {
+   "id": "tg_rcrdz1",
+   "name": "Recrutement-dz (Telegram)",
+   "channel": "rcrdz1"
+  },
+  {
+   "id": "tg_sfnemploi",
+   "name": "SFN Emploi (Telegram)",
+   "channel": "sfnemploi"
+  }
+ ],
+ "searches": [
+  {
+   "id": "s_salons",
+   "name": "Recherche - salons Alger",
+   "query": "recrute animateur OR hôtesse salon Alger"
+  },
+  {
+   "id": "s_events",
+   "name": "Recherche - événementiel Alger",
+   "query": "recrutement événementiel Alger animation stand SAFEX"
+  },
+  {
+   "id": "s_etudiant",
+   "name": "Recherche - emploi étudiant Alger",
+   "query": "offre emploi étudiant Alger temps partiel"
+  }
+ ]
+}
