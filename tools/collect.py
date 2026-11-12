@@ -175,7 +175,10 @@ EVENT_WORDS = [
 _EVENT_NEG = [re.compile(p) for p in (
     r"stand[ -]?up", r"salon de (?:coiffure|the|beaute|esthetique|massage)",
     r"anim\w* (?:de |du |des |d')?(?:contenu|digital|reseaux|social|community|3d|2d|motion|video|graphique|securite|hse)",
-    r"animation (?:3d|2d|motion|graphique|video|digitale)")]
+    r"animation (?:3d|2d|motion|graphique|video|digitale)",
+    # gestion d'equipe / formation : pas de l'evenementiel (« animation de l'equipe de vente », « تنشيط الدورات »)
+    r"anim\w* (?:de |d'|du |des )?(?:l'|la |les )?(?:equipe|equipes|personnel|collaborateurs|reseau|formation|formations|reunion|reunions|atelier|ateliers)",
+    "تنشيط (?:ال)?(?:دورات|دوره|فريق|فرق|ورشات|ورشه|تكوين|اجتماعات)")]
 
 
 def is_event(text: str) -> bool:
@@ -374,6 +377,21 @@ def uid_of(item: dict) -> str:
     return hashlib.sha1(base.encode("utf8")).hexdigest()
 
 
+def reject_reason(item: dict, rules: dict, now: datetime) -> str:
+    """Pourquoi une carte n'est pas gardee ("" = gardee). Sert au diagnostic dans status.json."""
+    text = item.get("text", "")
+    if len(text) < 25:
+        return "texte trop court"
+    r = score_offer(text, item.get("date", ""), rules, now)
+    if r["scam"]:
+        return "arnaque: " + r["scam"][0]
+    if r["score"] < 0:
+        return (r["reasons"] or ["exclu"])[0].split(":")[0]
+    if r["score"] < rules["min_score"]:
+        return f"note < {rules['min_score']}"
+    return ""
+
+
 def build_record(item: dict, source_name: str, rules: dict, now: datetime) -> dict | None:
     text = item["text"]
     if len(text) < 25:
@@ -407,7 +425,7 @@ def merge(old: list[dict], new: list[dict], now: datetime) -> list[dict]:
     return kept[:MAX_OFFERS]
 
 
-def run(now: datetime | None = None) -> int:
+def run(now: datetime | None = None, only: str = "", verbose: bool = False) -> int:
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
     now = now or datetime.now(ALGIERS)
     rules = json.loads((HERE / "rules.json").read_text(encoding="utf8"))
@@ -420,13 +438,31 @@ def run(now: datetime | None = None) -> int:
     plan = ([("page", s, s["name"]) for s in sources["pages"]] + [("telegram", s, s["name"]) for s in sources["telegram"]] +
             [("search", s, s["name"]) for s in sources["searches"]])
     new, status = [], []
+    if only:
+        plan = [p for p in plan if p[1]["id"] == only]
     for kind, src, name in plan:
         entry = {"id": src["id"], "name": name, "kind": kind, "ok": False, "cards": 0, "kept": 0, "error": ""}
+        if src.get("enabled", True) is False:
+            entry["error"] = "desactivee: " + src.get("note", "voir sources.json")
+            entry["skipped"] = True
+            status.append(entry)
+            continue
         try:
             cards = collect_source(kind, src)
             entry["cards"] = len(cards)
             recs = [r for r in (build_record(c, name, rules, now) for c in cards) if r]
             entry["kept"] = len(recs)
+            why: dict[str, int] = {}
+            for c in cards:
+                w = reject_reason(c, rules, now)
+                if w:
+                    why[w] = why.get(w, 0) + 1
+            if why:
+                entry["rejected"] = dict(sorted(why.items(), key=lambda kv: -kv[1]))
+            if verbose:
+                for c in cards:
+                    w = reject_reason(c, rules, now) or "GARDEE"
+                    print(f"[{w}] {c.get('date', '')} | {c.get('text', '')[:180]}")
             entry["ok"] = len(cards) > 0
             if not cards:
                 entry["error"] = "aucun element lu (site change ou requete bloquee)"
@@ -436,8 +472,12 @@ def run(now: datetime | None = None) -> int:
             log.warning("%s: %s", name, entry["error"])
         status.append(entry)
         time.sleep(random.uniform(*PAUSE))
+    if only:
+        # Diagnostic d'une seule source : n'ecrit rien dans data/
+        print(json.dumps(status, ensure_ascii=False, indent=1))
+        return 0
     merged = merge(old, new, now)
-    if not any(s["ok"] for s in status):
+    if not any(s["ok"] for s in status if not s.get("skipped")):
         log.error("aucune source n'a repondu : offers.json conserve tel quel")
         merged = legacy
     old_path.write_text(json.dumps(merged, ensure_ascii=False, indent=1), encoding="utf8")
@@ -445,9 +485,16 @@ def run(now: datetime | None = None) -> int:
         "generated_at": now.strftime("%Y-%m-%dT%H:%M"), "offers": len(merged),
         "events": sum(1 for o in merged if o.get("event")), "sources": status,
     }, ensure_ascii=False, indent=1), encoding="utf8")
-    log.info("%d offres (%d nouvelles), %d sources ok sur %d", len(merged), len(new), sum(s["ok"] for s in status), len(status))
+    log.info("%d offres (%d nouvelles), %d sources ok sur %d", len(merged), len(new), sum(s["ok"] for s in status), len([s for s in status if not s.get("skipped")]))
     return 0
 
 
 if __name__ == "__main__":
-    sys.exit(run())
+    # python tools/collect.py                 -> collecte complete (GitHub Actions)
+    # python tools/collect.py --only sfnemploi -v  -> diagnostic d'une source, rien n'est ecrit
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--only", default="", help="id d'une source (voir sources.json)")
+    ap.add_argument("-v", "--verbose", action="store_true", help="affiche chaque carte et la raison du rejet")
+    a = ap.parse_args()
+    sys.exit(run(only=a.only, verbose=a.verbose))
