@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-11-12T02:56",
- "offers": 28,
+ "generated_at": "2026-11-12T10:56",
+ "offers": 29,
  "events": 3,
  "sources": [
   {
@@ -10,7 +10,11 @@
    "ok": true,
    "cards": 20,
    "kept": 1,
-   "error": ""
+   "error": "",
+   "rejected": {
+    "note < 3": 12,
+    "annonce sans recrutement": 7
+   }
   },
   {
    "id": "algeriejob",
@@ -37,7 +41,11 @@
    "ok": true,
    "cards": 30,
    "kept": 0,
-   "error": ""
+   "error": "",
+   "rejected": {
+    "note < 3": 24,
+    "annonce sans recrutement": 6
+   }
   },
   {
    "id": "emploitic_animateur",
@@ -46,7 +54,17 @@
    "ok": true,
    "cards": 20,
    "kept": 1,
-   "error": ""
+   "error": "",
+   "rejected": {
+    "exclu": 10,
+    "annonce sans recrutement": 2,
+    "ancien (24 j)": 2,
+    "ancien (25 j)": 1,
+    "ancien (43 j)": 1,
+    "ancien (58 j)": 1,
+    "ancien (56 j)": 1,
+    "note < 3": 1
+   }
   },
   {
    "id": "emploitic_evenementiel",
@@ -55,7 +73,17 @@
    "ok": true,
    "cards": 20,
    "kept": 1,
-   "error": ""
+   "error": "",
+   "rejected": {
+    "annonce sans recrutement": 12,
+    "ancien (57 j)": 1,
+    "ancien (56 j)": 1,
+    "ancien (39 j)": 1,
+    "ancien (10 j)": 1,
+    "ancien (23 j)": 1,
+    "ancien (44 j)": 1,
+    "ancien (8 j)": 1
+   }
   },
   {
    "id": "emploitic_hotesse",
@@ -64,7 +92,17 @@
    "ok": true,
    "cards": 20,
    "kept": 2,
-   "error": ""
+   "error": "",
+   "rejected": {
+    "annonce sans recrutement": 9,
+    "ancien (7 j)": 2,
+    "ancien (8 j)": 2,
+    "ancien (14 j)": 1,
+    "ancien (24 j)": 1,
+    "ancien (9 j)": 1,
+    "ancien (10 j)": 1,
+    "ancien (16 j)": 1
+   }
   },
   {
    "id": "tg_jobs_dz7",
@@ -72,8 +110,14 @@
    "kind": "telegram",
    "ok": true,
    "cards": 20,
-   "kept": 10,
-   "error": ""
+   "kept": 9,
+   "error": "",
+   "rejected": {
+    "note < 3": 7,
+    "annonce sans recrutement": 2,
+    "exclu": 1,
+    "texte trop court": 1
+   }
   },
   {
    "id": "tg_annexedzjob",
@@ -82,7 +126,11 @@
    "ok": true,
    "cards": 20,
    "kept": 2,
-   "error": ""
+   "error": "",
+   "rejected": {
+    "note < 3": 15,
+    "annonce sans recrutement": 3
+   }
   },
   {
    "id": "tg_rcrdz1",
@@ -99,8 +147,12 @@
    "kind": "telegram",
    "ok": true,
    "cards": 20,
-   "kept": 1,
-   "error": ""
+   "kept": 0,
+   "error": "",
+   "rejected": {
+    "annonce sans recrutement": 11,
+    "note < 3": 9
+   }
   },
   {
    "id": "s_salons",
@@ -109,7 +161,8 @@
    "ok": false,
    "cards": 0,
    "kept": 0,
-   "error": "aucun element lu (site change ou requete bloquee)"
+   "error": "desactivee: les moteurs de recherche bloquent les serveurs GitHub Actions (0 resultat a chaque passage) ; la recherche web reste dans l'application (reseau du telephone)",
+   "skipped": true
   },
   {
    "id": "s_events",
@@ -118,7 +171,8 @@
    "ok": false,
    "cards": 0,
    "kept": 0,
-   "error": "aucun element lu (site change ou requete bloquee)"
+   "error": "desactivee: les moteurs de recherche bloquent les serveurs GitHub Actions (0 resultat a chaque passage) ; la recherche web reste dans l'application (reseau du telephone)",
+   "skipped": true
   },
   {
    "id": "s_etudiant",
@@ -127,7 +181,8 @@
    "ok": false,
    "cards": 0,
    "kept": 0,
-   "error": "aucun element lu (site change ou requete bloquee)"
+   "error": "desactivee: les moteurs de recherche bloquent les serveurs GitHub Actions (0 resultat a chaque passage) ; la recherche web reste dans l'application (reseau du telephone)",
+   "skipped": true
   }
  ]
 }
