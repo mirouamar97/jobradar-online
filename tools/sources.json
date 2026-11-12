@@ -66,17 +66,23 @@
   {
    "id": "s_salons",
    "name": "Recherche - salons Alger",
-   "query": "recrute animateur OR hôtesse salon Alger"
+   "query": "recrute animateur OR hôtesse salon Alger",
+   "enabled": false,
+   "note": "les moteurs de recherche bloquent les serveurs GitHub Actions (0 resultat a chaque passage) ; la recherche web reste dans l'application (reseau du telephone)"
   },
   {
    "id": "s_events",
    "name": "Recherche - événementiel Alger",
-   "query": "recrutement événementiel Alger animation stand SAFEX"
+   "query": "recrutement événementiel Alger animation stand SAFEX",
+   "enabled": false,
+   "note": "les moteurs de recherche bloquent les serveurs GitHub Actions (0 resultat a chaque passage) ; la recherche web reste dans l'application (reseau du telephone)"
   },
   {
    "id": "s_etudiant",
    "name": "Recherche - emploi étudiant Alger",
-   "query": "offre emploi étudiant Alger temps partiel"
+   "query": "offre emploi étudiant Alger temps partiel",
+   "enabled": false,
+   "note": "les moteurs de recherche bloquent les serveurs GitHub Actions (0 resultat a chaque passage) ; la recherche web reste dans l'application (reseau du telephone)"
   }
  ]
 }

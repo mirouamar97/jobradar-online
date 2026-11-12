@@ -24,6 +24,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # Le depot est PUBLIC : on refuse de publier si un secret ou un fichier personnel s'y trouve.
+      - name: Secrets and personal files guard
+        run: |
+          set -e
+          found=0
+          if grep -rInE --exclude-dir=.git --exclude-dir=.github \
+               -e '[0-9]{8,10}:AA[A-Za-z0-9_-]{30,}' -e 'GOCSPX-[A-Za-z0-9_-]{10,}' -e 'ghp_[A-Za-z0-9]{30,}' \
+               -e 'AIza[0-9A-Za-z_-]{30,}' -e '"app_password"[[:space:]]*:[[:space:]]*"[^"]+"' . ; then found=1; fi
+          for f in gmail_config.json token.json .env resume.pdf data/gmail_sent_history.json; do
+            if [ -e "$f" ]; then echo "fichier personnel publie: $f"; found=1; fi
+          done
+          if [ "$found" = 1 ]; then echo "::error::secret ou fichier personnel detecte, publication annulee"; exit 1; fi
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 

@@ -191,3 +191,59 @@ def test_published_files_contain_no_personal_data():
 @pytest.mark.parametrize("name", ["rules.json", "sources.json"])
 def test_config_files_are_valid_json(name):
     assert json.loads((c.HERE / name).read_text(encoding="utf8"))
+
+
+def test_reject_reason_explains_why_a_card_is_dropped():
+    assert c.reject_reason(item("Agence recrute 5 animateurs pour le salon SAFEX Alger, envoyez CV"), RULES, NOW) == ""
+    assert c.reject_reason(item("court"), RULES, NOW) == "texte trop court"
+    assert c.reject_reason(item("Venez visiter le salon Dentex à la Safex d'Alger jusqu'au 5 Juin"), RULES, NOW) \
+        == "annonce sans recrutement"
+
+
+def test_disabled_sources_are_skipped_and_rejections_are_counted(tmp_path, monkeypatch):
+    monkeypatch.setattr(c, "DATA", tmp_path)
+    monkeypatch.setattr(c, "PAUSE", (0, 0))
+    called = []
+
+    def fake(kind, src):
+        called.append(src["id"])
+        if src["id"] == "emploitic":
+            return [item("Agence recrute 5 animateurs pour le salon SAFEX Alger, envoyez CV rh@event.dz"),
+                    item("Venez visiter le salon Dentex à la Safex d'Alger jusqu'au 5 Juin")]
+        return []
+
+    monkeypatch.setattr(c, "collect_source", fake)
+    assert c.run(NOW) == 0
+    status = json.loads((tmp_path / "status.json").read_text(encoding="utf8"))
+    sources = json.loads((c.HERE / "sources.json").read_text(encoding="utf8"))
+    disabled = {s["id"] for k in sources for s in sources[k] if s.get("enabled", True) is False}
+    assert disabled and not (disabled & set(called))
+    assert all(s.get("skipped") for s in status["sources"] if s["id"] in disabled)
+    em = next(s for s in status["sources"] if s["id"] == "emploitic")
+    assert em["kept"] == 1 and em["rejected"] == {"annonce sans recrutement": 1}
+
+
+def test_only_mode_writes_nothing(tmp_path, monkeypatch, capsys):
+    monkeypatch.setattr(c, "DATA", tmp_path)
+    monkeypatch.setattr(c, "PAUSE", (0, 0))
+    monkeypatch.setattr(c, "collect_source", lambda kind, src: [item("Agence recrute animateurs SAFEX Alger, CV")])
+    assert c.run(NOW, only="emploitic", verbose=True) == 0
+    assert not (tmp_path / "offers.json").exists()
+    assert "GARDEE" in capsys.readouterr().out
+
+
+def test_team_management_and_training_are_not_events():
+    assert not c.is_event("Responsable de magasin : animation de l'équipe de vente, atteinte des objectifs")
+    assert not c.is_event("مكوّن تقني، قدرة على تنشيط الدورات التدريبية")
+    assert c.is_event("Recrute animateurs pour animation commerciale en grande surface, Alger")
+    assert c.is_event("نبحث عن منشطين ومضيفات لمعرض في قصر المعارض")
+
+
+def test_far_south_and_highlands_are_penalised():
+    for city in ("Djelfa", "Laghouat", "حاسي الرمل"):
+        assert score(f"Recrute responsable de magasin, {city}. Envoyer CV")["score"] < RULES["min_score"], city
+
+
+def test_ambiguous_city_names_do_not_penalise():
+    # « جميلة » (belle) ne doit pas etre lu comme la wilaya de Mila
+    assert score("مطلوب مضيفة ذات هيئة جميلة لمعرض في قصر المعارض، باب الزوار. ارسل cv")["score"] >= RULES["min_score"]

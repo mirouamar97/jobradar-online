@@ -1,5 +1,7 @@
-# Private files: this repo is PUBLIC and published on GitHub Pages. Never commit these.
+# This repo is PUBLIC and published on GitHub Pages. Never commit personal files.
 gmail_config.json
+token.json
+credentials*.json
 resume.pdf
 *.pdf
 data/gmail_sent_history.json
@@ -7,3 +9,6 @@ data/messaged_history.json
 __pycache__/
 *.pyc
 .env
+.env.*
+venv/
+.venv/

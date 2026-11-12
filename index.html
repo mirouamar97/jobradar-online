@@ -3,1465 +3,322 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>JobRadar DZ — منصة ورادار عروض التوظيف والفرص الذكية بالجزائر</title>
-<meta name="description" content="منصة تفاعلية لرصد أحدث فرص العمل والوظائف المؤقتة بالجزائر العاصمة مع ميزة المراسلة التلقائية لفرص الأنيماتور والمعارض.">
+<title>رادار العروض – JobRadar DZ</title>
+<meta name="description" content="عروض عمل مؤقت وجزئي في الجزائر العاصمة تُجمع آلياً كل ساعة من مصادر عامة، مع أولوية للفعاليات والتنشيط.">
+<meta name="theme-color" content="#0e6e53" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1513" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36' fill='none' stroke='%230E6E53' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='18' cy='18' r='15' stroke-opacity='.35'/%3E%3Ccircle cx='18' cy='18' r='9.5' stroke-opacity='.6'/%3E%3Cpath d='M18 18L28.6 7.4'/%3E%3Ccircle cx='18' cy='18' r='3.6' fill='%230E6E53' stroke='none'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #090d16;
-  --bg-card: #111726;
-  --bg-card-hover: #172033;
-  --bg-subtle: #192236;
-  --ink: #f1f5f9;
-  --ink-mut: #94a3b8;
-  --line: #222f47;
-  --pri: #2563eb;
-  --pri-glow: rgba(37, 99, 235, 0.35);
-  --pri-light: #38bdf8;
-  --ok: #10b981;
-  --ok-bg: rgba(16, 185, 129, 0.15);
-  --warn: #f59e0b;
-  --warn-bg: rgba(245, 158, 11, 0.15);
-  --bad: #ef4444;
-  --accent: #8b5cf6;
-  --radius: 16px;
-  --font-ar: "Cairo", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-en: "Inter", sans-serif;
+/* Tokens: docs/design-system/tokens.json (JobRadar DZ, Material 3). Light first, dark follows the system. */
+:root{
+  --primary:#0e6e53;--on-primary:#fff;--primary-container:#d2eadf;--on-primary-container:#0a3b2c;
+  --secondary-container:#e4efe9;--tertiary:#a86500;--tertiary-container:#fbefd9;--on-tertiary-container:#3d2500;
+  --background:#f3f5f1;--on-surface:#15211d;--on-surface-variant:#5d6b65;--outline:#8a968f;--outline-variant:#dde3dc;
+  --surface-container-low:#fff;--surface-container:#eef1ec;--surface-container-high:#e8ece6;--surface-container-highest:#e1e6e0;
+  --inverse-surface:#2a3531;--inverse-on-surface:#eef2ef;
+  --success:#11845f;--warning:#a86500;--danger:#b4372f;--muted:#5d6b65;--whatsapp:#128a45;
+  --info-container:#e3ecf7;--on-info-container:#122b4f;--success-container:#e1f3ea;--on-success-container:#0a3b2c;
+  --warning-container:#fbefd9;--on-warning-container:#4a2d00;--danger-container:#f8e3e1;--on-danger-container:#4a120e;
+  --source-telegram:#229ed9;--source-web:#6a736c;--source-search:#2f5fa8;
+  --pill-fill:12%;--pill-text-mix:0%;
+  --font-sans:"Cairo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --space-xs:4px;--space-s:8px;--space-m:12px;--space-l:16px;--space-xl:24px;
+  --radius-sm:12px;--radius-md:16px;--radius-lg:20px;--radius-xl:28px;--radius-full:9999px;
+  color-scheme:light dark;
 }
+@media (prefers-color-scheme: dark){:root{
+  --primary:#3fbf93;--on-primary:#00382a;--primary-container:#1d3a30;--on-primary-container:#b5ebd5;
+  --secondary-container:#1d2c26;--tertiary:#f0b34a;--tertiary-container:#352a15;--on-tertiary-container:#fbe3b5;
+  --background:#0f1513;--on-surface:#e7eee9;--on-surface-variant:#9aa9a2;--outline:#6b7a73;--outline-variant:#28332f;
+  --surface-container-low:#18201d;--surface-container:#1b2420;--surface-container-high:#222c28;--surface-container-highest:#2b3631;
+  --inverse-surface:#e7eee9;--inverse-on-surface:#18201d;
+  --success:#4fd1a0;--warning:#f0b34a;--danger:#ff8a80;--muted:#9aa9a2;--whatsapp:#5fd68b;
+  --info-container:#1a2738;--on-info-container:#d6e5f8;--success-container:#16302a;--on-success-container:#c4f1de;
+  --warning-container:#352a15;--on-warning-container:#fbe3b5;--danger-container:#3a1e1c;--on-danger-container:#ffdad6;
+  --pill-fill:22%;--pill-text-mix:35%;
+}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--background);color:var(--on-surface);font:400 15px/24px var(--font-sans);letter-spacing:0}
+a{color:var(--primary)}
+:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.wrap{max-width:880px;margin:0 auto;padding:var(--space-l)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: var(--font-ar);
-  background: var(--bg);
-  color: var(--ink);
-  line-height: 1.6;
-  overflow-x: hidden;
-  background-image: 
-    radial-gradient(circle at 15% 10%, rgba(37,99,235,0.18) 0%, transparent 40%),
-    radial-gradient(circle at 85% 80%, rgba(139,92,246,0.14) 0%, transparent 40%);
-  background-attachment: fixed;
-}
+/* Header */
+header.top{display:flex;align-items:center;gap:var(--space-m);padding:var(--space-s) 0 var(--space-l)}
+.logo{width:40px;height:40px;flex:none;display:grid;place-items:center;background:var(--secondary-container);border-radius:var(--radius-sm)}
+.logo svg{width:28px;height:28px}
+header.top h1{margin:0;font:700 22px/32px var(--font-sans)}
+header.top p{margin:0;font:400 13px/20px var(--font-sans);color:var(--on-surface-variant)}
 
-a { color: inherit; text-decoration: none; }
-button { font-family: inherit; border: none; cursor: pointer; background: none; }
+/* SectionCard */
+.card{background:var(--surface-container-low);border:1px solid color-mix(in srgb,var(--outline-variant) 55%,transparent);border-radius:var(--radius-lg);padding:var(--space-l);display:flex;flex-direction:column;gap:var(--space-m)}
+.card + .card{margin-top:var(--space-m)}
+.card h2{margin:0;font:600 16px/24px var(--font-sans)}
+.hint{margin:0;font:400 13px/20px var(--font-sans);color:var(--on-surface-variant)}
 
-/* Header & Nav */
-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(9, 13, 22, 0.9);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--line);
-  padding: 12px 24px;
-}
-.nav-inner {
-  max-width: 1300px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-}
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.brand-icon {
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, var(--pri), var(--pri-light));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  box-shadow: 0 4px 16px var(--pri-glow);
-}
-.brand-text h1 {
-  font-size: 19px;
-  font-weight: 900;
-  background: linear-gradient(135deg, #fff, var(--pri-light));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  line-height: 1.2;
-}
-.brand-text span {
-  font-size: 12px;
-  color: var(--ink-mut);
-  font-weight: 600;
-}
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.live-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--bg-subtle);
-  border: 1px solid var(--line);
-  padding: 6px 14px;
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 700;
-}
-.dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--ok);
-  animation: pulse 1.6s infinite;
-}
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(1.25); }
-}
+/* Stats */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-s)}
+.stat{background:var(--surface-container);border-radius:var(--radius-sm);padding:var(--space-m);text-align:center}
+.stat b{display:block;font:700 22px/32px var(--font-sans)}
+.stat span{font:500 12px/16px var(--font-sans);color:var(--on-surface-variant)}
 
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  border-radius: 12px;
-  font-size: 13.5px;
-  font-weight: 700;
-  transition: all 0.2s;
-}
-.btn-pri {
-  background: var(--pri);
-  color: #fff;
-  box-shadow: 0 4px 14px var(--pri-glow);
-}
-.btn-pri:hover {
-  background: #1d4ed8;
-  transform: translateY(-1px);
-}
-.btn-anim {
-  background: linear-gradient(135deg, #f59e0b, #ef4444);
-  color: #fff;
-  box-shadow: 0 4px 16px rgba(245,158,11,0.4);
-  animation: pulseBtn 2.2s infinite;
-}
-@keyframes pulseBtn {
-  0%, 100% { transform: scale(1); box-shadow: 0 4px 16px rgba(245,158,11,0.4); }
-  50% { transform: scale(1.02); box-shadow: 0 4px 22px rgba(239,68,68,0.6); }
-}
-.btn-outline {
-  border: 1px solid var(--line);
-  background: var(--bg-card);
-  color: var(--ink);
-}
-.btn-outline:hover {
-  border-color: var(--pri-light);
-  color: var(--pri-light);
-}
+/* Controls */
+.search{width:100%;font:400 16px/26px var(--font-sans);color:var(--on-surface);background:var(--surface-container);border:1px solid var(--outline);border-radius:var(--radius-sm);padding:10px 14px}
+.chips{display:flex;flex-wrap:wrap;gap:var(--space-s)}
+.chip{font:500 14px/20px var(--font-sans);border:1px solid var(--outline);background:transparent;color:var(--on-surface);border-radius:var(--radius-full);padding:6px 14px;cursor:pointer;min-height:36px}
+.chip[aria-pressed="true"]{background:var(--primary-container);color:var(--on-primary-container);border-color:transparent}
 
-/* Hero Section */
-.hero {
-  max-width: 1300px;
-  margin: 24px auto 16px;
-  padding: 0 20px;
-  text-align: center;
-}
-.hero h2 {
-  font-size: 34px;
-  font-weight: 900;
-  margin-bottom: 10px;
-  letter-spacing: -0.5px;
-}
-.hero h2 span {
-  background: linear-gradient(135deg, var(--pri-light), var(--accent));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.hero p {
-  color: var(--ink-mut);
-  font-size: 15.5px;
-  max-width: 720px;
-  margin: 0 auto;
-}
+/* InfoBanner */
+.banner{border-radius:var(--radius-md);padding:var(--space-m) var(--space-l);font:400 15px/24px var(--font-sans)}
+.banner b{display:block;font:600 14px/20px var(--font-sans)}
+.banner.info{background:var(--info-container);color:var(--on-info-container)}
+.banner.success{background:var(--success-container);color:var(--on-success-container)}
+.banner.warning{background:var(--warning-container);color:var(--on-warning-container)}
+.banner.error{background:var(--danger-container);color:var(--on-danger-container)}
+.banner button{font:600 14px/20px var(--font-sans);background:none;border:0;color:inherit;text-decoration:underline;cursor:pointer;padding:0;margin-top:var(--space-xs)}
 
-/* Animation Dispatcher Callout Banner */
-.anim-callout {
-  max-width: 1300px;
-  margin: 18px auto 24px;
-  padding: 0 20px;
-}
-.anim-banner {
-  background: linear-gradient(135deg, rgba(245,158,11,0.18), rgba(239,68,68,0.16));
-  border: 1.5px solid rgba(245,158,11,0.45);
-  border-radius: var(--radius);
-  padding: 18px 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
-  box-shadow: 0 8px 30px rgba(245,158,11,0.15);
-}
-.anim-info {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-.anim-icon {
-  font-size: 38px;
-  filter: drop-shadow(0 0 10px rgba(245,158,11,0.6));
-}
+/* Offer row */
+.list{display:flex;flex-direction:column;gap:var(--space-m);margin-top:var(--space-m)}
+.card.offer{flex-direction:row;gap:var(--space-m);align-items:flex-start}
+.offer .body{flex:1;min-width:0;display:flex;flex-direction:column;gap:var(--space-s)}
+.meta{display:flex;flex-wrap:wrap;gap:var(--space-s);align-items:center}
+.when{font:500 11px/16px var(--font-sans);color:var(--on-surface-variant)}
+.text{margin:0;text-align:start;font:400 16px/26px var(--font-sans);white-space:pre-line;overflow-wrap:anywhere}
+.text.clamp{display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
+.more{align-self:flex-start;font:500 14px/20px var(--font-sans);background:none;border:0;color:var(--primary);cursor:pointer;padding:0}
+.actions{display:flex;flex-wrap:wrap;gap:var(--space-s)}
+.btn{display:inline-flex;align-items:center;gap:6px;font:500 14px/20px var(--font-sans);text-decoration:none;border-radius:var(--radius-full);padding:8px 16px;min-height:40px;border:1px solid var(--outline);color:var(--on-surface);background:transparent;cursor:pointer}
+.btn.filled{background:var(--primary);color:var(--on-primary);border-color:transparent}
+.btn.wa{border-color:var(--whatsapp);color:var(--whatsapp)}
 
-/* Gamification Bar */
-.gamification-strip {
-  max-width: 1300px;
-  margin: 0 auto 24px;
-  padding: 0 20px;
-}
-.game-card {
-  background: linear-gradient(135deg, rgba(37,99,235,0.12), rgba(139,92,246,0.12));
-  border: 1px solid rgba(56,189,248,0.25);
-  border-radius: var(--radius);
-  padding: 14px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-.game-profile {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-.flame {
-  font-size: 32px;
-  filter: drop-shadow(0 0 10px rgba(245,158,11,0.6));
-}
-.xp-wrapper {
-  width: 160px;
-  height: 8px;
-  background: var(--bg-subtle);
-  border-radius: 999px;
-  overflow: hidden;
-  margin-top: 6px;
-}
-.xp-bar {
-  height: 100%;
-  width: 45%;
-  background: linear-gradient(90deg, var(--pri), var(--pri-light));
-  border-radius: 999px;
-}
-.badges-list {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-.badge-pill {
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 700;
-  background: rgba(56,189,248,0.15);
-  color: var(--pri-light);
-  border: 1px solid rgba(56,189,248,0.3);
-}
+/* ScoreBadge */
+.score{position:relative;width:48px;height:48px;flex:none}
+.score svg{position:absolute;inset:0;width:100%;height:100%}
+.score b{position:absolute;inset:0;display:grid;place-items:center;font:600 16px/24px var(--font-sans);color:var(--c)}
 
-/* Search & Quick Filters */
-.search-container {
-  max-width: 900px;
-  margin: 0 auto 30px;
-  padding: 0 20px;
-}
-.search-box {
-  background: var(--bg-card);
-  border: 1.5px solid var(--line);
-  border-radius: 18px;
-  padding: 6px 10px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
-  transition: all 0.2s;
-}
-.search-box:focus-within {
-  border-color: var(--pri-light);
-  box-shadow: 0 8px 32px var(--pri-glow);
-}
-.search-box input {
-  flex: 1;
-  background: none;
-  border: none;
-  outline: none;
-  color: var(--ink);
-  font-family: inherit;
-  font-size: 15.5px;
-  padding: 10px;
-}
-.quick-tags {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-top: 14px;
-}
-.quick-tag {
-  background: var(--bg-subtle);
-  border: 1px solid var(--line);
-  padding: 5px 12px;
-  border-radius: 999px;
-  font-size: 12.5px;
-  color: var(--ink-mut);
-  cursor: pointer;
-  transition: all 0.15s;
-}
-.quick-tag:hover, .quick-tag.active {
-  background: var(--pri);
-  color: #fff;
-  border-color: var(--pri);
-}
+/* Pill / SourceChip */
+.pill{--c:var(--source-web);display:inline-block;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font:500 12px/16px var(--font-sans);padding:3px 10px;border-radius:var(--radius-full);
+  background:color-mix(in srgb,var(--c) var(--pill-fill),transparent);color:color-mix(in srgb,var(--c),#fff var(--pill-text-mix))}
+.pill.src{font-weight:700}
+.pill.telegram{--c:var(--source-telegram)}
+.pill.search{--c:var(--source-search)}
+.pill.event{--c:var(--tertiary)}
+.pill.danger{--c:var(--danger)}
+.pill.ok{--c:var(--success)}
+.pill.muted{--c:var(--muted)}
 
-/* Main Layout */
-.container {
-  max-width: 1300px;
-  margin: 0 auto;
-  padding: 0 20px 60px;
-}
+/* EmptyState */
+.empty{text-align:center;padding:32px var(--space-xl);display:flex;flex-direction:column;align-items:center;gap:var(--space-s)}
+.empty .disc{width:88px;height:88px;border-radius:var(--radius-full);background:var(--surface-container-high);display:grid;place-items:center;font-size:40px}
+.empty h3{margin:0;font:600 16px/24px var(--font-sans)}
 
-/* Transit & Gig Hub Sections */
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 18px;
-  margin-bottom: 28px;
-}
-.feature-box {
-  background: var(--bg-card);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 18px 20px;
-}
-.feature-box h3 {
-  font-size: 16.5px;
-  font-weight: 800;
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.stations-scroller {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  padding-bottom: 6px;
-  scrollbar-width: thin;
-}
-.station-btn {
-  white-space: nowrap;
-  background: var(--bg-subtle);
-  border: 1px solid var(--line);
-  padding: 7px 13px;
-  border-radius: 10px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--ink);
-  transition: all 0.15s;
-}
-.station-btn:hover {
-  border-color: var(--pri-light);
-  color: var(--pri-light);
-}
+/* Sources */
+details.sources summary{cursor:pointer;font:600 16px/24px var(--font-sans);list-style-position:inside}
+.src-row{display:flex;justify-content:space-between;gap:var(--space-m);padding:var(--space-s) 0;border-top:1px solid color-mix(in srgb,var(--outline-variant) 55%,transparent)}
+.src-row:first-of-type{border-top:0}
+.src-row .name{font:500 14px/20px var(--font-sans)}
+.src-row .why{font:400 13px/20px var(--font-sans);color:var(--on-surface-variant)}
 
-/* Filters Toolbar */
-.toolbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-  background: var(--bg-card);
-  padding: 12px 18px;
-  border-radius: var(--radius);
-  border: 1px solid var(--line);
-}
-.toolbar-filters {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-.select-filter {
-  background: var(--bg-subtle);
-  border: 1px solid var(--line);
-  color: var(--ink);
-  padding: 7px 12px;
-  border-radius: 10px;
-  font-family: inherit;
-  font-size: 13.5px;
-  outline: none;
-}
-.offers-count {
-  font-size: 13.5px;
-  color: var(--ink-mut);
-  font-weight: 700;
-}
-
-/* Offers Grid */
-.offers-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-  gap: 18px;
-}
-.card {
-  background: var(--bg-card);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 18px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 14px;
-  transition: all 0.25s;
-  position: relative;
-}
-.card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(56,189,248,0.4);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-}
-.card.is-anim {
-  border-color: rgba(245,158,11,0.5);
-  background: linear-gradient(180deg, rgba(245,158,11,0.06), var(--bg-card));
-}
-.card-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 10px;
-}
-.card-source {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--pri-light);
-}
-.score-pill {
-  background: rgba(37,99,235,0.2);
-  color: var(--pri-light);
-  padding: 3px 9px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 800;
-  border: 1px solid rgba(56,189,248,0.3);
-}
-.chips-row {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-  margin: 6px 0;
-}
-.chip {
-  padding: 3px 8px;
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: 600;
-  background: var(--bg-subtle);
-  color: var(--ink-mut);
-}
-.chip-transit {
-  background: rgba(16,185,129,0.15);
-  color: var(--ok);
-  border: 1px solid rgba(16,185,129,0.3);
-}
-.chip-salary {
-  background: rgba(245,158,11,0.15);
-  color: var(--warn);
-  border: 1px solid rgba(245,158,11,0.3);
-}
-.chip-gig {
-  background: rgba(139,92,246,0.15);
-  color: var(--accent);
-  border: 1px solid rgba(139,92,246,0.3);
-}
-.chip-anim {
-  background: rgba(245,158,11,0.2);
-  color: #fcd34d;
-  border: 1px solid rgba(245,158,11,0.5);
-  font-weight: 700;
-}
-
-.card-text {
-  font-size: 14px;
-  color: #cbd5e1;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  line-height: 1.55;
-  cursor: pointer;
-}
-.card-text.expanded {
-  -webkit-line-clamp: unset;
-}
-
-.contacts-box {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  font-size: 12.5px;
-  padding: 8px 10px;
-  background: var(--bg-subtle);
-  border-radius: 8px;
-}
-.contacts-box span {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.card-actions {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  border-top: 1px solid var(--line);
-  padding-top: 12px;
-}
-.action-btn {
-  padding: 6px 12px;
-  border-radius: 8px;
-  font-size: 12.5px;
-  font-weight: 700;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  transition: all 0.15s;
-}
-.action-wa {
-  background: #10b981;
-  color: #fff;
-}
-.action-wa:hover {
-  background: #059669;
-}
-.action-pitch {
-  background: var(--bg-subtle);
-  border: 1px solid var(--line);
-  color: var(--ink);
-}
-.action-pitch:hover {
-  border-color: var(--pri);
-  color: var(--pri-light);
-}
-
-/* Modals */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.8);
-  backdrop-filter: blur(8px);
-  z-index: 200;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-.modal-overlay.open {
-  display: flex;
-}
-.modal-box {
-  background: var(--bg-card);
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  max-width: 620px;
-  width: 100%;
-  padding: 24px;
-  max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-  animation: modalIn 0.2s ease-out;
-}
-@keyframes modalIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}
-.modal-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 18px;
-}
-.modal-header h3 {
-  font-size: 18px;
-  font-weight: 800;
-}
-.pitch-group {
-  margin-bottom: 16px;
-}
-.pitch-group label {
-  display: flex;
-  justify-content: space-between;
-  font-size: 13px;
-  font-weight: 700;
-  margin-bottom: 6px;
-}
-.pitch-textarea {
-  width: 100%;
-  background: var(--bg-subtle);
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 10px;
-  color: var(--ink);
-  font-family: inherit;
-  font-size: 13px;
-  outline: none;
-  resize: vertical;
-}
-
-/* Footer */
-footer {
-  border-top: 1px solid var(--line);
-  background: var(--bg-card);
-  padding: 24px;
-  text-align: center;
-  font-size: 13px;
-  color: var(--ink-mut);
-}
-.footer-links {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  margin-bottom: 10px;
-}
-
-/* Toast */
-.toast {
-  position: fixed;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #1e293b;
-  border: 1px solid var(--pri-light);
-  color: #fff;
-  padding: 10px 22px;
-  border-radius: 999px;
-  font-size: 14px;
-  font-weight: 700;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-  display: none;
-  z-index: 300;
-}
-
-@media (max-width: 768px) {
-  .hero h2 { font-size: 26px; }
-  .offers-grid { grid-template-columns: 1fr; }
-  .nav-actions .btn-outline { display: none; }
-}
+footer{padding:var(--space-xl) 0;font:400 13px/20px var(--font-sans);color:var(--on-surface-variant);text-align:center}
+.toast{position:fixed;inset-inline:0;bottom:16px;margin:auto;width:max-content;max-width:90vw;background:var(--inverse-surface);color:var(--inverse-on-surface);border-radius:var(--radius-sm);padding:10px 16px;font:400 14px/20px var(--font-sans);opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.show{opacity:1}
+@media (prefers-reduced-motion: reduce){.toast{transition:none}}
+@media (max-width:520px){.stats b{font-size:18px}.offer{gap:var(--space-s)}}
 </style>
 </head>
 <body>
-
-<header>
-  <div class="nav-inner">
-    <div class="brand">
-      <div class="brand-icon">⚡</div>
-      <div class="brand-text">
-        <h1>JobRadar DZ</h1>
-        <span>رادار التوظيف والفرص الذكية بالجزائر</span>
-      </div>
+<div class="wrap">
+  <header class="top">
+    <div class="logo" aria-hidden="true">
+      <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="color:var(--primary)">
+        <circle cx="18" cy="18" r="15" stroke-opacity=".35"/><circle cx="18" cy="18" r="9.5" stroke-opacity=".6"/>
+        <path d="M18 18L28.6 7.4"/><circle cx="18" cy="18" r="3.6" fill="currentColor" stroke="none"/>
+      </svg>
     </div>
-    <div class="nav-actions">
-      <button class="btn btn-anim" onclick="openAnimationAutoMessenger()">
-        <span>🎪 مراسلة عروض الأنيماسيون (<b id="animCountNav">0</b>)</span>
-      </button>
-      <div class="live-pill">
-        <span class="dot"></span>
-        <span>مباشر على الإنترنت</span>
-      </div>
-      <a href="https://t.me/searchamarbot" target="_blank" rel="noopener" class="btn btn-pri">
-        <span>✈️ بوت تيليغرام</span>
-      </a>
-      <button class="btn btn-outline" onclick="openAddModal()">
-        <span>➕ أضف عرض عمل</span>
-      </button>
-    </div>
-  </div>
-</header>
-
-<section class="hero">
-  <h2>رادار التوظيف <span>الأذكى في الجزائر</span></h2>
-  <p>رصد فوري لفرص العمل بالعاصمة، وميزة المراسلة التلقائية لفرص الأنيماتور والمعارض.</p>
-</section>
-
-<!-- Animation Dispatcher Callout Banner -->
-<section class="anim-callout">
-  <div class="anim-banner">
-    <div class="anim-info">
-      <div class="anim-icon">🎪</div>
-      <div>
-        <h3 style="font-size:18px;font-weight:900;color:#fcd34d;margin-bottom:3px">
-          ميزة المراسلة التلقائية لفرص التنشيط والمعارض (Animation Auto-Messenger)
-        </h3>
-        <p style="font-size:13.5px;color:#e2e8f0;margin:0">
-          تم رصد <b id="animCountHero" style="color:#f59e0b">0 فرصة أنيماسيون ومعارض</b> بالعاصمة. يمكنك بنقرة واحدة إرسال رسائل التقديم المخصصة لجميع أصحاب العروض عبر واتساب والإيميل!
-        </p>
-      </div>
-    </div>
-    <div style="display:flex;gap:10px;flex-wrap:wrap">
-      <button class="btn btn-pri" style="background:#f59e0b;color:#111;font-weight:800;border:none" onclick="openAnimationAutoMessenger()">
-        <span>🚀 تشغيل مركز المراسلة التلقائية</span>
-      </button>
-      <button class="btn btn-outline" onclick="filterAnimationOnly()">
-        <span>🔍 تصفية عروض الأنيماسيون فقط</span>
-      </button>
-    </div>
-  </div>
-</section>
-
-<!-- Gamification Hero -->
-<section class="gamification-strip">
-  <div class="game-card">
-    <div class="game-profile">
-      <span class="flame" id="gameFlame">🔥 1</span>
-      <div>
-        <div style="font-weight:800;font-size:15px" id="gameLevel">المستوى 1: باحث نشط 🌱</div>
-        <div style="font-size:12px;color:var(--ink-mut)">
-          <span id="gameXp">35</span> XP • التقديم القادم يمنحك +15 XP
-        </div>
-        <div class="xp-wrapper"><div class="xp-bar" id="gameXpBar"></div></div>
-      </div>
-    </div>
-    <div class="badges-list" id="gameBadges">
-      <span class="badge-pill">🎯 أول تقديم</span>
-      <span class="badge-pill">🚇 ابن العاصمة</span>
-      <span class="badge-pill">🎪 سفير المعارض</span>
-      <span class="badge-pill">⚡ مراسل فائق السرعة</span>
-    </div>
-  </div>
-</section>
-
-<!-- Search Box & Tags -->
-<section class="search-container">
-  <div class="search-box">
-    <span style="font-size:18px">🔍</span>
-    <input type="search" id="searchInput" placeholder="ابحث بالوظيفة أو البلدية: animateur, vendeur, باب الزوار, مطعم, SAFEX..." oninput="filterOffers()">
-  </div>
-  <div class="quick-tags">
-    <span class="quick-tag" onclick="filterAnimationOnly()">🎪 عروض الأنيماسيون والمعارض</span>
-    <span class="quick-tag" onclick="quickFilter('safex')">🏛️ SAFEX قصر المعارض</span>
-    <span class="quick-tag" onclick="quickFilter('bab ezzouar')">🚇 باب الزوار</span>
-    <span class="quick-tag" onclick="quickFilter('commercial')">💼 مبيعات و Showroom</span>
-    <span class="quick-tag" onclick="quickFilter('serveur')">🍽️ مطاعم ومقاهي</span>
-    <span class="quick-tag" onclick="quickFilter('livreur')">🛵 توصيل</span>
-    <span class="quick-tag" onclick="resetFilters()">🔄 الكل</span>
-  </div>
-</section>
-
-<main class="container">
-  <!-- Features: Transit & Gig Hub -->
-  <div class="features-grid">
-    <div class="feature-box">
-      <h3>🎪 رادار العمل المؤقت والحر (Gig Hub)</h3>
-      <div class="stations-scroller">
-        <button class="station-btn" onclick="filterAnimationOnly()">🎪 تنشيط معارض وصالونات</button>
-        <button class="station-btn" onclick="quickFilter('يومي')">⚡ أجر يومي Extra</button>
-        <button class="station-btn" onclick="quickFilter('توصيل')">🛵 توصيل طرود</button>
-        <button class="station-btn" onclick="quickFilter('طالب')">🎓 مناسب للطلاب</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Filters Toolbar -->
-  <div class="toolbar">
-    <div class="toolbar-filters">
-      <select class="select-filter" id="filterStatus" onchange="filterOffers()">
-        <option value="all">كافة العروض</option>
-        <option value="starred">⭐ العروض المفضلة</option>
-        <option value="applied">✅ تم التقديم لها</option>
-      </select>
-      <select class="select-filter" id="filterPlatform" onchange="filterOffers()">
-        <option value="all">كافة المنصات</option>
-        <option value="telegram">✈️ تيليغرام</option>
-        <option value="web">🌐 مواقع التوظيف</option>
-        <option value="facebook">📘 فيسبوك</option>
-      </select>
-      <select class="select-filter" id="filterSpecial" onchange="filterOffers()">
-        <option value="all">كافة التصنيفات</option>
-        <option value="animation">🎪 عروض الأنيماسيون فقط</option>
-        <option value="salary">💰 عروض براتب محدد</option>
-        <option value="gig">🎪 عمل مؤقت أو معارض</option>
-      </select>
-    </div>
-    <div class="offers-count" id="offersCount">جاري تحميل العروض...</div>
-  </div>
-
-  <!-- Offers Grid -->
-  <div class="offers-grid" id="offersGrid"></div>
-</main>
-
-<!-- Animation Auto-Messenger Modal -->
-<div class="modal-overlay" id="animModal">
-  <div class="modal-box" style="max-width:850px">
-    <div class="modal-header">
-      <div>
-        <h3 style="font-size:20px;display:flex;align-items:center;gap:8px">
-          <span>🎪</span> مركز المراسلة التلقائية لفرص الأنيماتور والمعارض
-        </h3>
-        <p style="font-size:12.5px;color:var(--ink-mut);margin-top:2px">
-          إرسال سريع وتسلسلي لرسائل التقديم المخصصة عبر واتساب والإيميل لجميع العروض المؤهلة
-        </p>
-      </div>
-      <button onclick="closeModal('animModal')" style="font-size:24px;color:var(--ink-mut)">✕</button>
-    </div>
-
-    <!-- Candidate Pitch Studio -->
-    <div style="background:var(--bg-subtle);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:18px">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
-        <div>
-          <label style="font-size:12.5px;font-weight:700;display:block;margin-bottom:4px">اسم المترشح:</label>
-          <input type="text" id="animCandidateName" value="عمار حيمور" class="pitch-textarea" style="padding:8px" oninput="updateAnimPreview()">
-        </div>
-        <div>
-          <label style="font-size:12.5px;font-weight:700;display:block;margin-bottom:4px">رقم الهاتف:</label>
-          <input type="text" id="animCandidatePhone" value="0550 12 34 56" class="pitch-textarea" style="padding:8px" oninput="updateAnimPreview()">
-        </div>
-      </div>
-      <div>
-        <label style="font-size:12.5px;font-weight:700;display:block;margin-bottom:4px">نوع رسالة التقديم (Animation Pitch):</label>
-        <select id="animPitchType" class="pitch-textarea" style="padding:8px" onchange="updateAnimPreview()">
-          <option value="safex">🎪 منشط ومضيف أجنحة ومعارض (SAFEX & Salons)</option>
-          <option value="commercial">🛍️ منشط مبيعات وتجاري (Street Marketing & Promo)</option>
-          <option value="general">✨ منشط عام وفعاليات ومناسبات</option>
-        </select>
-      </div>
-      <div style="margin-top:10px">
-        <label style="font-size:12px;color:var(--ink-mut);display:flex;justify-content:space-between">
-          <span>معاينة نص الرسالة التلقائية المجهزة:</span>
-          <button class="btn btn-outline" style="padding:2px 8px;font-size:11px" onclick="copyText('animPreviewText')">نسخ</button>
-        </label>
-        <textarea id="animPreviewText" class="pitch-textarea" rows="4" style="margin-top:4px;font-size:12.5px;direction:ltr" readonly></textarea>
-      </div>
-    </div>
-
-    <!-- Sequential Batch Sender Action Bar -->
-    <div style="background:linear-gradient(135deg, rgba(245,158,11,0.18), rgba(239,68,68,0.18));border:1px solid rgba(245,158,11,0.4);border-radius:14px;padding:14px 18px;margin-bottom:18px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
-      <div>
-        <div style="font-size:15px;font-weight:800;color:#fcd34d">⚡ الإرسال التسلسلي الآلي (Auto-Send Sequence)</div>
-        <div style="font-size:12px;color:var(--ink-mut)">يفتح لك محادثة واتساب لكل صاحب عمل تباعاً مع الرسالة مجهزة وجاهزة للإرسال فوراً!</div>
-      </div>
-      <div style="display:flex;gap:8px">
-        <button class="btn btn-pri action-wa" style="padding:10px 18px;font-size:14px" onclick="startSequentialAnimationDispatch()">
-          <span>🚀 ابدأ المراسلة التسلسلية الآن</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Dispatch Progress Bar (Hidden by default) -->
-    <div id="animProgressBox" style="display:none;margin-bottom:16px;background:var(--bg-subtle);padding:12px;border-radius:10px;border:1px solid var(--line)">
-      <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;margin-bottom:6px">
-        <span id="animProgressText">جاري فتح المحادثات...</span>
-        <span id="animProgressPercent">0%</span>
-      </div>
-      <div style="height:8px;background:var(--line);border-radius:999px;overflow:hidden">
-        <div id="animProgressBar" style="height:100%;width:0%;background:linear-gradient(90deg, #10b981, #38bdf8);transition:width 0.3s"></div>
-      </div>
-    </div>
-
-    <!-- Offers Queue -->
     <div>
-      <h4 style="font-size:15px;font-weight:800;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center">
-        <span>قائمة العروض المؤهلة للأنيماسيون (<span id="animQueueCount">0</span>)</span>
-        <button class="btn btn-outline" style="font-size:12px;padding:4px 10px" onclick="clearMessagedHistory()">إعادة تعيين سجل المراسلة</button>
-      </h4>
-      <div id="animQueueList" style="display:flex;flex-direction:column;gap:10px;max-height:380px;overflow-y:auto;padding-right:4px"></div>
+      <h1>رادار العروض</h1>
+      <p>عروض عمل مؤقت وجزئي في الجزائر العاصمة، تُجمع آلياً كل ساعة</p>
     </div>
-  </div>
+  </header>
+
+  <section class="card" aria-labelledby="h-now">
+    <h2 id="h-now" class="sr">ملخص</h2>
+    <div class="stats">
+      <div class="stat"><b id="st-offers">–</b><span>عرض حالياً</span></div>
+      <div class="stat"><b id="st-events">–</b><span>فعاليات وتنشيط</span></div>
+      <div class="stat"><b id="st-sources">–</b><span>مصادر تعمل</span></div>
+    </div>
+    <div id="health"></div>
+    <p class="hint" id="updated">جارٍ التحميل…</p>
+  </section>
+
+  <section class="card" aria-labelledby="h-filter">
+    <h2 id="h-filter" class="sr">بحث وتصفية</h2>
+    <label class="sr" for="q">ابحث في العروض</label>
+    <input id="q" class="search" type="search" placeholder="ابحث: مضيفة، SAFEX، نادل، باب الزوار…" autocomplete="off">
+    <div class="chips" role="group" aria-label="تصفية">
+      <button class="chip" data-f="all" aria-pressed="true">الكل</button>
+      <button class="chip" data-f="event" aria-pressed="false">فعاليات وتنشيط</button>
+      <button class="chip" data-f="good" aria-pressed="false">7/10 فأكثر</button>
+      <button class="chip" data-f="telegram" aria-pressed="false">تيليغرام</button>
+      <button class="chip" data-f="web" aria-pressed="false">مواقع التوظيف</button>
+      <button class="chip" data-f="junior" aria-pressed="false">بدون خبرة طويلة</button>
+    </div>
+    <p class="hint" id="count" aria-live="polite"></p>
+  </section>
+
+  <main id="list" class="list" aria-label="العروض"></main>
+
+  <section class="card" style="margin-top:var(--space-m)">
+    <details class="sources">
+      <summary>حالة المصادر</summary>
+      <p class="hint">لا يُكتب «يعمل» إلا لمصدر قُرئ فعلاً في آخر تشغيل. فيسبوك وإنستغرام وتيك توك لا تُقرأ هنا.</p>
+      <div id="sources"></div>
+    </details>
+  </section>
+
+  <footer>
+    البيانات من مصادر عامة فقط، وقد تحتوي أخطاء. تأكّد من كل عرض قبل التقديم، ولا تدفع أي مال مقابل وظيفة.
+    <br>البيانات الخام: <a href="data/offers.json">offers.json</a> · <a href="data/status.json">status.json</a>
+  </footer>
 </div>
-
-<!-- Pitch Modal -->
-<div class="modal-overlay" id="pitchModal">
-  <div class="modal-box">
-    <div class="modal-header">
-      <h3 id="pitchModalTitle">📋 رسالة التقديم الذكية المخصصة</h3>
-      <button onclick="closeModal('pitchModal')" style="font-size:22px;color:var(--ink-mut)">✕</button>
-    </div>
-    <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap">
-      <a id="pitchWaBtn" class="btn btn-pri action-wa" target="_blank" rel="noopener">
-        <span>💬 إرسال عبر واتساب الآن</span>
-      </a>
-      <a id="pitchMailBtn" class="btn btn-outline" target="_blank" rel="noopener">
-        <span>✉️ إرسال عبر الإيميل</span>
-      </a>
-    </div>
-    <div class="pitch-group">
-      <label>
-        <span>💬 رسالة واتساب (فرنسية):</span>
-        <button class="btn btn-outline" style="padding:2px 8px;font-size:11px" onclick="copyText('pitchWaFr')">نسخ</button>
-      </label>
-      <textarea id="pitchWaFr" class="pitch-textarea" rows="5" style="direction:ltr"></textarea>
-    </div>
-    <div class="pitch-group">
-      <label>
-        <span>💬 رسالة واتساب (عربية):</span>
-        <button class="btn btn-outline" style="padding:2px 8px;font-size:11px" onclick="copyText('pitchWaAr')">نسخ</button>
-      </label>
-      <textarea id="pitchWaAr" class="pitch-textarea" rows="5"></textarea>
-    </div>
-    <div class="pitch-group">
-      <label>
-        <span>✉️ بريد إلكتروني رسمي:</span>
-        <button class="btn btn-outline" style="padding:2px 8px;font-size:11px" onclick="copyText('pitchEmail')">نسخ</button>
-      </label>
-      <textarea id="pitchEmail" class="pitch-textarea" rows="5" style="direction:ltr"></textarea>
-    </div>
-  </div>
-</div>
-
-<!-- Add Job Offer Modal -->
-<div class="modal-overlay" id="addModal">
-  <div class="modal-box">
-    <div class="modal-header">
-      <h3>➕ إضافة عرض توظيف جديد</h3>
-      <button onclick="closeModal('addModal')" style="font-size:22px;color:var(--ink-mut)">✕</button>
-    </div>
-    <form onsubmit="submitNewOffer(event)">
-      <div class="pitch-group">
-        <label>المسمى الوظيفي / العنوان:</label>
-        <input type="text" id="addTitle" class="pitch-textarea" required placeholder="مثال: منشط ومضيف معرض، بائع بمحل، مطور...">
-      </div>
-      <div class="pitch-group">
-        <label>المنطقة / البلدية:</label>
-        <input type="text" id="addLocation" class="pitch-textarea" required placeholder="مثال: باب الزوار، قصر المعارض SAFEX...">
-      </div>
-      <div class="pitch-group">
-        <label>رقم الهاتف أو واتساب للتواصل:</label>
-        <input type="text" id="addPhone" class="pitch-textarea" required placeholder="0550123456">
-      </div>
-      <div class="pitch-group">
-        <label>الراتب المقترح (اختياري):</label>
-        <input type="text" id="addSalary" class="pitch-textarea" placeholder="مثال: 35,000 دج أو 2500 دج/يوم">
-      </div>
-      <div class="pitch-group">
-        <label>تفاصيل العرض والشروط:</label>
-        <textarea id="addDetails" class="pitch-textarea" rows="4" required placeholder="اكتب متطلبات الوظيفة وساعات العمل..."></textarea>
-      </div>
-      <button type="submit" class="btn btn-pri" style="width:100%;justify-content:center;padding:12px">
-        <span>نشر العرض فوراً في الرادار</span>
-      </button>
-    </form>
-  </div>
-</div>
-
-<div class="toast" id="toast"></div>
-
-<footer>
-  <div class="footer-links">
-    <a href="https://t.me/searchamarbot" target="_blank" rel="noopener">بوت تيليغرام الرسمي (@searchamarbot)</a>
-    <span>•</span>
-    <a href="javascript:void(0)" onclick="openAnimationAutoMessenger()">رادار الأنيماسيون</a>
-    <span>•</span>
-    <a href="javascript:void(0)" onclick="openAddModal()">أصحاب العمل والشركات</a>
-  </div>
-  <p>© 2026 JobRadar DZ — محرك ورادار التوظيف المستقل بالجزائر. جميع الحقوق محفوظة.</p>
-</footer>
+<div class="toast" id="toast" role="status"></div>
 
 <script>
-let ALL_OFFERS = [];
-let USER_PROFILE = JSON.parse(localStorage.getItem('jobradar_profile') || '{"xp":35,"level":1,"streak":1,"applied":[],"starred":[],"anim_messaged":[]}');
-if(!USER_PROFILE.anim_messaged) USER_PROFILE.anim_messaged = [];
+"use strict";
+const $ = (s, el = document) => el.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const state = { offers: [], filter: "all", q: "" };
 
-const ANIM_KEYWORDS = [
-  "animat", "hote", "safex", "salon", "stand", "foire", "evenement", "accueil", "promoteur", "promotrice",
-  "منشط", "منشطة", "مضيف", "مضيفة", "معرض", "معارض", "صالون", "سافكس", "ستاند", "استقبال", "تنشيط"
-];
+function norm(s){
+  return String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ًͯ-ْ]/g, "")
+    .replace(/[أإآ]/g, "ا").replace(/ة/g, "ه").replace(/ى/g, "ي");
+}
+function scoreColor(n){ return n >= 7 ? "var(--success)" : n >= 4 ? "var(--warning)" : "var(--muted)"; }
+function scoreBadge(n){
+  n = Math.max(0, Math.min(10, Math.round(+n || 0)));
+  const R = 22, C = 2 * Math.PI * R, c = scoreColor(n);
+  return `<div class="score" style="--c:${c}" role="img" aria-label="التقييم ${n}/10">
+    <svg viewBox="0 0 48 48" fill="none" stroke-width="4" aria-hidden="true">
+      <circle cx="24" cy="24" r="${R}" stroke="var(--surface-container-highest)"/>
+      <circle cx="24" cy="24" r="${R}" stroke="${c}" stroke-linecap="round" stroke-dasharray="${C*n/10} ${C}" transform="translate(48 0) scale(-1 1) rotate(-90 24 24)"/>
+    </svg><b aria-hidden="true">${n}</b></div>`;
+}
+function ago(iso){
+  if (!iso) return "";
+  const t = new Date(iso.length === 16 ? iso + ":00+01:00" : iso);
+  const m = Math.round((Date.now() - t) / 60000);
+  if (isNaN(m)) return "";
+  if (m < 60) return `منذ ${Math.max(1, m)} د`;
+  if (m < 60 * 24) return `منذ ${Math.round(m / 60)} سا`;
+  return `منذ ${Math.round(m / 1440)} يوم`;
+}
+function platformLabel(p){ return p === "telegram" ? "telegram" : p === "search" ? "search" : "web"; }
 
-function isAnimationOffer(offer){
-  const text = (offer.text + ' ' + (offer.source || '') + ' ' + (offer.gig_badge || '')).toLowerCase();
-  return ANIM_KEYWORDS.some(k => text.includes(k));
+function offerHtml(o, i){
+  const phones = String(o.phones || "").split(",").map(s => s.trim()).filter(Boolean);
+  const mails = String(o.emails || "").split(",").map(s => s.trim()).filter(Boolean);
+  const pills = [`<span class="pill src ${platformLabel(o.platform)}">${esc(o.source || "مصدر")}</span>`];
+  if (o.event) pills.push(`<span class="pill event">فعاليات وتنشيط</span>`);
+  if (o.senior) pills.push(`<span class="pill muted">خبرة ${+o.years_required || 3}+ سنوات</span>`);
+  const acts = [];
+  if (o.url) acts.push(`<a class="btn filled" href="${esc(o.url)}" target="_blank" rel="noopener nofollow">فتح الإعلان</a>`);
+  if (o.whatsapp_url) acts.push(`<a class="btn wa" href="${esc(o.whatsapp_url)}" target="_blank" rel="noopener nofollow">واتساب</a>`);
+  if (phones[0]) acts.push(`<a class="btn" href="tel:${esc(phones[0].replace(/\s/g, ""))}">اتصال</a>`);
+  if (mails[0]) acts.push(`<a class="btn" href="mailto:${esc(mails[0])}">بريد</a>`);
+  const long = String(o.text || "").length > 320;
+  return `<article class="card offer">
+    ${scoreBadge(o.score)}
+    <div class="body">
+      <div class="meta">${pills.join("")}<span class="when">${esc(ago(o.found_at))}</span></div>
+      <p class="text${long ? " clamp" : ""}" id="t${i}" dir="auto">${esc(o.text)}</p>
+      ${long ? `<button class="more" data-t="t${i}" aria-expanded="false">عرض الكل</button>` : ""}
+      ${acts.length ? `<div class="actions">${acts.join("")}</div>` : ""}
+    </div>
+  </article>`;
 }
 
-function getAnimationOffers(){
-  return ALL_OFFERS.filter(isAnimationOffer);
-}
-
-function saveProfile(){
-  localStorage.setItem('jobradar_profile', JSON.stringify(USER_PROFILE));
-  updateProfileUI();
-}
-
-function updateProfileUI(){
-  document.getElementById('gameFlame').textContent = '🔥 ' + USER_PROFILE.streak;
-  document.getElementById('gameXp').textContent = USER_PROFILE.xp;
-  const lvl = Math.floor(USER_PROFILE.xp / 100) + 1;
-  const titles = ["باحث نشط 🌱", "مستكشف متمرس ⚡", "محترف التقديم 💼", "خبير سوق العمل 🏆"];
-  document.getElementById('gameLevel').textContent = `المستوى ${lvl}: ${titles[Math.min(lvl-1, titles.length-1)]}`;
-  document.getElementById('gameXpBar').style.width = (USER_PROFILE.xp % 100) + '%';
-}
-
-function toast(msg){
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.style.display = 'block';
-  clearTimeout(t._timer);
-  t._timer = setTimeout(() => t.style.display = 'none', 3000);
-}
-
-function copyText(id){
-  const el = document.getElementById(id);
-  el.select();
-  navigator.clipboard.writeText(el.value).then(() => toast('تم نسخ النص بنجاح ✔'));
-}
-
-function closeModal(id){
-  document.getElementById(id).classList.remove('open');
-}
-
-function openAddModal(){
-  document.getElementById('addModal').classList.add('open');
-}
-
-// Animation Auto-Messenger Modal Logic
-function openAnimationAutoMessenger(){
-  updateAnimPreview();
-  renderAnimationQueue();
-  document.getElementById('animModal').classList.add('open');
-}
-
-function updateAnimPreview(){
-  const name = document.getElementById('animCandidateName').value.trim() || 'عمار حيمور';
-  const phone = document.getElementById('animCandidatePhone').value.trim() || '0550 12 34 56';
-  const type = document.getElementById('animPitchType').value;
-
-  let text = "";
-  if(type === 'safex'){
-    text = `Bonjour,\n\nJe me permets de vous contacter suite à votre offre pour le poste d'animateur / hôte de stand au salon.\nJe suis basé à Alger, sérieux, dynamique, avec une excellente présentation et une bonne expérience dans l'accueil et l'animation des stands à la SAFEX.\nJe suis immédiatement disponible pour toute la durée de l'événement.\nPuis-je vous transmettre mon CV ?\n\nBien cordialement,\n${name}\n📞 ${phone}`;
-  } else if(type === 'commercial'){
-    text = `Bonjour,\n\nJe vous contacte concernant votre offre d'animateur commercial / vente.\nRésidant à Alger et doté d'un excellent sens du contact client et de la persuasion, je suis prêt à dynamiser vos ventes et représenter dignement votre marque.\nImmédiatement disponible.\n\nBien cordialement,\n${name}\n📞 ${phone}`;
-  } else {
-    text = `Bonjour,\n\nJe vous adresse ma candidature pour votre offre d'animation / événementiel.\nDynamique, polyvalent et habitué au contact avec le public, je suis disponible immédiatement pour rejoindre votre équipe sur Alger.\n\nBien cordialement,\n${name}\n📞 ${phone}`;
-  }
-
-  document.getElementById('animPreviewText').value = text;
-}
-
-function renderAnimationQueue(){
-  const animOffers = getAnimationOffers();
-  document.getElementById('animQueueCount').textContent = animOffers.length;
-  const list = document.getElementById('animQueueList');
-
-  if(!animOffers.length){
-    list.innerHTML = '<div style="text-align:center;padding:30px;color:var(--ink-mut)">لم يتم العثور على عروض أنيماسيون حالياً.</div>';
-    return;
-  }
-
-  list.innerHTML = animOffers.map(o => {
-    const isMessaged = USER_PROFILE.anim_messaged.includes(o.uid);
-    const hasPhone = Boolean(o.phones || o.whatsapp_url);
-    const cleanPhone = (o.phones || '').replace(/\D/g, '');
-    const waPhone = cleanPhone.startsWith('0') && cleanPhone.length === 10 ? '213' + cleanPhone.slice(1) : cleanPhone;
-    const msg = document.getElementById('animPreviewText').value;
-    const waUrl = waPhone ? `https://wa.me/${waPhone}?text=${encodeURIComponent(msg)}` : o.whatsapp_url;
-
-    return `
-      <div style="background:var(--bg-subtle);border:1px solid ${isMessaged ? 'var(--ok)' : 'var(--line)'};border-radius:12px;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
-        <div style="flex:1;min-width:240px">
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
-            <span style="font-weight:800;font-size:14px;color:#fcd34d">${escapeHtml(extractRole(o.text))}</span>
-            <span class="chip" style="font-size:11px">${escapeHtml(o.source || 'عرض أنيماسيون')}</span>
-            ${isMessaged ? '<span class="chip" style="background:#10b981;color:#fff;font-size:11px">تمت المراسلة ✔</span>' : '<span class="chip" style="background:rgba(245,158,11,0.2);color:#fcd34d;font-size:11px">مؤهل للمراسلة</span>'}
-          </div>
-          <div style="font-size:12.5px;color:#cbd5e1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:440px">
-            ${escapeHtml(o.text)}
-          </div>
-          <div style="font-size:12px;color:var(--ink-mut);margin-top:4px">
-            ${o.phones ? `📞 ${escapeHtml(o.phones)}` : '<span style="color:#ef4444">لا يوجد هاتف مسجل</span>'}
-          </div>
-        </div>
-        <div style="display:flex;gap:8px">
-          ${hasPhone ? `
-            <a href="${escapeHtml(waUrl)}" target="_blank" rel="noopener" class="btn btn-pri action-wa" style="padding:6px 12px;font-size:12px" onclick="recordAnimationMessaged('${o.uid}')">
-              <span>💬 إرسال واتساب</span>
-            </a>
-          ` : `
-            <button class="btn btn-outline" style="padding:6px 12px;font-size:12px;opacity:0.5" disabled>
-              <span>لا يوجد رقم</span>
-            </button>
-          `}
-          ${o.emails ? `
-            <a href="mailto:${o.emails}?subject=Candidature Animateur Stand - ${document.getElementById('animCandidateName').value}&body=${encodeURIComponent(msg)}" target="_blank" rel="noopener" class="btn btn-outline" style="padding:6px 12px;font-size:12px" onclick="recordAnimationMessaged('${o.uid}')">
-              <span>✉️ إيميل</span>
-            </a>
-          ` : ''}
-        </div>
-      </div>
-    `;
-  }).join('');
-}
-
-function recordAnimationMessaged(uid){
-  if(!USER_PROFILE.anim_messaged.includes(uid)){
-    USER_PROFILE.anim_messaged.push(uid);
-  }
-  if(!USER_PROFILE.applied.includes(uid)){
-    USER_PROFILE.applied.push(uid);
-    USER_PROFILE.xp += 25; // Bonus XP for animation application
-    toast('🎉 أحسنت! تم إرسال رسالة التقديم بنجاح (+25 XP)');
-  }
-  saveProfile();
-  renderAnimationQueue();
-  filterOffers();
-}
-
-function clearMessagedHistory(){
-  if(confirm('هل تريد إعادة تعيين سجل مراسلة الأنيماسيون لإتاحة المراسلة مجدداً؟')){
-    USER_PROFILE.anim_messaged = [];
-    saveProfile();
-    renderAnimationQueue();
-    toast('تم إعادة تعيين سجل المراسلة.');
-  }
-}
-
-// Sequential Auto-Dispatch All Animation Offers
-let animDispatchIndex = 0;
-let animEligibleOffers = [];
-
-function startSequentialAnimationDispatch(){
-  const offersWithContact = getAnimationOffers().filter(o => o.phones || o.whatsapp_url);
-  if(!offersWithContact.length){
-    toast('لا توجد أرقام هواتف مسجلة في عروض الأنيماسيون حالياً.');
-    return;
-  }
-
-  animEligibleOffers = offersWithContact;
-  animDispatchIndex = 0;
-  
-  const box = document.getElementById('animProgressBox');
-  box.style.display = 'block';
-
-  toast('🚀 بدء المراسلة التسلسلية التلقائية عبر واتساب...');
-  processNextAnimationDispatch();
-}
-
-function processNextAnimationDispatch(){
-  if(animDispatchIndex >= animEligibleOffers.length){
-    toast('🎉 اكتملت المراسلة التلقائية لجميع عروض الأنيماسيون!');
-    document.getElementById('animProgressText').textContent = '✅ اكتملت المراسلة لجميع العروض!';
-    document.getElementById('animProgressBar').style.width = '100%';
-    document.getElementById('animProgressPercent').textContent = '100%';
-    renderAnimationQueue();
-    return;
-  }
-
-  const o = animEligibleOffers[animDispatchIndex];
-  const percent = Math.round(((animDispatchIndex + 1) / animEligibleOffers.length) * 100);
-  document.getElementById('animProgressBar').style.width = percent + '%';
-  document.getElementById('animProgressPercent').textContent = percent + '%';
-  document.getElementById('animProgressText').textContent = `جاري فتح محادثة (${animDispatchIndex + 1}/${animEligibleOffers.length}): ${escapeHtml(o.source || 'عرض أنيماسيون')}`;
-
-  // Open WhatsApp with pre-filled message
-  const msg = document.getElementById('animPreviewText').value;
-  let cleanPhone = (o.phones || '').replace(/\D/g, '');
-  if(cleanPhone.startsWith('0') && cleanPhone.length === 10){
-    cleanPhone = '213' + cleanPhone.slice(1);
-  }
-  const waUrl = cleanPhone ? `https://wa.me/${cleanPhone}?text=${encodeURIComponent(msg)}` : o.whatsapp_url;
-  if(waUrl){
-    window.open(waUrl, '_blank');
-    recordAnimationMessaged(o.uid);
-  }
-
-  animDispatchIndex++;
-  if(animDispatchIndex < animEligibleOffers.length){
-    setTimeout(processNextAnimationDispatch, 2500); // 2.5s pacing
-  } else {
-    setTimeout(processNextAnimationDispatch, 1000);
-  }
-}
-
-// Pas de fausses offres de démonstration : si le fichier est introuvable, le site l'indique honnêtement.
-const INITIAL_FALLBACK = [];
-
-async function loadOffers(){
-  try {
-    const res = await fetch('data/offers.json');
-    if(res.ok){
-      const data = await res.json();
-      if(Array.isArray(data) && data.length > 0){
-        ALL_OFFERS = data;
-      } else {
-        ALL_OFFERS = INITIAL_FALLBACK;
-      }
-    } else {
-      ALL_OFFERS = INITIAL_FALLBACK;
-    }
-  } catch(e) {
-    ALL_OFFERS = INITIAL_FALLBACK;
-  }
-
-  // État du collecteur : date de la dernière mise à jour (affichée avec le nombre d'offres)
-  try {
-    const st = await fetch('data/status.json');
-    if (st.ok) { const j = await st.json(); window.LAST_UPDATE = (j.generated_at || '').replace('T', ' '); window.SRC_STATUS = j.sources || []; }
-  } catch (e) { /* pas de statut : rien à afficher */ }
-
-  // Load custom community offers from localStorage
-  const custom = JSON.parse(localStorage.getItem('jobradar_custom_offers') || '[]');
-  ALL_OFFERS = [...custom, ...ALL_OFFERS];
-  // Priorité : événementiel / animation d'abord, puis meilleure note.
-  ALL_OFFERS.sort((a, b) => (b.event ? 1 : 0) - (a.event ? 1 : 0) || (b.score || 0) - (a.score || 0));
-
-  // Update Animation offer badges count
-  const animCount = getAnimationOffers().length;
-  document.getElementById('animCountNav').textContent = animCount;
-  document.getElementById('animCountHero').textContent = `${animCount} فرصة أنيماسيون ومعارض`;
-
-  filterOffers();
-  updateProfileUI();
-}
-
-function filterAnimationOnly(){
-  document.getElementById('filterSpecial').value = 'animation';
-  document.getElementById('searchInput').value = '';
-  filterOffers();
-  window.scrollTo({ top: document.querySelector('.toolbar').offsetTop - 80, behavior: 'smooth' });
-}
-
-function filterOffers(){
-  const q = document.getElementById('searchInput').value.trim().toLowerCase();
-  const st = document.getElementById('filterStatus').value;
-  const pl = document.getElementById('filterPlatform').value;
-  const sp = document.getElementById('filterSpecial').value;
-
-  const filtered = ALL_OFFERS.filter(o => {
-    // Status match
-    if(st === 'starred' && !USER_PROFILE.starred.includes(o.uid)) return false;
-    if(st === 'applied' && !USER_PROFILE.applied.includes(o.uid)) return false;
-
-    // Platform match
-    if(pl !== 'all' && o.platform !== pl) return false;
-
-    // Special match
-    if(sp === 'animation' && !isAnimationOffer(o)) return false;
-    if(sp === 'salary' && !o.salary) return false;
-    if(sp === 'gig' && !o.gig_badge) return false;
-
-    // Query search
-    if(q){
-      const corpus = (o.text + ' ' + (o.source||'') + ' ' + (o.salary||'') + ' ' + (o.gig_badge||'')).toLowerCase();
-      if(!corpus.includes(q)) return false;
-    }
+function visible(){
+  const q = norm(state.q).trim();
+  return state.offers.filter(o => {
+    if (state.filter === "event" && !o.event) return false;
+    if (state.filter === "good" && (+o.score || 0) < 7) return false;
+    if (state.filter === "telegram" && o.platform !== "telegram") return false;
+    if (state.filter === "web" && o.platform !== "web") return false;
+    if (state.filter === "junior" && o.senior) return false;
+    if (q && !q.split(/\s+/).every(w => norm(o.text + " " + o.source).includes(w))) return false;
     return true;
   });
-
-  document.getElementById('offersCount').textContent = `تم العثور على ${filtered.length} فرصة عمل` + (window.LAST_UPDATE ? ` · آخر تحديث ${window.LAST_UPDATE}` : '');
-  renderOffers(filtered);
 }
 
-function renderOffers(offers){
-  const grid = document.getElementById('offersGrid');
-  if(!offers.length){
-    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:50px;color:var(--ink-mut);font-size:16px">لم نجد عروض تطابق هذا البحث حالياً. جرب كلمات أخرى أو تصفح كافة العروض!</div>';
-    return;
+function render(){
+  const list = visible();
+  $("#count").textContent = state.offers.length ? `${list.length} من ${state.offers.length} عرض` : "";
+  $("#list").innerHTML = list.length ? list.map(offerHtml).join("") :
+    `<div class="card empty"><div class="disc" aria-hidden="true">📡</div><h3>${state.offers.length ? "لا عروض تطابق البحث" : "لا عروض بعد"}</h3>
+     <p class="hint">${state.offers.length ? "جرّب كلمة أخرى أو اختر «الكل»." : "يُحدَّث الجامع كل ساعة، عُد لاحقاً."}</p>
+     ${state.offers.length ? `<button class="btn filled" id="reset">عرض كل العروض</button>` : ""}</div>`;
+}
+
+function renderStatus(st){
+  if (!st) { $("#updated").textContent = "تعذّر قراءة حالة المصادر."; return; }
+  const srcs = st.sources || [];
+  const active = srcs.filter(s => !s.skipped);
+  const ok = active.filter(s => s.ok);
+  $("#st-sources").textContent = `${ok.length}/${active.length}`;
+  $("#updated").textContent = `آخر تحديث: ${st.generated_at ? st.generated_at.replace("T", " ") : "؟"} (${ago(st.generated_at)})`;
+  const failed = active.length - ok.length;
+  $("#health").innerHTML = failed
+    ? `<div class="banner warning" role="status"><b>${failed} من ${active.length} مصادر لم تُقرأ في آخر تشغيل</b>العروض المعروضة تأتي من المصادر التي تعمل فقط. التفاصيل في «حالة المصادر».</div>`
+    : `<div class="banner success" role="status">كل المصادر قُرئت في آخر تشغيل.</div>`;
+  $("#sources").innerHTML = srcs.map(s => {
+    const tag = s.skipped ? `<span class="pill muted">معطّل</span>` : s.ok ? `<span class="pill ok">يعمل</span>` : `<span class="pill danger">فشل</span>`;
+    const rej = s.rejected ? Object.entries(s.rejected).slice(0, 2).map(([k, v]) => `${v} ${esc(k)}`).join("، ") : "";
+    const why = s.skipped ? "معطّل في الإعدادات" : s.ok ? `${s.cards} قُرئت، ${s.kept} مقبولة${rej ? " — مرفوضة: " + rej : ""}` : esc(s.error || "لم يُقرأ شيء");
+    return `<div class="src-row"><div><div class="name">${esc(s.name)}</div><div class="why">${why}</div></div><div>${tag}</div></div>`;
+  }).join("");
+}
+
+function toast(msg){ const t = $("#toast"); t.textContent = msg; t.classList.add("show"); setTimeout(() => t.classList.remove("show"), 2500); }
+
+async function load(){
+  const bust = "?t=" + Math.floor(Date.now() / 600000);
+  try {
+    const r = await fetch("data/offers.json" + bust);
+    if (!r.ok) throw new Error(r.status);
+    const data = await r.json();
+    state.offers = (Array.isArray(data) ? data : []).filter(o => o && o.text);
+  } catch (e) {
+    $("#list").innerHTML = `<div class="banner error" role="alert"><b>تعذّر تحميل العروض</b>تحقّق من الاتصال ثم أعد المحاولة.<br><button id="retry">إعادة المحاولة</button></div>`;
   }
-
-  const platformIcons = {
-    web: '🌐 موقع',
-    telegram: '✈️ تيليغرام',
-    facebook: '📘 فيسبوك',
-    instagram: '📸 إنستغرام'
-  };
-
-  grid.innerHTML = offers.map(o => {
-    const isApplied = USER_PROFILE.applied.includes(o.uid);
-    const isStarred = USER_PROFILE.starred.includes(o.uid);
-    const isAnim = isAnimationOffer(o);
-
-    return `
-      <div class="card ${isApplied ? 'applied' : ''} ${isAnim ? 'is-anim' : ''}">
-        <div>
-          <div class="card-header">
-            <span class="card-source">${platformIcons[o.platform] || '📡'} ${escapeHtml(o.source || 'عرض معتمد')}</span>
-            <span class="score-pill">⭐ ${o.score || 9}/10</span>
-          </div>
-
-          <div class="chips-row">
-            ${isAnim ? `<span class="chip chip-anim">🎪 أنيماسيون ومعارض</span>` : ''}
-            ${o.salary ? `<span class="chip chip-salary">💰 ${escapeHtml(o.salary)}</span>` : ''}
-            ${o.place ? `<span class="chip">📍 ${escapeHtml(o.place)}</span>` : ''}
-            ${o.gig_badge ? `<span class="chip chip-gig">${escapeHtml(o.gig_badge)}</span>` : ''}
-            ${isApplied ? `<span class="chip" style="background:#10b981;color:#fff">✅ تم التقديم</span>` : ''}
-            ${isStarred ? `<span class="chip" style="background:#f59e0b;color:#fff">⭐ مفضلة</span>` : ''}
-          </div>
-
-          <div class="card-text" onclick="this.classList.toggle('expanded')">
-            ${escapeHtml(o.text)}
-          </div>
-        </div>
-
-        <div>
-          <div class="contacts-box">
-            ${o.phones ? `<span>📞 ${escapeHtml(o.phones)}</span>` : ''}
-            ${o.emails ? `<span>✉️ ${escapeHtml(o.emails)}</span>` : ''}
-          </div>
-
-          <div class="card-actions">
-            ${o.whatsapp_url ? `
-              <a href="${escapeHtml(o.whatsapp_url)}" target="_blank" rel="noopener" class="action-btn action-wa" onclick="markApplied('${o.uid}')">
-                💬 واتساب
-              </a>
-            ` : ''}
-            <button class="action-btn action-pitch" onclick="openPitchModal('${o.uid}')">
-              📋 رسالة تقديم جاهزة
-            </button>
-            <button class="action-btn action-pitch" onclick="toggleStarred('${o.uid}')">
-              ${isStarred ? '⭐ محفوظة' : '☆ حفظ'}
-            </button>
-            ${o.url ? `
-              <a href="${escapeHtml(o.url)}" target="_blank" rel="noopener" class="action-btn action-pitch" style="color:var(--pri-light)">
-                🔗 الإعلان
-              </a>
-            ` : ''}
-          </div>
-        </div>
-      </div>
-    `;
-  }).join('');
+  $("#st-offers").textContent = state.offers.length;
+  $("#st-events").textContent = state.offers.filter(o => o.event).length;
+  try { const s = await fetch("data/status.json" + bust); renderStatus(s.ok ? await s.json() : null); } catch { renderStatus(null); }
+  if (state.offers.length) render();
 }
 
-function quickFilter(term){
-  document.getElementById('searchInput').value = term;
-  filterOffers();
-  window.scrollTo({ top: document.querySelector('.toolbar').offsetTop - 80, behavior: 'smooth' });
-}
-
-function resetFilters(){
-  document.getElementById('searchInput').value = '';
-  document.getElementById('filterStatus').value = 'all';
-  document.getElementById('filterPlatform').value = 'all';
-  document.getElementById('filterSpecial').value = 'all';
-  filterOffers();
-}
-
-function toggleStarred(uid){
-  const idx = USER_PROFILE.starred.indexOf(uid);
-  if(idx > -1){
-    USER_PROFILE.starred.splice(idx, 1);
-    toast('تمت إزالة العرض من المفضلة');
-  } else {
-    USER_PROFILE.starred.push(uid);
-    USER_PROFILE.xp += 5;
-    toast('⭐ تم حفظ العرض في المفضلة (+5 XP)');
+document.addEventListener("click", e => {
+  const chip = e.target.closest(".chip");
+  if (chip) {
+    document.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", String(c === chip)));
+    state.filter = chip.dataset.f; render(); return;
   }
-  saveProfile();
-  filterOffers();
-}
-
-function markApplied(uid){
-  if(!USER_PROFILE.applied.includes(uid)){
-    USER_PROFILE.applied.push(uid);
-    USER_PROFILE.xp += 15;
-    toast('🎉 أحسنت! تم تسجيل تقديمك (+15 XP)');
-    saveProfile();
-    filterOffers();
+  const more = e.target.closest(".more");
+  if (more) {
+    const t = document.getElementById(more.dataset.t), open = t.classList.toggle("clamp") === false;
+    more.textContent = open ? "عرض أقل" : "عرض الكل"; more.setAttribute("aria-expanded", String(open)); return;
   }
-}
-
-function openPitchModal(uid){
-  const o = ALL_OFFERS.find(x => x.uid === uid);
-  if(!o) return;
-
-  const role = extractRole(o.text);
-  const applicantName = "عمار حيمور";
-
-  const waFr = `Bonjour,\n\nJe me permets de vous contacter suite à votre annonce pour le poste de *${role}* (${o.source || 'JobRadar'}).\nJe suis basé à Alger, sérieux, dynamique et immédiatement disponible pour rejoindre votre équipe.\n\nSerait-il possible de vous transmettre mon CV ?\n\nBien cordialement,\n${applicantName}`;
-  const waAr = `السلام عليكم ورحمة الله،\n\nأتواصل معكم بخصوص إعلانكم لتوظيف *${role}* (${o.source || 'JobRadar'}).\nأنا مقيم بالجزائر العاصمة، جاد ونشيط ومستعد للالتحاق بالعمل فوراً.\n\nيسعدني تزويدكم بسيرتي الذاتية (CV) ومناقشة تفاصيل العمل معكم.\n\nمع خالص التقدير،\n${applicantName}`;
-  const emailSubject = `Candidature au poste de ${role} - ${applicantName}`;
-  const emailBody = `Madame, Monsieur,\n\nVivement intéressé par votre offre d'emploi pour le poste de ${role},\nje vous soumets ma candidature avec enthousiasme.\nRésidant à Alger et disponible immédiatement, je saurai mettre ma rigueur et mon dynamisme au service de votre structure.\n\nDans l'attente d'un échange favorable, je vous prie d'agréer mes salutations distinguées.\n\n${applicantName}\nAlger, Algérie`;
-
-  document.getElementById('pitchModalTitle').textContent = `📋 رسالة تقديم لوظيفة: ${role}`;
-  document.getElementById('pitchWaFr').value = waFr;
-  document.getElementById('pitchWaAr').value = waAr;
-  document.getElementById('pitchEmail').value = `Subject: ${emailSubject}\n\n${emailBody}`;
-
-  const cleanPhone = (o.phones || '').replace(/\D/g, '');
-  const waLink = cleanPhone ? `https://wa.me/${cleanPhone.startsWith('0') ? '213' + cleanPhone.slice(1) : cleanPhone}?text=${encodeURIComponent(waFr)}` : (o.whatsapp_url || '');
-  const waBtn = document.getElementById('pitchWaBtn');
-  if(waLink){
-    waBtn.href = waLink;
-    waBtn.style.display = 'inline-flex';
-    waBtn.onclick = () => markApplied(uid);
-  } else {
-    waBtn.style.display = 'none';
-  }
-
-  const mailBtn = document.getElementById('pitchMailBtn');
-  if(o.emails){
-    mailBtn.href = `mailto:${o.emails}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
-    mailBtn.style.display = 'inline-flex';
-    mailBtn.onclick = () => markApplied(uid);
-  } else {
-    mailBtn.style.display = 'none';
-  }
-
-  document.getElementById('pitchModal').classList.add('open');
-}
-
-function extractRole(text){
-  const t = text.toLowerCase();
-  const roles = [
-    "animateur", "animatrice", "hote", "hotesse", "vendeur", "serveur",
-    "commercial", "livreur", "caissier", "developpeur", "comptable",
-    "منشط", "مضيف", "بائع", "نادل", "مطور", "سائق"
-  ];
-  for(const r of roles){
-    if(t.includes(r)) return r.charAt(0).toUpperCase() + r.slice(1);
-  }
-  return "Poste Proposé";
-}
-
-function submitNewOffer(e){
-  e.preventDefault();
-  const title = document.getElementById('addTitle').value.trim();
-  const loc = document.getElementById('addLocation').value.trim();
-  const phone = document.getElementById('addPhone').value.trim();
-  const sal = document.getElementById('addSalary').value.trim();
-  const details = document.getElementById('addDetails').value.trim();
-
-  const newPost = {
-    uid: 'custom_' + Date.now(),
-    found_at: new Date().toISOString(),
-    source: 'مجتمع JobRadar (نشر مباشر)',
-    platform: 'web',
-    score: 10,
-    salary: sal,
-    place: loc,
-    gig_badge: title.includes('معرض') || title.includes('يومي') || title.includes('منشط') ? '🎪 عمل مجتمعي فوري' : '',
-    phones: phone,
-    emails: '',
-    whatsapp_url: `https://wa.me/213${phone.replace(/\D/g,'').slice(-9)}`,
-    url: '',
-    text: `${title} — ${loc}.\n${details}\nللتواصل: ${phone}`
-  };
-
-  const custom = JSON.parse(localStorage.getItem('jobradar_custom_offers') || '[]');
-  custom.unshift(newPost);
-  localStorage.setItem('jobradar_custom_offers', JSON.stringify(custom));
-
-  ALL_OFFERS.unshift(newPost);
-  closeModal('addModal');
-  toast('🎉 تم نشر العرض بنجاح في المنصة!');
-  filterOffers();
-  e.target.reset();
-}
-
-function escapeHtml(s){
-  return String(s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}
-
-loadOffers();
+  if (e.target.id === "reset") { state.q = ""; $("#q").value = ""; $('.chip[data-f="all"]').click(); return; }
+  if (e.target.id === "retry") { load(); }
+});
+let timer;
+$("#q").addEventListener("input", e => { clearTimeout(timer); timer = setTimeout(() => { state.q = e.target.value; render(); }, 150); });
+load();
 </script>
 </body>
 </html>
