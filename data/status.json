@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-11T21:14",
+ "generated_at": "2026-11-12T02:56",
  "offers": 28,
  "events": 3,
  "sources": [
@@ -63,7 +63,7 @@
    "kind": "page",
    "ok": true,
    "cards": 20,
-   "kept": 4,
+   "kept": 2,
    "error": ""
   },
   {
