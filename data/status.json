@@ -1,7 +1,7 @@
 {
- "generated_at": "2026-11-12T10:56",
- "offers": 29,
- "events": 3,
+ "generated_at": "2026-11-12T19:24",
+ "offers": 35,
+ "events": 7,
  "sources": [
   {
    "id": "emploitic",
@@ -9,11 +9,14 @@
    "kind": "page",
    "ok": true,
    "cards": 20,
-   "kept": 1,
+   "kept": 6,
    "error": "",
    "rejected": {
-    "note < 3": 12,
-    "annonce sans recrutement": 7
+    "annonce sans recrutement": 6,
+    "note < 3": 5,
+    "exclu": 1,
+    "ancien (26 j)": 1,
+    "ancien (31 j)": 1
    }
   },
   {
@@ -58,11 +61,11 @@
    "rejected": {
     "exclu": 10,
     "annonce sans recrutement": 2,
-    "ancien (24 j)": 2,
-    "ancien (25 j)": 1,
-    "ancien (43 j)": 1,
-    "ancien (58 j)": 1,
-    "ancien (56 j)": 1,
+    "ancien (25 j)": 2,
+    "ancien (26 j)": 1,
+    "ancien (44 j)": 1,
+    "ancien (59 j)": 1,
+    "ancien (57 j)": 1,
     "note < 3": 1
    }
   },
@@ -76,13 +79,13 @@
    "error": "",
    "rejected": {
     "annonce sans recrutement": 12,
+    "ancien (58 j)": 1,
     "ancien (57 j)": 1,
-    "ancien (56 j)": 1,
-    "ancien (39 j)": 1,
-    "ancien (10 j)": 1,
-    "ancien (23 j)": 1,
-    "ancien (44 j)": 1,
-    "ancien (8 j)": 1
+    "ancien (40 j)": 1,
+    "ancien (11 j)": 1,
+    "ancien (24 j)": 1,
+    "ancien (45 j)": 1,
+    "ancien (9 j)": 1
    }
   },
   {
@@ -95,13 +98,13 @@
    "error": "",
    "rejected": {
     "annonce sans recrutement": 9,
-    "ancien (7 j)": 2,
     "ancien (8 j)": 2,
-    "ancien (14 j)": 1,
-    "ancien (24 j)": 1,
-    "ancien (9 j)": 1,
+    "ancien (9 j)": 2,
+    "ancien (15 j)": 1,
+    "ancien (25 j)": 1,
     "ancien (10 j)": 1,
-    "ancien (16 j)": 1
+    "ancien (11 j)": 1,
+    "ancien (17 j)": 1
    }
   },
   {
@@ -128,8 +131,8 @@
    "kept": 2,
    "error": "",
    "rejected": {
-    "note < 3": 15,
-    "annonce sans recrutement": 3
+    "note < 3": 16,
+    "annonce sans recrutement": 2
    }
   },
   {
@@ -150,8 +153,8 @@
    "kept": 0,
    "error": "",
    "rejected": {
-    "annonce sans recrutement": 11,
-    "note < 3": 9
+    "annonce sans recrutement": 12,
+    "note < 3": 8
    }
   },
   {
