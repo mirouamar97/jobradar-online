@@ -1,7 +1,7 @@
 {
- "generated_at": "2026-11-13T01:32",
- "offers": 35,
- "events": 7,
+ "generated_at": "2026-11-13T03:36",
+ "offers": 37,
+ "events": 9,
  "sources": [
   {
    "id": "emploitic",
@@ -9,11 +9,10 @@
    "kind": "page",
    "ok": true,
    "cards": 20,
-   "kept": 6,
+   "kept": 7,
    "error": "",
    "rejected": {
-    "annonce sans recrutement": 6,
-    "note < 3": 5,
+    "note < 3": 10,
     "exclu": 1,
     "ancien (26 j)": 1,
     "ancien (31 j)": 1
@@ -46,8 +45,7 @@
    "kept": 0,
    "error": "",
    "rejected": {
-    "note < 3": 24,
-    "annonce sans recrutement": 6
+    "note < 3": 30
    }
   },
   {
@@ -60,13 +58,14 @@
    "error": "",
    "rejected": {
     "exclu": 10,
-    "annonce sans recrutement": 2,
     "ancien (25 j)": 2,
     "ancien (26 j)": 1,
     "ancien (44 j)": 1,
     "ancien (59 j)": 1,
     "ancien (57 j)": 1,
-    "note < 3": 1
+    "note < 3": 1,
+    "ancien (10 j)": 1,
+    "ancien (16 j)": 1
    }
   },
   {
@@ -75,17 +74,26 @@
    "kind": "page",
    "ok": true,
    "cards": 20,
-   "kept": 1,
+   "kept": 2,
    "error": "",
    "rejected": {
-    "annonce sans recrutement": 12,
+    "note < 3": 2,
+    "ancien (29 j)": 1,
+    "ancien (26 j)": 1,
+    "ancien (30 j)": 1,
     "ancien (58 j)": 1,
     "ancien (57 j)": 1,
+    "ancien (38 j)": 1,
     "ancien (40 j)": 1,
+    "ancien (52 j)": 1,
     "ancien (11 j)": 1,
+    "ancien (18 j)": 1,
     "ancien (24 j)": 1,
     "ancien (45 j)": 1,
-    "ancien (9 j)": 1
+    "ancien (9 j)": 1,
+    "ancien (16 j)": 1,
+    "ancien (17 j)": 1,
+    "ancien (22 j)": 1
    }
   },
   {
@@ -94,17 +102,18 @@
    "kind": "page",
    "ok": true,
    "cards": 20,
-   "kept": 2,
+   "kept": 3,
    "error": "",
    "rejected": {
-    "annonce sans recrutement": 9,
+    "ancien (10 j)": 4,
+    "note < 3": 2,
     "ancien (8 j)": 2,
     "ancien (9 j)": 2,
+    "ancien (11 j)": 2,
+    "ancien (17 j)": 2,
     "ancien (15 j)": 1,
     "ancien (25 j)": 1,
-    "ancien (10 j)": 1,
-    "ancien (11 j)": 1,
-    "ancien (17 j)": 1
+    "ancien (23 j)": 1
    }
   },
   {
