@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-12T19:45",
+ "generated_at": "2026-11-13T01:32",
  "offers": 35,
  "events": 7,
  "sources": [
@@ -131,8 +131,8 @@
    "kept": 2,
    "error": "",
    "rejected": {
-    "note < 3": 16,
-    "annonce sans recrutement": 2
+    "note < 3": 17,
+    "annonce sans recrutement": 1
    }
   },
   {
@@ -153,8 +153,8 @@
    "kept": 0,
    "error": "",
    "rejected": {
-    "annonce sans recrutement": 12,
-    "note < 3": 8
+    "annonce sans recrutement": 11,
+    "note < 3": 9
    }
   },
   {
