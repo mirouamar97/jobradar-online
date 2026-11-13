@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-13T23:42",
+ "generated_at": "2026-11-14T00:28",
  "offers": 39,
  "events": 9,
  "sources": [
@@ -116,56 +116,6 @@
    }
   },
   {
-   "id": "tg_jobs_dz7",
-   "name": "JOBS DZ (Telegram)",
-   "kind": "telegram",
-   "ok": true,
-   "cards": 20,
-   "kept": 9,
-   "error": "",
-   "rejected": {
-    "note < 3": 7,
-    "annonce sans recrutement": 2,
-    "exclu": 1,
-    "texte trop court": 1
-   }
-  },
-  {
-   "id": "tg_annexedzjob",
-   "name": "Annexe-dz (Telegram)",
-   "kind": "telegram",
-   "ok": true,
-   "cards": 20,
-   "kept": 2,
-   "error": "",
-   "rejected": {
-    "note < 3": 17,
-    "annonce sans recrutement": 1
-   }
-  },
-  {
-   "id": "tg_rcrdz1",
-   "name": "Recrutement-dz (Telegram)",
-   "kind": "telegram",
-   "ok": false,
-   "cards": 0,
-   "kept": 0,
-   "error": "aucun element lu (site change ou requete bloquee)"
-  },
-  {
-   "id": "tg_sfnemploi",
-   "name": "SFN Emploi (Telegram)",
-   "kind": "telegram",
-   "ok": true,
-   "cards": 20,
-   "kept": 0,
-   "error": "",
-   "rejected": {
-    "annonce sans recrutement": 13,
-    "note < 3": 7
-   }
-  },
-  {
    "id": "s_salons",
    "name": "Recherche - salons Alger",
    "kind": "search",
@@ -194,6 +144,57 @@
    "kept": 0,
    "error": "desactivee: les moteurs de recherche bloquent les serveurs GitHub Actions (0 resultat a chaque passage) ; la recherche web reste dans l'application (reseau du telephone)",
    "skipped": true
+  },
+  {
+   "id": "tg_jobs_dz7",
+   "name": "JOBS DZ (Telegram)",
+   "kind": "telegram",
+   "ok": true,
+   "cards": 20,
+   "kept": 9,
+   "error": "",
+   "rejected": {
+    "note < 3": 7,
+    "annonce sans recrutement": 2,
+    "exclu": 1,
+    "texte trop court": 1
+   }
+  },
+  {
+   "id": "tg_annexedzjob",
+   "name": "Annexe-dz (Telegram)",
+   "kind": "telegram",
+   "ok": true,
+   "cards": 20,
+   "kept": 2,
+   "error": "",
+   "rejected": {
+    "note < 3": 15,
+    "ancien (7 j)": 2,
+    "annonce sans recrutement": 1
+   }
+  },
+  {
+   "id": "tg_rcrdz1",
+   "name": "Recrutement-dz (Telegram)",
+   "kind": "telegram",
+   "ok": false,
+   "cards": 0,
+   "kept": 0,
+   "error": "aucun element lu (site change ou requete bloquee)"
+  },
+  {
+   "id": "tg_sfnemploi",
+   "name": "SFN Emploi (Telegram)",
+   "kind": "telegram",
+   "ok": true,
+   "cards": 20,
+   "kept": 0,
+   "error": "",
+   "rejected": {
+    "annonce sans recrutement": 13,
+    "note < 3": 7
+   }
   }
  ]
 }
