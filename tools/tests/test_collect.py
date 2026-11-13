@@ -247,3 +247,45 @@ def test_far_south_and_highlands_are_penalised():
 def test_ambiguous_city_names_do_not_penalise():
     # « جميلة » (belle) ne doit pas etre lu comme la wilaya de Mila
     assert score("مطلوب مضيفة ذات هيئة جميلة لمعرض في قصر المعارض، باب الزوار. ارسل cv")["score"] >= RULES["min_score"]
+
+
+def test_event_alerts_are_sent_once_and_not_on_first_run(tmp_path, monkeypatch):
+    monkeypatch.setattr(c, "DATA", tmp_path)
+    sent = []
+    fake = lambda token, chat, text: sent.append(text) or ""
+    ev = {"uid": "e1", "event": True, "score": 8, "text": "Recrute animatrices SAFEX", "source": "JOBS DZ", "phones": "0555 12 34 56"}
+    plain = {"uid": "p1", "event": False, "score": 9, "text": "Recrute vendeur", "source": "X"}
+    weak = {"uid": "w1", "event": True, "score": 3, "text": "animation ?", "source": "X"}
+    assert c.alert_new_events([ev], "t", "c", fake) == 0          # premier passage : memorise seulement
+    ev2 = dict(ev, uid="e2")
+    assert c.alert_new_events([ev, ev2, plain, weak], "t", "c", fake) == 1
+    assert len(sent) == 1 and "8/10" in sent[0] and "0555 12 34 56" in sent[0]
+    assert c.alert_new_events([ev, ev2], "t", "c", fake) == 0     # deja signale
+    assert c.alert_new_events([dict(ev, uid="e3")], "", "", fake) == 0   # sans secrets : rien n'est envoye
+
+
+def test_fast_run_keeps_status_of_other_sources(tmp_path, monkeypatch):
+    monkeypatch.setattr(c, "DATA", tmp_path)
+    monkeypatch.setattr(c, "PAUSE", (0, 0))
+    monkeypatch.setattr(c, "collect_source", lambda kind, src: [item("Agence recrute 5 animateurs pour le salon SAFEX Alger, CV")])
+    assert c.run(NOW) == 0
+    full = {s["id"] for s in json.loads((tmp_path / "status.json").read_text(encoding="utf8"))["sources"]}
+    called = []
+    monkeypatch.setattr(c, "collect_source", lambda kind, src: called.append(kind) or [])
+    assert c.run(NOW, kinds="telegram") == 0
+    assert set(called) == {"telegram"}
+    after = {s["id"] for s in json.loads((tmp_path / "status.json").read_text(encoding="utf8"))["sources"]}
+    assert after == full
+
+
+def test_job_site_cards_count_as_recruitment():
+    title = "Chef de projet événementiel junior - Sarl Events Alger, Algérie"
+    assert c.reject_reason(item(title), RULES, NOW) == "annonce sans recrutement"
+    assert c.reject_reason(dict(item(title), job_site=True), RULES, NOW) == ""
+    assert c.score_offer(title, "", RULES, NOW, job_site=True)["event"]
+
+
+def test_page_sources_are_flagged_as_job_sites():
+    sources = json.loads((c.HERE / "sources.json").read_text(encoding="utf8"))
+    assert all(s.get("job_site") for s in sources["pages"])
+    assert not any(s.get("job_site") for s in sources["telegram"])
