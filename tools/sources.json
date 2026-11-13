@@ -4,40 +4,47 @@
    "id": "emploitic",
    "name": "Emploitic",
    "url": "https://emploitic.com/offres-d-emploi?region=alger",
-   "link_contains": "/offres-d-emploi/"
+   "link_contains": "/offres-d-emploi/",
+   "job_site": true
   },
   {
    "id": "algeriejob",
    "name": "AlgerieJob",
-   "url": "https://www.algeriejob.com/recherche-jobs-algerie/"
+   "url": "https://www.algeriejob.com/recherche-jobs-algerie/",
+   "job_site": true
   },
   {
    "id": "optioncarriere",
    "name": "OptionCarriere Alger",
-   "url": "https://www.optioncarriere.dz/emploi?s=&l=Alger"
+   "url": "https://www.optioncarriere.dz/emploi?s=&l=Alger",
+   "job_site": true
   },
   {
    "id": "sfnemploi",
    "name": "SFN Emploi Alger",
-   "url": "https://sfnemploi.com/wilaya/alger/"
+   "url": "https://sfnemploi.com/wilaya/alger/",
+   "job_site": true
   },
   {
    "id": "emploitic_animateur",
    "name": "Emploitic animateur",
    "url": "https://emploitic.com/offres-d-emploi/q-animateur",
-   "link_contains": "/offres-d-emploi/"
+   "link_contains": "/offres-d-emploi/",
+   "job_site": true
   },
   {
    "id": "emploitic_evenementiel",
    "name": "Emploitic événementiel",
    "url": "https://emploitic.com/offres-d-emploi/q-%C3%A9v%C3%A9nementiel",
-   "link_contains": "/offres-d-emploi/"
+   "link_contains": "/offres-d-emploi/",
+   "job_site": true
   },
   {
    "id": "emploitic_hotesse",
    "name": "Emploitic hôtesse",
    "url": "https://emploitic.com/offres-d-emploi/q-h%C3%B4tesse",
-   "link_contains": "/offres-d-emploi/"
+   "link_contains": "/offres-d-emploi/",
+   "job_site": true
   }
  ],
  "telegram": [

@@ -1,12 +1,18 @@
 name: Collect offers
 
-# Serveur gratuit du site ET de l'appli Android : toutes les heures, lit des sources publiques (sites d'emploi, canaux
-# Telegram publics, recherche web), note les offres (priorité événementiel / animation) et publie data/offers.json et
-# data/status.json. Lecture seule : aucun compte, aucun mot de passe, aucun envoi.
+# Serveur gratuit du site ET de l'appli : lit des sources publiques, note les offres (priorite animation/evenementiel),
+# publie data/offers.json + data/status.json, et alerte Amar sur Telegram pour chaque nouvelle offre d'animation.
+#  - toutes les heures : passage complet (sites + Telegram)
+#  - toutes les 15 min : passage rapide Telegram seulement (les canaux publient le plus vite)
 on:
   schedule:
     - cron: "17 * * * *"
+    - cron: "2,32,47 * * * *"
   workflow_dispatch:
+  # Declenchement externe precis (cron-job.org, toutes les 10 min) : GitHub retarde ou saute souvent les « schedule »
+  # (6 executions seulement en 2 jours avec un cron horaire). Types : « collect » (complet) et « collect-fast » (Telegram).
+  repository_dispatch:
+    types: [collect, collect-fast]
 
 permissions:
   contents: write
@@ -34,23 +40,33 @@ jobs:
         run: python -m pytest -q tools/tests
 
       - name: Collect
-        run: python tools/collect.py
+        env:
+          # Secrets du depot (Settings > Secrets and variables > Actions). Absents = pas d'alerte, rien d'autre ne change.
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
+        run: |
+          if [ "${{ github.event.schedule }}" = "2,32,47 * * * *" ] || [ "${{ github.event.action }}" = "collect-fast" ]; then
+            python tools/collect.py --kinds telegram
+          else
+            python tools/collect.py
+          fi
 
       - name: Commit data (only when it changed)
         id: commit
         run: |
           git config user.name "jobradar-collector"
           git config user.email "jobradar-collector@users.noreply.github.com"
-          git add data/offers.json data/status.json
+          git add data/offers.json data/status.json data/alerted.json
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             git commit -m "data: update offers [skip ci]"
+            git pull --rebase --autostash || true
             git push
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
 
-      # Un push fait avec GITHUB_TOKEN ne déclenche pas d'autre workflow : on lance le déploiement du site explicitement.
+      # Un push fait avec GITHUB_TOKEN ne declenche pas d'autre workflow : on lance le deploiement du site explicitement.
       - name: Deploy the site
         if: steps.commit.outputs.changed == 'true'
         env:

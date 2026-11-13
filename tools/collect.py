@@ -214,15 +214,16 @@ def required_years(text: str) -> int:
 _CONTEXT_ONLY = {"safex", "salon", "stand", "evenementiel", "evenement", "sila"}
 
 
-def score_offer(text: str, date: str, rules: dict, now: datetime) -> dict:
-    """Meme principe que filtering.score_post du bot (+2 evenementiel, penalite d'experience)."""
+def score_offer(text: str, date: str, rules: dict, now: datetime, job_site: bool = False) -> dict:
+    """Meme principe que filtering.score_post du bot (+2 evenementiel, penalite d'experience).
+    [job_site] : la carte vient d'un site d'emploi (chaque carte est une offre) ; vaut un mot de recrutement."""
     tn = normalize(text)
     res = {"score": 0, "reasons": [], "scam": [], "event": False, "years": 0}
     for w in rules["exclude"]:
         if has_word(tn, w) if _LATIN.fullmatch(normalize(w)) else has(tn, w):
             res.update(score=-100, reasons=["exclu: " + w])
             return res
-    job_hits = [w for w in rules["job_words"] if has_word(tn, w)]
+    job_hits = [w for w in rules["job_words"] if has_word(tn, w)] or (["(site d'emploi)"] if job_site else [])
     role_hits = sorted(((w, p) for w, p in rules["roles"].items() if has_word(tn, w)), key=lambda x: -x[1])
     loc_hits = sorted(((w, p) for w, p in rules["locations"].items() if has_word(tn, w)), key=lambda x: -x[1])
     s = min(len(job_hits), 2) + sum(p for _, p in role_hits[:3])
@@ -361,7 +362,7 @@ def collect_source(kind: str, src: dict) -> list[dict]:
     if kind == "page":
         html = fetch(src["url"])
         cards = extract_links(html, src["url"], src["link_contains"]) if src.get("link_contains") else extract_blocks(html, src["url"])
-        return [dict(c, platform="web") for c in cards]
+        return [dict(c, platform="web", job_site=bool(src.get("job_site"))) for c in cards]
     if kind == "telegram":
         url = f"https://t.me/s/{src['channel']}"
         return [dict(c, platform="telegram") for c in parse_telegram(fetch(url), url)]
@@ -382,7 +383,7 @@ def reject_reason(item: dict, rules: dict, now: datetime) -> str:
     text = item.get("text", "")
     if len(text) < 25:
         return "texte trop court"
-    r = score_offer(text, item.get("date", ""), rules, now)
+    r = score_offer(text, item.get("date", ""), rules, now, bool(item.get("job_site")))
     if r["scam"]:
         return "arnaque: " + r["scam"][0]
     if r["score"] < 0:
@@ -396,7 +397,7 @@ def build_record(item: dict, source_name: str, rules: dict, now: datetime) -> di
     text = item["text"]
     if len(text) < 25:
         return None
-    r = score_offer(text, item.get("date", ""), rules, now)
+    r = score_offer(text, item.get("date", ""), rules, now, bool(item.get("job_site")))
     if r["score"] < rules["min_score"] or r["scam"]:
         return None
     phones = mobiles(text)
@@ -425,7 +426,53 @@ def merge(old: list[dict], new: list[dict], now: datetime) -> list[dict]:
     return kept[:MAX_OFFERS]
 
 
-def run(now: datetime | None = None, only: str = "", verbose: bool = False) -> int:
+ALERT_MIN_SCORE = 6       # alerte seulement pour les offres evenementiel/animation assez bonnes
+ALERTED_KEEP = 1000
+
+
+def alert_text(o: dict) -> str:
+    """Message Telegram court pour une nouvelle offre evenementiel/animation."""
+    lines = [f"🎪 عرض أنيماسيون/فعاليات جديد — {o.get('score', 0)}/10", f"📍 {o.get('source', '')}", "",
+             str(o.get("text", ""))[:700]]
+    if o.get("whatsapp_url"):
+        lines += ["", "واتساب: " + o["whatsapp_url"]]
+    elif o.get("phones"):
+        lines += ["", "هاتف: " + o["phones"]]
+    if o.get("emails"):
+        lines.append("بريد: " + o["emails"])
+    if o.get("url"):
+        lines += ["", o["url"]]
+    return "\n".join(lines)[:3900]
+
+
+def send_telegram(token: str, chat_id: str, text: str) -> str:
+    """Envoie un message ; renvoie "" si ok, sinon l'erreur (jamais d'exception)."""
+    try:
+        import requests
+        r = requests.post(f"https://api.telegram.org/bot{token}/sendMessage",
+                          data={"chat_id": chat_id, "text": text, "disable_web_page_preview": "true"}, timeout=20)
+        return "" if r.ok else f"HTTP {r.status_code}"
+    except Exception as e:  # noqa: BLE001
+        return type(e).__name__
+
+
+def alert_new_events(merged: list[dict], token: str, chat_id: str, sender=send_telegram) -> int:
+    """Alerte Telegram pour chaque offre evenementiel jamais signalee. Memoire : data/alerted.json (uids seulement)."""
+    path = DATA / "alerted.json"
+    seen = json.loads(path.read_text(encoding="utf8")) if path.exists() else []
+    first_run = not path.exists()
+    fresh = [o for o in merged if o.get("event") and int(o.get("score", 0)) >= ALERT_MIN_SCORE and o["uid"] not in seen]
+    sent = 0
+    if token and chat_id and not first_run:     # premier passage : on memorise sans inonder Amar d'anciennes offres
+        for o in fresh[:10]:
+            if sender(token, chat_id, alert_text(o)) == "":
+                sent += 1
+    seen = (seen + [o["uid"] for o in fresh])[-ALERTED_KEEP:]
+    path.write_text(json.dumps(seen), encoding="utf8")
+    return sent
+
+
+def run(now: datetime | None = None, only: str = "", verbose: bool = False, kinds: str = "") -> int:
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
     now = now or datetime.now(ALGIERS)
     rules = json.loads((HERE / "rules.json").read_text(encoding="utf8"))
@@ -440,6 +487,9 @@ def run(now: datetime | None = None, only: str = "", verbose: bool = False) -> i
     new, status = [], []
     if only:
         plan = [p for p in plan if p[1]["id"] == only]
+    if kinds:   # passage rapide (ex. « telegram » toutes les 15 min) : les autres sources gardent leur dernier statut
+        wanted = {k.strip() for k in kinds.split(",")}
+        plan = [p for p in plan if p[0] in wanted]
     for kind, src, name in plan:
         entry = {"id": src["id"], "name": name, "kind": kind, "ok": False, "cards": 0, "kept": 0, "error": ""}
         if src.get("enabled", True) is False:
@@ -481,6 +531,15 @@ def run(now: datetime | None = None, only: str = "", verbose: bool = False) -> i
         log.error("aucune source n'a repondu : offers.json conserve tel quel")
         merged = legacy
     old_path.write_text(json.dumps(merged, ensure_ascii=False, indent=1), encoding="utf8")
+    if kinds:
+        st_path = DATA / "status.json"
+        prev = json.loads(st_path.read_text(encoding="utf8")).get("sources", []) if st_path.exists() else []
+        ran = {e["id"] for e in status}
+        status = [e for e in prev if e.get("id") not in ran] + status
+    import os
+    n_alerts = alert_new_events(merged, os.environ.get("TG_BOT_TOKEN", ""), os.environ.get("TG_CHAT_ID", ""))
+    if n_alerts:
+        log.info("%d alerte(s) Telegram envoyee(s)", n_alerts)
     (DATA / "status.json").write_text(json.dumps({
         "generated_at": now.strftime("%Y-%m-%dT%H:%M"), "offers": len(merged),
         "events": sum(1 for o in merged if o.get("event")), "sources": status,
@@ -496,5 +555,6 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", default="", help="id d'une source (voir sources.json)")
     ap.add_argument("-v", "--verbose", action="store_true", help="affiche chaque carte et la raison du rejet")
+    ap.add_argument("--kinds", default="", help="ne lire que ces types (page,telegram,search), ex. --kinds telegram")
     a = ap.parse_args()
-    sys.exit(run(only=a.only, verbose=a.verbose))
+    sys.exit(run(only=a.only, verbose=a.verbose, kinds=a.kinds))
