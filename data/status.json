@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-11-13T19:00",
- "offers": 37,
+ "generated_at": "2026-11-13T23:42",
+ "offers": 39,
  "events": 9,
  "sources": [
   {
@@ -9,13 +9,12 @@
    "kind": "page",
    "ok": true,
    "cards": 20,
-   "kept": 7,
+   "kept": 9,
    "error": "",
    "rejected": {
-    "note < 3": 10,
+    "note < 3": 9,
     "exclu": 1,
-    "ancien (27 j)": 1,
-    "ancien (32 j)": 1
+    "ancien (27 j)": 1
    }
   },
   {
@@ -34,7 +33,7 @@
    "ok": false,
    "cards": 0,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.optioncarriere.dz', port=443): Max retries exceeded with url: /emploi?s=&l=Alger (Caused by ConnectTimeoutError(<HTTPSCo"
+   "error": "aucun element lu (site change ou requete bloquee)"
   },
   {
    "id": "sfnemploi",
@@ -117,36 +116,6 @@
    }
   },
   {
-   "id": "s_salons",
-   "name": "Recherche - salons Alger",
-   "kind": "search",
-   "ok": false,
-   "cards": 0,
-   "kept": 0,
-   "error": "desactivee: les moteurs de recherche bloquent les serveurs GitHub Actions (0 resultat a chaque passage) ; la recherche web reste dans l'application (reseau du telephone)",
-   "skipped": true
-  },
-  {
-   "id": "s_events",
-   "name": "Recherche - événementiel Alger",
-   "kind": "search",
-   "ok": false,
-   "cards": 0,
-   "kept": 0,
-   "error": "desactivee: les moteurs de recherche bloquent les serveurs GitHub Actions (0 resultat a chaque passage) ; la recherche web reste dans l'application (reseau du telephone)",
-   "skipped": true
-  },
-  {
-   "id": "s_etudiant",
-   "name": "Recherche - emploi étudiant Alger",
-   "kind": "search",
-   "ok": false,
-   "cards": 0,
-   "kept": 0,
-   "error": "desactivee: les moteurs de recherche bloquent les serveurs GitHub Actions (0 resultat a chaque passage) ; la recherche web reste dans l'application (reseau du telephone)",
-   "skipped": true
-  },
-  {
    "id": "tg_jobs_dz7",
    "name": "JOBS DZ (Telegram)",
    "kind": "telegram",
@@ -195,6 +164,36 @@
     "annonce sans recrutement": 13,
     "note < 3": 7
    }
+  },
+  {
+   "id": "s_salons",
+   "name": "Recherche - salons Alger",
+   "kind": "search",
+   "ok": false,
+   "cards": 0,
+   "kept": 0,
+   "error": "desactivee: les moteurs de recherche bloquent les serveurs GitHub Actions (0 resultat a chaque passage) ; la recherche web reste dans l'application (reseau du telephone)",
+   "skipped": true
+  },
+  {
+   "id": "s_events",
+   "name": "Recherche - événementiel Alger",
+   "kind": "search",
+   "ok": false,
+   "cards": 0,
+   "kept": 0,
+   "error": "desactivee: les moteurs de recherche bloquent les serveurs GitHub Actions (0 resultat a chaque passage) ; la recherche web reste dans l'application (reseau du telephone)",
+   "skipped": true
+  },
+  {
+   "id": "s_etudiant",
+   "name": "Recherche - emploi étudiant Alger",
+   "kind": "search",
+   "ok": false,
+   "cards": 0,
+   "kept": 0,
+   "error": "desactivee: les moteurs de recherche bloquent les serveurs GitHub Actions (0 resultat a chaque passage) ; la recherche web reste dans l'application (reseau du telephone)",
+   "skipped": true
   }
  ]
 }
