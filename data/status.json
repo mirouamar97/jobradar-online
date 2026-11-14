@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-14T11:53",
+ "generated_at": "2026-11-14T12:35",
  "offers": 39,
  "events": 9,
  "sources": [
@@ -12,9 +12,8 @@
    "kept": 9,
    "error": "",
    "rejected": {
-    "note < 3": 9,
-    "exclu": 1,
-    "ancien (27 j)": 1
+    "note < 3": 10,
+    "exclu": 1
    }
   },
   {
@@ -57,13 +56,13 @@
    "error": "",
    "rejected": {
     "exclu": 11,
-    "ancien (26 j)": 2,
-    "ancien (27 j)": 1,
-    "ancien (45 j)": 1,
-    "ancien (58 j)": 1,
+    "ancien (27 j)": 2,
+    "ancien (28 j)": 1,
+    "ancien (46 j)": 1,
+    "ancien (59 j)": 1,
     "note < 3": 1,
-    "ancien (11 j)": 1,
-    "ancien (17 j)": 1
+    "ancien (12 j)": 1,
+    "ancien (18 j)": 1
    }
   },
   {
@@ -76,22 +75,22 @@
    "error": "",
    "rejected": {
     "note < 3": 2,
-    "ancien (30 j)": 1,
-    "ancien (27 j)": 1,
     "ancien (31 j)": 1,
+    "ancien (28 j)": 1,
+    "ancien (32 j)": 1,
+    "ancien (60 j)": 1,
     "ancien (59 j)": 1,
-    "ancien (58 j)": 1,
-    "ancien (39 j)": 1,
-    "ancien (41 j)": 1,
-    "ancien (53 j)": 1,
-    "ancien (12 j)": 1,
-    "ancien (19 j)": 1,
-    "ancien (25 j)": 1,
-    "ancien (46 j)": 1,
-    "ancien (10 j)": 1,
-    "ancien (17 j)": 1,
+    "ancien (40 j)": 1,
+    "ancien (42 j)": 1,
+    "ancien (54 j)": 1,
+    "ancien (13 j)": 1,
+    "ancien (20 j)": 1,
+    "ancien (26 j)": 1,
+    "ancien (47 j)": 1,
+    "ancien (11 j)": 1,
     "ancien (18 j)": 1,
-    "ancien (23 j)": 1
+    "ancien (19 j)": 1,
+    "ancien (24 j)": 1
    }
   },
   {
@@ -103,15 +102,66 @@
    "kept": 3,
    "error": "",
    "rejected": {
-    "ancien (11 j)": 4,
+    "ancien (12 j)": 4,
     "note < 3": 2,
-    "ancien (9 j)": 2,
     "ancien (10 j)": 2,
-    "ancien (12 j)": 2,
-    "ancien (18 j)": 2,
-    "ancien (16 j)": 1,
-    "ancien (26 j)": 1,
-    "ancien (24 j)": 1
+    "ancien (11 j)": 2,
+    "ancien (13 j)": 2,
+    "ancien (19 j)": 2,
+    "ancien (17 j)": 1,
+    "ancien (27 j)": 1,
+    "ancien (25 j)": 1
+   }
+  },
+  {
+   "id": "tg_jobs_dz7",
+   "name": "JOBS DZ (Telegram)",
+   "kind": "telegram",
+   "ok": true,
+   "cards": 20,
+   "kept": 9,
+   "error": "",
+   "rejected": {
+    "note < 3": 7,
+    "annonce sans recrutement": 2,
+    "exclu": 1,
+    "texte trop court": 1
+   }
+  },
+  {
+   "id": "tg_annexedzjob",
+   "name": "Annexe-dz (Telegram)",
+   "kind": "telegram",
+   "ok": true,
+   "cards": 20,
+   "kept": 2,
+   "error": "",
+   "rejected": {
+    "note < 3": 16,
+    "annonce sans recrutement": 1,
+    "ancien (8 j)": 1
+   }
+  },
+  {
+   "id": "tg_rcrdz1",
+   "name": "Recrutement-dz (Telegram)",
+   "kind": "telegram",
+   "ok": false,
+   "cards": 0,
+   "kept": 0,
+   "error": "aucun element lu (site change ou requete bloquee)"
+  },
+  {
+   "id": "tg_sfnemploi",
+   "name": "SFN Emploi (Telegram)",
+   "kind": "telegram",
+   "ok": true,
+   "cards": 20,
+   "kept": 0,
+   "error": "",
+   "rejected": {
+    "annonce sans recrutement": 14,
+    "note < 3": 6
    }
   },
   {
@@ -143,57 +193,6 @@
    "kept": 0,
    "error": "desactivee: les moteurs de recherche bloquent les serveurs GitHub Actions (0 resultat a chaque passage) ; la recherche web reste dans l'application (reseau du telephone)",
    "skipped": true
-  },
-  {
-   "id": "tg_jobs_dz7",
-   "name": "JOBS DZ (Telegram)",
-   "kind": "telegram",
-   "ok": true,
-   "cards": 20,
-   "kept": 9,
-   "error": "",
-   "rejected": {
-    "note < 3": 7,
-    "annonce sans recrutement": 2,
-    "exclu": 1,
-    "texte trop court": 1
-   }
-  },
-  {
-   "id": "tg_annexedzjob",
-   "name": "Annexe-dz (Telegram)",
-   "kind": "telegram",
-   "ok": true,
-   "cards": 20,
-   "kept": 2,
-   "error": "",
-   "rejected": {
-    "note < 3": 16,
-    "annonce sans recrutement": 1,
-    "ancien (7 j)": 1
-   }
-  },
-  {
-   "id": "tg_rcrdz1",
-   "name": "Recrutement-dz (Telegram)",
-   "kind": "telegram",
-   "ok": false,
-   "cards": 0,
-   "kept": 0,
-   "error": "aucun element lu (site change ou requete bloquee)"
-  },
-  {
-   "id": "tg_sfnemploi",
-   "name": "SFN Emploi (Telegram)",
-   "kind": "telegram",
-   "ok": true,
-   "cards": 20,
-   "kept": 0,
-   "error": "",
-   "rejected": {
-    "annonce sans recrutement": 15,
-    "note < 3": 5
-   }
   }
  ]
 }
