@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-11-16T03:50",
- "offers": 48,
+ "generated_at": "2026-11-16T08:52",
+ "offers": 49,
  "events": 9,
  "sources": [
   {
@@ -116,6 +116,36 @@
    }
   },
   {
+   "id": "s_salons",
+   "name": "Recherche - salons Alger",
+   "kind": "search",
+   "ok": false,
+   "cards": 0,
+   "kept": 0,
+   "error": "desactivee: les moteurs de recherche bloquent les serveurs GitHub Actions (0 resultat a chaque passage) ; la recherche web reste dans l'application (reseau du telephone)",
+   "skipped": true
+  },
+  {
+   "id": "s_events",
+   "name": "Recherche - événementiel Alger",
+   "kind": "search",
+   "ok": false,
+   "cards": 0,
+   "kept": 0,
+   "error": "desactivee: les moteurs de recherche bloquent les serveurs GitHub Actions (0 resultat a chaque passage) ; la recherche web reste dans l'application (reseau du telephone)",
+   "skipped": true
+  },
+  {
+   "id": "s_etudiant",
+   "name": "Recherche - emploi étudiant Alger",
+   "kind": "search",
+   "ok": false,
+   "cards": 0,
+   "kept": 0,
+   "error": "desactivee: les moteurs de recherche bloquent les serveurs GitHub Actions (0 resultat a chaque passage) ; la recherche web reste dans l'application (reseau du telephone)",
+   "skipped": true
+  },
+  {
    "id": "tg_jobs_dz7",
    "name": "JOBS DZ (Telegram)",
    "kind": "telegram",
@@ -160,42 +190,12 @@
    "kind": "telegram",
    "ok": true,
    "cards": 20,
-   "kept": 1,
+   "kept": 2,
    "error": "",
    "rejected": {
-    "annonce sans recrutement": 12,
+    "annonce sans recrutement": 11,
     "note < 3": 7
    }
-  },
-  {
-   "id": "s_salons",
-   "name": "Recherche - salons Alger",
-   "kind": "search",
-   "ok": false,
-   "cards": 0,
-   "kept": 0,
-   "error": "desactivee: les moteurs de recherche bloquent les serveurs GitHub Actions (0 resultat a chaque passage) ; la recherche web reste dans l'application (reseau du telephone)",
-   "skipped": true
-  },
-  {
-   "id": "s_events",
-   "name": "Recherche - événementiel Alger",
-   "kind": "search",
-   "ok": false,
-   "cards": 0,
-   "kept": 0,
-   "error": "desactivee: les moteurs de recherche bloquent les serveurs GitHub Actions (0 resultat a chaque passage) ; la recherche web reste dans l'application (reseau du telephone)",
-   "skipped": true
-  },
-  {
-   "id": "s_etudiant",
-   "name": "Recherche - emploi étudiant Alger",
-   "kind": "search",
-   "ok": false,
-   "cards": 0,
-   "kept": 0,
-   "error": "desactivee: les moteurs de recherche bloquent les serveurs GitHub Actions (0 resultat a chaque passage) ; la recherche web reste dans l'application (reseau du telephone)",
-   "skipped": true
   }
  ]
 }
