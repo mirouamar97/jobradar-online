@@ -1,7 +1,7 @@
 {
- "generated_at": "2026-11-16T19:21",
- "offers": 56,
- "events": 11,
+ "generated_at": "2026-11-16T23:16",
+ "offers": 75,
+ "events": 13,
  "sources": [
   {
    "id": "emploitic",
@@ -12,7 +12,9 @@
    "kept": 5,
    "error": "",
    "rejected": {
-    "note < 3": 14,
+    "note < 3": 12,
+    "ancien (33 j)": 1,
+    "ancien (20 j)": 1,
     "ancien (12 j)": 1
    }
   },
@@ -20,10 +22,13 @@
    "id": "algeriejob",
    "name": "AlgerieJob",
    "kind": "page",
-   "ok": false,
-   "cards": 0,
-   "kept": 0,
-   "error": "HTTPError: 403 Client Error: Forbidden for url: https://www.algeriejob.com/recherche-jobs-algerie/"
+   "ok": true,
+   "cards": 141,
+   "kept": 35,
+   "error": "",
+   "rejected": {
+    "note < 3": 106
+   }
   },
   {
    "id": "optioncarriere",
@@ -52,10 +57,10 @@
    "kind": "page",
    "ok": true,
    "cards": 20,
-   "kept": 0,
+   "kept": 1,
    "error": "",
    "rejected": {
-    "exclu": 11,
+    "exclu": 10,
     "ancien (9 j)": 2,
     "ancien (29 j)": 2,
     "ancien (30 j)": 1,
@@ -71,7 +76,7 @@
    "kind": "page",
    "ok": true,
    "cards": 20,
-   "kept": 3,
+   "kept": 4,
    "error": "",
    "rejected": {
     "note < 3": 2,
@@ -88,8 +93,7 @@
     "ancien (49 j)": 1,
     "ancien (13 j)": 1,
     "ancien (20 j)": 1,
-    "ancien (21 j)": 1,
-    "ancien (26 j)": 1
+    "ancien (21 j)": 1
    }
   },
   {
@@ -98,7 +102,7 @@
    "kind": "page",
    "ok": true,
    "cards": 20,
-   "kept": 0,
+   "kept": 1,
    "error": "",
    "rejected": {
     "ancien (14 j)": 4,
@@ -110,8 +114,58 @@
     "ancien (15 j)": 2,
     "ancien (19 j)": 1,
     "ancien (29 j)": 1,
-    "ancien (27 j)": 1,
-    "ancien (21 j)": 1
+    "ancien (27 j)": 1
+   }
+  },
+  {
+   "id": "tg_jobs_dz7",
+   "name": "JOBS DZ (Telegram)",
+   "kind": "telegram",
+   "ok": true,
+   "cards": 20,
+   "kept": 2,
+   "error": "",
+   "rejected": {
+    "ancien (9 j)": 11,
+    "note < 3": 3,
+    "annonce sans recrutement": 2,
+    "exclu": 1,
+    "texte trop court": 1
+   }
+  },
+  {
+   "id": "tg_annexedzjob",
+   "name": "Annexe-dz (Telegram)",
+   "kind": "telegram",
+   "ok": true,
+   "cards": 20,
+   "kept": 0,
+   "error": "",
+   "rejected": {
+    "note < 3": 19,
+    "annonce sans recrutement": 1
+   }
+  },
+  {
+   "id": "tg_rcrdz1",
+   "name": "Recrutement-dz (Telegram)",
+   "kind": "telegram",
+   "ok": false,
+   "cards": 0,
+   "kept": 0,
+   "error": "aucun element lu (site change ou requete bloquee)"
+  },
+  {
+   "id": "tg_sfnemploi",
+   "name": "SFN Emploi (Telegram)",
+   "kind": "telegram",
+   "ok": true,
+   "cards": 20,
+   "kept": 1,
+   "error": "",
+   "rejected": {
+    "annonce sans recrutement": 12,
+    "note < 3": 7
    }
   },
   {
@@ -143,58 +197,6 @@
    "kept": 0,
    "error": "desactivee: les moteurs de recherche bloquent les serveurs GitHub Actions (0 resultat a chaque passage) ; la recherche web reste dans l'application (reseau du telephone)",
    "skipped": true
-  },
-  {
-   "id": "tg_jobs_dz7",
-   "name": "JOBS DZ (Telegram)",
-   "kind": "telegram",
-   "ok": true,
-   "cards": 20,
-   "kept": 2,
-   "error": "",
-   "rejected": {
-    "ancien (9 j)": 11,
-    "note < 3": 3,
-    "annonce sans recrutement": 2,
-    "exclu": 1,
-    "texte trop court": 1
-   }
-  },
-  {
-   "id": "tg_annexedzjob",
-   "name": "Annexe-dz (Telegram)",
-   "kind": "telegram",
-   "ok": true,
-   "cards": 20,
-   "kept": 0,
-   "error": "",
-   "rejected": {
-    "note < 3": 18,
-    "annonce sans recrutement": 1,
-    "ancien (8 j)": 1
-   }
-  },
-  {
-   "id": "tg_rcrdz1",
-   "name": "Recrutement-dz (Telegram)",
-   "kind": "telegram",
-   "ok": false,
-   "cards": 0,
-   "kept": 0,
-   "error": "aucun element lu (site change ou requete bloquee)"
-  },
-  {
-   "id": "tg_sfnemploi",
-   "name": "SFN Emploi (Telegram)",
-   "kind": "telegram",
-   "ok": true,
-   "cards": 20,
-   "kept": 1,
-   "error": "",
-   "rejected": {
-    "annonce sans recrutement": 12,
-    "note < 3": 7
-   }
   }
  ]
 }
