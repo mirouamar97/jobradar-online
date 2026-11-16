@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-16T01:56",
+ "generated_at": "2026-11-16T03:50",
  "offers": 48,
  "events": 9,
  "sources": [
@@ -56,12 +56,11 @@
    "kept": 0,
    "error": "",
    "rejected": {
-    "exclu": 11,
+    "exclu": 12,
     "ancien (8 j)": 2,
     "ancien (28 j)": 2,
     "ancien (29 j)": 1,
     "ancien (47 j)": 1,
-    "ancien (60 j)": 1,
     "ancien (13 j)": 1,
     "ancien (19 j)": 1
    }
@@ -72,14 +71,14 @@
    "kind": "page",
    "ok": true,
    "cards": 20,
-   "kept": 2,
+   "kept": 1,
    "error": "",
    "rejected": {
     "note < 3": 3,
     "ancien (32 j)": 1,
     "ancien (29 j)": 1,
     "ancien (33 j)": 1,
-    "ancien (60 j)": 1,
+    "ancien (7 j)": 1,
     "ancien (41 j)": 1,
     "ancien (43 j)": 1,
     "ancien (55 j)": 1,
@@ -90,7 +89,8 @@
     "ancien (12 j)": 1,
     "ancien (19 j)": 1,
     "ancien (20 j)": 1,
-    "ancien (25 j)": 1
+    "ancien (25 j)": 1,
+    "ancien (28 j)": 1
    }
   },
   {
@@ -99,11 +99,11 @@
    "kind": "page",
    "ok": true,
    "cards": 20,
-   "kept": 1,
+   "kept": 0,
    "error": "",
    "rejected": {
     "ancien (13 j)": 4,
-    "note < 3": 2,
+    "ancien (7 j)": 2,
     "ancien (8 j)": 2,
     "ancien (11 j)": 2,
     "ancien (12 j)": 2,
@@ -111,38 +111,9 @@
     "ancien (20 j)": 2,
     "ancien (18 j)": 1,
     "ancien (28 j)": 1,
+    "note < 3": 1,
     "ancien (26 j)": 1
    }
-  },
-  {
-   "id": "s_salons",
-   "name": "Recherche - salons Alger",
-   "kind": "search",
-   "ok": false,
-   "cards": 0,
-   "kept": 0,
-   "error": "desactivee: les moteurs de recherche bloquent les serveurs GitHub Actions (0 resultat a chaque passage) ; la recherche web reste dans l'application (reseau du telephone)",
-   "skipped": true
-  },
-  {
-   "id": "s_events",
-   "name": "Recherche - événementiel Alger",
-   "kind": "search",
-   "ok": false,
-   "cards": 0,
-   "kept": 0,
-   "error": "desactivee: les moteurs de recherche bloquent les serveurs GitHub Actions (0 resultat a chaque passage) ; la recherche web reste dans l'application (reseau du telephone)",
-   "skipped": true
-  },
-  {
-   "id": "s_etudiant",
-   "name": "Recherche - emploi étudiant Alger",
-   "kind": "search",
-   "ok": false,
-   "cards": 0,
-   "kept": 0,
-   "error": "desactivee: les moteurs de recherche bloquent les serveurs GitHub Actions (0 resultat a chaque passage) ; la recherche web reste dans l'application (reseau du telephone)",
-   "skipped": true
   },
   {
    "id": "tg_jobs_dz7",
@@ -195,6 +166,36 @@
     "annonce sans recrutement": 12,
     "note < 3": 7
    }
+  },
+  {
+   "id": "s_salons",
+   "name": "Recherche - salons Alger",
+   "kind": "search",
+   "ok": false,
+   "cards": 0,
+   "kept": 0,
+   "error": "desactivee: les moteurs de recherche bloquent les serveurs GitHub Actions (0 resultat a chaque passage) ; la recherche web reste dans l'application (reseau du telephone)",
+   "skipped": true
+  },
+  {
+   "id": "s_events",
+   "name": "Recherche - événementiel Alger",
+   "kind": "search",
+   "ok": false,
+   "cards": 0,
+   "kept": 0,
+   "error": "desactivee: les moteurs de recherche bloquent les serveurs GitHub Actions (0 resultat a chaque passage) ; la recherche web reste dans l'application (reseau du telephone)",
+   "skipped": true
+  },
+  {
+   "id": "s_etudiant",
+   "name": "Recherche - emploi étudiant Alger",
+   "kind": "search",
+   "ok": false,
+   "cards": 0,
+   "kept": 0,
+   "error": "desactivee: les moteurs de recherche bloquent les serveurs GitHub Actions (0 resultat a chaque passage) ; la recherche web reste dans l'application (reseau du telephone)",
+   "skipped": true
   }
  ]
 }
