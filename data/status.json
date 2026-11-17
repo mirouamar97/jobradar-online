@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-11-17T20:26",
- "offers": 79,
+ "generated_at": "2026-11-17T23:58",
+ "offers": 82,
  "events": 14,
  "sources": [
   {
@@ -9,12 +9,11 @@
    "kind": "page",
    "ok": true,
    "cards": 20,
-   "kept": 3,
+   "kept": 5,
    "error": "",
    "rejected": {
-    "note < 3": 15,
-    "ancien (42 j)": 1,
-    "ancien (20 j)": 1
+    "note < 3": 14,
+    "exclu": 1
    }
   },
   {
@@ -26,7 +25,8 @@
    "kept": 35,
    "error": "",
    "rejected": {
-    "note < 3": 106
+    "note < 3": 105,
+    "arnaque: investissement": 1
    }
   },
   {
@@ -36,7 +36,7 @@
    "ok": false,
    "cards": 0,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.optioncarriere.dz', port=443): Max retries exceeded with url: /emploi?s=&l=Alger (Caused by ConnectTimeoutError(<HTTPSCo"
+   "error": "aucun element lu (site change ou requete bloquee)"
   },
   {
    "id": "sfnemploi",
@@ -118,6 +118,56 @@
    }
   },
   {
+   "id": "tg_jobs_dz7",
+   "name": "JOBS DZ (Telegram)",
+   "kind": "telegram",
+   "ok": true,
+   "cards": 20,
+   "kept": 2,
+   "error": "",
+   "rejected": {
+    "ancien (10 j)": 11,
+    "note < 3": 3,
+    "annonce sans recrutement": 2,
+    "exclu": 1,
+    "texte trop court": 1
+   }
+  },
+  {
+   "id": "tg_annexedzjob",
+   "name": "Annexe-dz (Telegram)",
+   "kind": "telegram",
+   "ok": true,
+   "cards": 20,
+   "kept": 0,
+   "error": "",
+   "rejected": {
+    "note < 3": 20
+   }
+  },
+  {
+   "id": "tg_rcrdz1",
+   "name": "Recrutement-dz (Telegram)",
+   "kind": "telegram",
+   "ok": false,
+   "cards": 0,
+   "kept": 0,
+   "error": "aucun element lu (site change ou requete bloquee)"
+  },
+  {
+   "id": "tg_sfnemploi",
+   "name": "SFN Emploi (Telegram)",
+   "kind": "telegram",
+   "ok": true,
+   "cards": 20,
+   "kept": 1,
+   "error": "",
+   "rejected": {
+    "note < 3": 10,
+    "annonce sans recrutement": 9
+   }
+  },
+  {
    "id": "s_salons",
    "name": "Recherche - salons Alger",
    "kind": "search",
@@ -146,57 +196,6 @@
    "kept": 0,
    "error": "desactivee: les moteurs de recherche bloquent les serveurs GitHub Actions (0 resultat a chaque passage) ; la recherche web reste dans l'application (reseau du telephone)",
    "skipped": true
-  },
-  {
-   "id": "tg_jobs_dz7",
-   "name": "JOBS DZ (Telegram)",
-   "kind": "telegram",
-   "ok": true,
-   "cards": 20,
-   "kept": 2,
-   "error": "",
-   "rejected": {
-    "ancien (10 j)": 11,
-    "note < 3": 3,
-    "annonce sans recrutement": 2,
-    "exclu": 1,
-    "texte trop court": 1
-   }
-  },
-  {
-   "id": "tg_annexedzjob",
-   "name": "Annexe-dz (Telegram)",
-   "kind": "telegram",
-   "ok": true,
-   "cards": 20,
-   "kept": 0,
-   "error": "",
-   "rejected": {
-    "note < 3": 19,
-    "annonce sans recrutement": 1
-   }
-  },
-  {
-   "id": "tg_rcrdz1",
-   "name": "Recrutement-dz (Telegram)",
-   "kind": "telegram",
-   "ok": false,
-   "cards": 0,
-   "kept": 0,
-   "error": "aucun element lu (site change ou requete bloquee)"
-  },
-  {
-   "id": "tg_sfnemploi",
-   "name": "SFN Emploi (Telegram)",
-   "kind": "telegram",
-   "ok": true,
-   "cards": 20,
-   "kept": 1,
-   "error": "",
-   "rejected": {
-    "note < 3": 10,
-    "annonce sans recrutement": 9
-   }
   }
  ]
 }
