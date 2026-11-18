@@ -703,6 +703,24 @@
   "senior": false
  },
  {
+  "uid": "6e037e42ed903c217517d17062194deb8d0b92c5",
+  "found_at": "2026-11-18T12:01",
+  "source": "Emploitic",
+  "platform": "web",
+  "score": 4,
+  "url": "https://emploitic.com/entreprises/sarl-immuno-diagnostic/offres-d-emploi/services/magasinier-sqlly",
+  "phones": "",
+  "emails": "",
+  "text": "Magasinier SARL Immuno-Diagnostic Kouba, Daïra Hussein Dey, Alger, Algérie Aujourd'hui Confirmé / Expérimenté (1 À 2 Ans) Description: Nous recherchons deux magasiniers confirmés pour rejoindre notre équipe à Kouba, Daïra Hussein Dey, Alger. Le candidat idéal possède entre 1 et 2 ans d'expérience dans le domaine des moyens généraux, avec un niveau d'étude allant du Terminal à Bac +3 (Licence LMD). Ce poste e",
+  "status": "new",
+  "salary": "",
+  "whatsapp_url": "",
+  "gig_badge": "",
+  "event": false,
+  "years_required": 2,
+  "senior": false
+ },
+ {
   "uid": "23d45294aae1791b6fc95d371f088e7584bc2533",
   "found_at": "2026-11-17T23:58",
   "source": "Emploitic",
@@ -1045,6 +1063,24 @@
   "senior": false
  },
  {
+  "uid": "50ae32e42791194d78ff7935492779009022cc61",
+  "found_at": "2026-11-18T12:01",
+  "source": "Emploitic",
+  "platform": "web",
+  "score": 3,
+  "url": "https://emploitic.com/entreprises/icosnet/offres-d-emploi/informatique-telecom-internet/superviseur-commercial-o0d4d",
+  "phones": "",
+  "emails": "",
+  "text": "Superviseur Commercial Icosnet Cheraga, Daïra Cheraga, Alger, Algérie Aujourd'hui Responsable d'Équipe (3 À 5 Ans) Missions Principales : Rattaché au Divisionnaire Commercial, votre objectif majeur sera d'atteindre les objectifs stratégiques et de chiffre d'affaires définis par la Direction Générale, tout en animant et développant les compétences de votre équipe. <p",
+  "status": "new",
+  "salary": "",
+  "whatsapp_url": "",
+  "gig_badge": "",
+  "event": false,
+  "years_required": 3,
+  "senior": true
+ },
+ {
   "uid": "aacafe145d5708dcd14152eabc8b1c91d5d08eae",
   "found_at": "2026-11-16T23:16",
   "source": "AlgerieJob",
@@ -1179,7 +1215,7 @@
   "url": "https://www.algeriejob.com/recherche-jobs-algerie/?f%5B0%5D=im_field_offre_contrat_type%3A48",
   "phones": "",
   "emails": "",
-  "text": "Temps partiel (24) Apply Temps partiel filter",
+  "text": "Temps partiel (23) Apply Temps partiel filter",
   "status": "new",
   "salary": "",
   "whatsapp_url": "",
