@@ -556,5 +556,9 @@ if __name__ == "__main__":
     ap.add_argument("--only", default="", help="id d'une source (voir sources.json)")
     ap.add_argument("-v", "--verbose", action="store_true", help="affiche chaque carte et la raison du rejet")
     ap.add_argument("--kinds", default="", help="ne lire que ces types (page,telegram,search), ex. --kinds telegram")
+    ap.add_argument("--salons", action="store_true", help="radar des salons (data/salons.json) au lieu de la collecte d'offres")
     a = ap.parse_args()
+    if a.salons:
+        import salons
+        sys.exit(salons.run_salons(force=True))
     sys.exit(run(only=a.only, verbose=a.verbose, kinds=a.kinds))
