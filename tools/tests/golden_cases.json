@@ -1,0 +1,866 @@
+{
+ "cases": [
+  {
+   "date": "",
+   "expect": {
+    "emails": [],
+    "event": true,
+    "is_event": true,
+    "mobiles": [
+     "0555 12 34 56"
+    ],
+    "normalized": "agence evenementielle recrute 5 animateurs et hotesses pour le salon safex, pins maritimes, debutants acceptes. contact 0555 12 34 56",
+    "reasons": [
+     "animateur",
+     "safex",
+     "hôtesse",
+     "pins maritimes"
+    ],
+    "required_years": 0,
+    "scam": [],
+    "score": 10,
+    "years": 0
+   },
+   "job_site": false,
+   "text": "Agence événementielle recrute 5 animateurs et hôtesses pour le salon SAFEX, Pins Maritimes, débutants acceptés. Contact 0555 12 34 56"
+  },
+  {
+   "date": "hier",
+   "expect": {
+    "emails": [
+     "rh@agence-event.dz"
+    ],
+    "event": true,
+    "is_event": true,
+    "mobiles": [],
+    "normalized": "recrute hotesses d'accueil pour salon a alger du 20 au 25 novembre, tenue fournie, envoyer cv a rh@agence-event.dz",
+    "reasons": [
+     "hôtesse",
+     "salon",
+     "alger"
+    ],
+    "required_years": 0,
+    "scam": [],
+    "score": 10,
+    "years": 0
+   },
+   "job_site": false,
+   "text": "Recrute hôtesses d'accueil pour salon à Alger du 20 au 25 novembre, tenue fournie, envoyer CV à rh@agence-event.dz"
+  },
+  {
+   "date": "",
+   "expect": {
+    "emails": [],
+    "event": true,
+    "is_event": true,
+    "mobiles": [
+     "0661 22 33 44"
+    ],
+    "normalized": "نوظف مضيفات ومنشطات لمعرض في الصفايح البحريه الجزاير العاصمه، للتواصل 0661 22 33 44",
+    "reasons": [
+     "منشط",
+     "مضيف",
+     "الجزائر"
+    ],
+    "required_years": 0,
+    "scam": [],
+    "score": 10,
+    "years": 0
+   },
+   "job_site": false,
+   "text": "نوظف مضيفات ومنشطات لمعرض في الصفائح البحرية الجزائر العاصمة، للتواصل 0661 22 33 44"
+  },
+  {
+   "date": "",
+   "expect": {
+    "emails": [],
+    "event": true,
+    "is_event": true,
+    "mobiles": [],
+    "normalized": "recrutement animateur(trice) de stand, salon des pins maritimes, alger, experience 1 a 2 ans",
+    "reasons": [
+     "animateur",
+     "stand",
+     "salon",
+     "pins maritimes"
+    ],
+    "required_years": 1,
+    "scam": [],
+    "score": 10,
+    "years": 1
+   },
+   "job_site": false,
+   "text": "Recrutement animateur(trice) de stand, salon des Pins Maritimes, Alger, expérience 1 à 2 ans"
+  },
+  {
+   "date": "",
+   "expect": {
+    "emails": [],
+    "event": true,
+    "is_event": true,
+    "mobiles": [],
+    "normalized": "event manager confirme, 5 ans d'experience minimum, alger, recrute immediatement",
+    "reasons": [
+     "alger"
+    ],
+    "required_years": 5,
+    "scam": [],
+    "score": 0,
+    "years": 5
+   },
+   "job_site": false,
+   "text": "Event manager confirmé, 5 ans d'expérience minimum, Alger, recrute immédiatement"
+  },
+  {
+   "date": "",
+   "expect": {
+    "emails": [],
+    "event": true,
+    "is_event": true,
+    "mobiles": [],
+    "normalized": "chef de projet evenementiel, recrute, confirme / experimente (3 a 5 ans), alger",
+    "reasons": [
+     "événementiel",
+     "evenementiel",
+     "alger"
+    ],
+    "required_years": 3,
+    "scam": [],
+    "score": 8,
+    "years": 3
+   },
+   "job_site": false,
+   "text": "Chef de projet événementiel, recrute, Confirmé / Expérimenté (3 À 5 Ans), Alger"
+  },
+  {
+   "date": "",
+   "expect": {
+    "emails": [],
+    "event": true,
+    "is_event": true,
+    "mobiles": [],
+    "normalized": "chef de projet evenementiel, recrute, debutant / junior (1 a 2 ans), alger",
+    "reasons": [
+     "événementiel",
+     "evenementiel",
+     "alger"
+    ],
+    "required_years": 1,
+    "scam": [],
+    "score": 10,
+    "years": 1
+   },
+   "job_site": false,
+   "text": "Chef de projet événementiel, recrute, Débutant / Junior (1 À 2 Ans), Alger"
+  },
+  {
+   "date": "",
+   "expect": {
+    "emails": [],
+    "event": false,
+    "is_event": false,
+    "mobiles": [
+     "0770 11 22 33"
+    ],
+    "normalized": "recrute serveur et serveuse pour restaurant a bab ezzouar, cdd, contact 0770 11 22 33",
+    "reasons": [
+     "serveur",
+     "bab ezzouar"
+    ],
+    "required_years": 0,
+    "scam": [],
+    "score": 8,
+    "years": 0
+   },
+   "job_site": false,
+   "text": "Recrute serveur et serveuse pour restaurant à Bab Ezzouar, CDD, contact 0770 11 22 33"
+  },
+  {
+   "date": "",
+   "expect": {
+    "emails": [],
+    "event": false,
+    "is_event": false,
+    "mobiles": [
+     "0550 99 88 77"
+    ],
+    "normalized": "cherche vendeur en magasin d'electromenager, alger centre, urgent, 0550 99 88 77",
+    "reasons": [
+     "vendeur",
+     "alger"
+    ],
+    "required_years": 0,
+    "scam": [],
+    "score": 6,
+    "years": 0
+   },
+   "job_site": false,
+   "text": "Cherche vendeur en magasin d'électroménager, Alger centre, urgent, 0550 99 88 77"
+  },
+  {
+   "date": "",
+   "expect": {
+    "emails": [],
+    "event": false,
+    "is_event": false,
+    "mobiles": [],
+    "normalized": "centre d'appels recrute teleconseillers a alger, debutants acceptes, salaire fixe + primes",
+    "reasons": [
+     "téléconseiller",
+     "centre d'appel",
+     "alger"
+    ],
+    "required_years": 0,
+    "scam": [],
+    "score": 8,
+    "years": 0
+   },
+   "job_site": false,
+   "text": "Centre d'appels recrute téléconseillers à Alger, débutants acceptés, salaire fixe + primes"
+  },
+  {
+   "date": "",
+   "expect": {
+    "emails": [],
+    "event": false,
+    "is_event": false,
+    "mobiles": [],
+    "normalized": "offre de stage animateur community manager, animation des reseaux sociaux, alger",
+    "reasons": [
+     "animateur",
+     "alger"
+    ],
+    "required_years": 0,
+    "scam": [],
+    "score": 4,
+    "years": 0
+   },
+   "job_site": false,
+   "text": "Offre de stage animateur community manager, animation des réseaux sociaux, Alger"
+  },
+  {
+   "date": "",
+   "expect": {
+    "emails": [],
+    "event": false,
+    "is_event": false,
+    "mobiles": [],
+    "normalized": "animation de l'equipe de vente : responsable des ventes recrute a alger, 5 ans d'experience",
+    "reasons": [
+     "alger"
+    ],
+    "required_years": 5,
+    "scam": [],
+    "score": 0,
+    "years": 5
+   },
+   "job_site": false,
+   "text": "Animation de l'équipe de vente : responsable des ventes recrute à Alger, 5 ans d'expérience"
+  },
+  {
+   "date": "",
+   "expect": {
+    "emails": [],
+    "event": false,
+    "is_event": false,
+    "mobiles": [],
+    "normalized": "salon de coiffure recrute coiffeuse a hydra, experience 2 ans",
+    "reasons": [
+     "salon",
+     "hydra"
+    ],
+    "required_years": 2,
+    "scam": [],
+    "score": 4,
+    "years": 2
+   },
+   "job_site": false,
+   "text": "Salon de coiffure recrute coiffeuse à Hydra, expérience 2 ans"
+  },
+  {
+   "date": "",
+   "expect": {
+    "emails": [],
+    "event": false,
+    "is_event": false,
+    "mobiles": [],
+    "normalized": "stand up comedy ce soir a alger, venez nombreux, entree libre",
+    "reasons": [
+     "annonce sans recrutement"
+    ],
+    "required_years": 0,
+    "scam": [],
+    "score": -100,
+    "years": 0
+   },
+   "job_site": false,
+   "text": "Stand up comedy ce soir à Alger, venez nombreux, entrée libre"
+  },
+  {
+   "date": "",
+   "expect": {
+    "emails": [],
+    "event": false,
+    "is_event": false,
+    "mobiles": [
+     "0555 00 11 22"
+    ],
+    "normalized": "vente de voiture a alger, etat neuf, prix a debattre 0555 00 11 22",
+    "reasons": [
+     "annonce sans recrutement"
+    ],
+    "required_years": 0,
+    "scam": [],
+    "score": -100,
+    "years": 0
+   },
+   "job_site": false,
+   "text": "Vente de voiture à Alger, état neuf, prix à débattre 0555 00 11 22"
+  },
+  {
+   "date": "",
+   "expect": {
+    "emails": [],
+    "event": false,
+    "is_event": false,
+    "mobiles": [],
+    "normalized": "recrute personnel pour travail a domicile, gain facile, payer frais d'inscription 2000 da avant de commencer",
+    "reasons": [],
+    "required_years": 0,
+    "scam": [
+     "frais d'inscription"
+    ],
+    "score": 0,
+    "years": 0
+   },
+   "job_site": false,
+   "text": "Recrute personnel pour travail à domicile, gain facile, payer frais d'inscription 2000 DA avant de commencer"
+  },
+  {
+   "date": "",
+   "expect": {
+    "emails": [],
+    "event": true,
+    "is_event": true,
+    "mobiles": [],
+    "normalized": "recrute 10 hotesses pour evenement a oran, tenue fournie",
+    "reasons": [
+     "loin: oran",
+     "hôtesse"
+    ],
+    "required_years": 0,
+    "scam": [],
+    "score": 0,
+    "years": 0
+   },
+   "job_site": false,
+   "text": "Recrute 10 hôtesses pour événement à Oran, tenue fournie"
+  },
+  {
+   "date": "",
+   "expect": {
+    "emails": [],
+    "event": true,
+    "is_event": true,
+    "mobiles": [],
+    "normalized": "recrute animateur pour salon a djelfa, 4 jours, hebergement assure",
+    "reasons": [
+     "loin: djelfa",
+     "animateur",
+     "salon"
+    ],
+    "required_years": 0,
+    "scam": [],
+    "score": 3,
+    "years": 0
+   },
+   "job_site": false,
+   "text": "Recrute animateur pour salon à Djelfa, 4 jours, hébergement assuré"
+  },
+  {
+   "date": "il y a 2 jours",
+   "expect": {
+    "emails": [],
+    "event": true,
+    "is_event": true,
+    "mobiles": [],
+    "normalized": "hotesse d'accueil recherchee pour congres a l'hotel sofitel alger, 2 jours",
+    "reasons": [
+     "hôtesse",
+     "alger"
+    ],
+    "required_years": 0,
+    "scam": [],
+    "score": 6,
+    "years": 0
+   },
+   "job_site": false,
+   "text": "Hôtesse d'accueil recherchée pour congrès à l'hôtel Sofitel Alger, 2 jours"
+  },
+  {
+   "date": "il y a 20 jours",
+   "expect": {
+    "emails": [],
+    "event": true,
+    "is_event": true,
+    "mobiles": [],
+    "normalized": "hotesse d'accueil recherchee pour congres a l'hotel sofitel alger, 2 jours",
+    "reasons": [
+     "ancien (20 j)"
+    ],
+    "required_years": 0,
+    "scam": [],
+    "score": -50,
+    "years": 0
+   },
+   "job_site": false,
+   "text": "Hôtesse d'accueil recherchée pour congrès à l'hôtel Sofitel Alger, 2 jours"
+  },
+  {
+   "date": "2026-11-17",
+   "expect": {
+    "emails": [],
+    "event": true,
+    "is_event": true,
+    "mobiles": [],
+    "normalized": "hotesse d'accueil recherchee pour congres a l'hotel sofitel alger, 2 jours",
+    "reasons": [
+     "hôtesse",
+     "alger"
+    ],
+    "required_years": 0,
+    "scam": [],
+    "score": 6,
+    "years": 0
+   },
+   "job_site": false,
+   "text": "Hôtesse d'accueil recherchée pour congrès à l'hôtel Sofitel Alger, 2 jours"
+  },
+  {
+   "date": "2026-09-01",
+   "expect": {
+    "emails": [],
+    "event": true,
+    "is_event": true,
+    "mobiles": [],
+    "normalized": "hotesse d'accueil recherchee pour congres a l'hotel sofitel alger, 2 jours",
+    "reasons": [
+     "ancien (78 j)"
+    ],
+    "required_years": 0,
+    "scam": [],
+    "score": -50,
+    "years": 0
+   },
+   "job_site": false,
+   "text": "Hôtesse d'accueil recherchée pour congrès à l'hôtel Sofitel Alger, 2 jours"
+  },
+  {
+   "date": "",
+   "expect": {
+    "emails": [],
+    "event": false,
+    "is_event": true,
+    "mobiles": [],
+    "normalized": "promoteur(trice) des ventes pour street marketing a alger, degustation en grande surface",
+    "reasons": [
+     "annonce sans recrutement"
+    ],
+    "required_years": 0,
+    "scam": [],
+    "score": -100,
+    "years": 0
+   },
+   "job_site": false,
+   "text": "Promoteur(trice) des ventes pour street marketing à Alger, dégustation en grande surface"
+  },
+  {
+   "date": "",
+   "expect": {
+    "emails": [],
+    "event": false,
+    "is_event": true,
+    "mobiles": [],
+    "normalized": "brand ambassador pour lancement de produit, alger, 18 a 30 ans",
+    "reasons": [
+     "annonce sans recrutement"
+    ],
+    "required_years": 0,
+    "scam": [],
+    "score": -100,
+    "years": 0
+   },
+   "job_site": false,
+   "text": "Brand ambassador pour lancement de produit, Alger, 18 à 30 ans"
+  },
+  {
+   "date": "",
+   "expect": {
+    "emails": [],
+    "event": false,
+    "is_event": true,
+    "mobiles": [],
+    "normalized": "wedding planner debutante, formation assuree, alger",
+    "reasons": [
+     "annonce sans recrutement"
+    ],
+    "required_years": 0,
+    "scam": [],
+    "score": -100,
+    "years": 0
+   },
+   "job_site": false,
+   "text": "Wedding planner débutante, formation assurée, Alger"
+  },
+  {
+   "date": "",
+   "expect": {
+    "emails": [],
+    "event": false,
+    "is_event": false,
+    "mobiles": [],
+    "normalized": "نوظف نادلا خبره سنتين علي الاقل في مطعم بالجزاير العاصمه",
+    "reasons": [
+     "نادل",
+     "الجزائر"
+    ],
+    "required_years": 0,
+    "scam": [],
+    "score": 4,
+    "years": 0
+   },
+   "job_site": false,
+   "text": "نوظف نادلا خبرة سنتين على الأقل في مطعم بالجزائر العاصمة"
+  },
+  {
+   "date": "",
+   "expect": {
+    "emails": [],
+    "event": true,
+    "is_event": true,
+    "mobiles": [],
+    "normalized": "مطلوب موظفه استقبال بمعرض الجزاير الدولي، خبره لا تقل عن 3 سنوات",
+    "reasons": [
+     "الجزائر"
+    ],
+    "required_years": 3,
+    "scam": [],
+    "score": 2,
+    "years": 3
+   },
+   "job_site": false,
+   "text": "مطلوب موظفة استقبال بمعرض الجزائر الدولي، خبرة لا تقل عن 3 سنوات"
+  },
+  {
+   "date": "",
+   "expect": {
+    "emails": [],
+    "event": false,
+    "is_event": false,
+    "mobiles": [],
+    "normalized": "تنشيط الدورات التكوينيه: مكتب تكوين يوظف مكونا بالجزاير",
+    "reasons": [
+     "annonce sans recrutement"
+    ],
+    "required_years": 0,
+    "scam": [],
+    "score": -100,
+    "years": 0
+   },
+   "job_site": false,
+   "text": "تنشيط الدورات التكوينية: مكتب تكوين يوظف مكونا بالجزائر"
+  },
+  {
+   "date": "",
+   "expect": {
+    "emails": [],
+    "event": false,
+    "is_event": false,
+    "mobiles": [],
+    "normalized": "annonce : promotion sur les telephones, venez au magasin a alger",
+    "reasons": [
+     "annonce sans recrutement"
+    ],
+    "required_years": 0,
+    "scam": [],
+    "score": -100,
+    "years": 0
+   },
+   "job_site": false,
+   "text": "Annonce : promotion sur les téléphones, venez au magasin à Alger"
+  },
+  {
+   "date": "",
+   "expect": {
+    "emails": [],
+    "event": false,
+    "is_event": false,
+    "mobiles": [],
+    "normalized": "besoin d'une personne pour garder mon enfant a alger, 3 jours par semaine",
+    "reasons": [
+     "annonce sans recrutement"
+    ],
+    "required_years": 0,
+    "scam": [],
+    "score": -100,
+    "years": 0
+   },
+   "job_site": false,
+   "text": "Besoin d'une personne pour garder mon enfant à Alger, 3 jours par semaine"
+  },
+  {
+   "date": "",
+   "expect": {
+    "emails": [],
+    "event": true,
+    "is_event": true,
+    "mobiles": [],
+    "normalized": "poste ouvert : animateur(trice) de stand, ville alger, source emploi",
+    "reasons": [
+     "animateur",
+     "stand",
+     "alger"
+    ],
+    "required_years": 0,
+    "scam": [],
+    "score": 10,
+    "years": 0
+   },
+   "job_site": true,
+   "text": "Poste ouvert : Animateur(trice) de stand, ville Alger, source emploi"
+  },
+  {
+   "date": "",
+   "expect": {
+    "emails": [],
+    "event": false,
+    "is_event": false,
+    "mobiles": [],
+    "normalized": "technicien de maintenance, alger, 3 ans d'experience",
+    "reasons": [
+     "technicien",
+     "alger"
+    ],
+    "required_years": 3,
+    "scam": [],
+    "score": 2,
+    "years": 3
+   },
+   "job_site": true,
+   "text": "Technicien de maintenance, Alger, 3 ans d'expérience"
+  },
+  {
+   "date": "",
+   "expect": {
+    "emails": [
+     "recrutement@event-pro.dz"
+    ],
+    "event": true,
+    "is_event": true,
+    "mobiles": [
+     "0661 22 33 44"
+    ],
+    "normalized": "rejoignez notre equipe d'hotesses evenementielles : candidature a recrutement@event-pro.dz ou au +213 661 22 33 44",
+    "reasons": [
+     "hôtesse"
+    ],
+    "required_years": 0,
+    "scam": [],
+    "score": 7,
+    "years": 0
+   },
+   "job_site": false,
+   "text": "Rejoignez notre équipe d'hôtesses événementielles : candidature à recrutement@event-pro.dz ou au +213 661 22 33 44"
+  },
+  {
+   "date": "",
+   "expect": {
+    "emails": [],
+    "event": false,
+    "is_event": false,
+    "mobiles": [
+     "0771 22 33 44"
+    ],
+    "normalized": "recrute caissier(ere) pour superette a bab ezzouar, 0771 22 33 44, experience 6 ans",
+    "reasons": [
+     "bab ezzouar"
+    ],
+    "required_years": 6,
+    "scam": [],
+    "score": 1,
+    "years": 6
+   },
+   "job_site": false,
+   "text": "Recrute caissier(ère) pour supérette à Bab Ezzouar, 0771 22 33 44, expérience 6 ans"
+  },
+  {
+   "date": "",
+   "expect": {
+    "emails": [],
+    "event": false,
+    "is_event": false,
+    "mobiles": [
+     "0555 11 22 33"
+    ],
+    "normalized": "recrute livreur avec permis b, moto fournie, alger, 0555 11 22 33",
+    "reasons": [
+     "livreur",
+     "alger"
+    ],
+    "required_years": 0,
+    "scam": [],
+    "score": 5,
+    "years": 0
+   },
+   "job_site": false,
+   "text": "Recrute livreur avec permis B, moto fournie, Alger, 0555 11 22 33"
+  },
+  {
+   "date": "",
+   "expect": {
+    "emails": [],
+    "event": true,
+    "is_event": true,
+    "mobiles": [],
+    "normalized": "hotesses et stewards recherches pour le salon sila, du 28 octobre au 7 novembre, pins maritimes",
+    "reasons": [
+     "sila",
+     "hôtesse",
+     "salon",
+     "pins maritimes"
+    ],
+    "required_years": 0,
+    "scam": [],
+    "score": 10,
+    "years": 0
+   },
+   "job_site": false,
+   "text": "Hôtesses et stewards recherchés pour le salon SILA, du 28 octobre au 7 novembre, Pins Maritimes"
+  },
+  {
+   "date": "",
+   "expect": {
+    "emails": [],
+    "event": false,
+    "is_event": false,
+    "mobiles": [],
+    "normalized": "recrutement massif sans diplome, inbox pour plus d'infos, gain 100000 da par semaine",
+    "reasons": [],
+    "required_years": 0,
+    "scam": [
+     "inbox"
+    ],
+    "score": 0,
+    "years": 0
+   },
+   "job_site": false,
+   "text": "Recrutement massif sans diplôme, inbox pour plus d'infos, gain 100000 DA par semaine"
+  },
+  {
+   "date": "",
+   "expect": {
+    "emails": [],
+    "event": false,
+    "is_event": false,
+    "mobiles": [],
+    "normalized": "recherche developpeur web, teletravail, 4 ans d'experience, entreprise basee a alger",
+    "reasons": [
+     "alger"
+    ],
+    "required_years": 4,
+    "scam": [],
+    "score": 0,
+    "years": 4
+   },
+   "job_site": false,
+   "text": "Recherche développeur web, télétravail, 4 ans d'expérience, entreprise basée à Alger"
+  },
+  {
+   "date": "",
+   "expect": {
+    "emails": [],
+    "event": true,
+    "is_event": true,
+    "mobiles": [],
+    "normalized": "evenementiel : recrute regisseur et animateurs pour festival a bejaia",
+    "reasons": [
+     "loin: bejaia",
+     "animateur",
+     "événementiel",
+     "evenementiel"
+    ],
+    "required_years": 0,
+    "scam": [],
+    "score": 7,
+    "years": 0
+   },
+   "job_site": false,
+   "text": "Evénementiel : recrute régisseur et animateurs pour festival à Béjaïa"
+  },
+  {
+   "date": "",
+   "expect": {
+    "emails": [],
+    "event": true,
+    "is_event": true,
+    "mobiles": [],
+    "normalized": "safex salon : on recrute des hotesses, merci d'envoyer photo et cv, alger",
+    "reasons": [
+     "safex",
+     "hôtesse",
+     "salon",
+     "safex"
+    ],
+    "required_years": 0,
+    "scam": [],
+    "score": 10,
+    "years": 0
+   },
+   "job_site": false,
+   "text": "SAFEX salon : on recrute des hôtesses, merci d'envoyer photo et CV, Alger"
+  },
+  {
+   "date": "",
+   "expect": {
+    "emails": [],
+    "event": false,
+    "is_event": false,
+    "mobiles": [
+     "0550 12 12 12"
+    ],
+    "normalized": "recrute assistante administrative debutante, alger, urgent, 0550 12 12 12",
+    "reasons": [
+     "alger"
+    ],
+    "required_years": 0,
+    "scam": [],
+    "score": 3,
+    "years": 0
+   },
+   "job_site": false,
+   "text": "Recrute assistante administrative débutante, Alger, urgent, 0550 12 12 12"
+  },
+  {
+   "date": "",
+   "expect": {
+    "emails": [
+     "hr@fair-dz.com"
+    ],
+    "event": false,
+    "is_event": true,
+    "mobiles": [],
+    "normalized": "recruiting event hostesses for exhibition in algiers, experience not required, send cv to hr@fair-dz.com",
+    "reasons": [
+     "annonce sans recrutement"
+    ],
+    "required_years": 0,
+    "scam": [],
+    "score": -100,
+    "years": 0
+   },
+   "job_site": false,
+   "text": "Recruiting event hostesses for exhibition in Algiers, experience not required, send CV to hr@fair-dz.com"
+  }
+ ],
+ "now": "2026-11-18T09:00"
+}
