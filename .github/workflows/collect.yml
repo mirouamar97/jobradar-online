@@ -44,11 +44,14 @@ jobs:
           # Secrets du depot (Settings > Secrets and variables > Actions). Absents = pas d'alerte, rien d'autre ne change.
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
+          SALONS_FORCE: ${{ github.event_name == 'workflow_dispatch' && '1' || '' }}
         run: |
           if [ "${{ github.event.schedule }}" = "2,32,47 * * * *" ] || [ "${{ github.event.action }}" = "collect-fast" ]; then
             python tools/collect.py --kinds telegram
           else
             python tools/collect.py
+            # Radar des salons : le script se limite lui-meme a un passage par jour ; un echec ne bloque pas les offres
+            python tools/salons.py || echo "::warning::salons radar failed"
           fi
 
       - name: Commit data (only when it changed)
@@ -57,6 +60,7 @@ jobs:
           git config user.name "jobradar-collector"
           git config user.email "jobradar-collector@users.noreply.github.com"
           git add data/offers.json data/status.json data/alerted.json
+          for f in data/salons.json data/salons_meta.json data/alerted_salons.json; do [ -f "$f" ] && git add "$f"; done || true
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else

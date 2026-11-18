@@ -46,6 +46,7 @@ body{margin:0;background:var(--background);color:var(--on-surface);font:400 15px
 a{color:var(--primary)}
 :focus-visible{outline:2px solid var(--primary);outline-offset:2px}
 .wrap{max-width:880px;margin:0 auto;padding:var(--space-l)}
+[hidden]{display:none!important}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 
 /* Header */
@@ -124,6 +125,14 @@ details.sources summary{cursor:pointer;font:600 16px/24px var(--font-sans);list-
 .src-row .name{font:500 14px/20px var(--font-sans)}
 .src-row .why{font:400 13px/20px var(--font-sans);color:var(--on-surface-variant)}
 
+
+/* Salons */
+.salon{display:flex;flex-direction:column;gap:var(--space-xs);padding:var(--space-m) 0;border-top:1px solid color-mix(in srgb,var(--outline-variant) 55%,transparent)}
+.salon:first-of-type{border-top:0}
+.salon h3{margin:0;font:600 16px/24px var(--font-sans)}
+.salon .sub{margin:0;font:400 14px/20px var(--font-sans);color:var(--on-surface-variant)}
+.salon .meta a{font:500 14px/20px var(--font-sans);color:var(--primary)}
+
 footer{padding:var(--space-xl) 0;font:400 13px/20px var(--font-sans);color:var(--on-surface-variant);text-align:center}
 .toast{position:fixed;inset-inline:0;bottom:16px;margin:auto;width:max-content;max-width:90vw;background:var(--inverse-surface);color:var(--inverse-on-surface);border-radius:var(--radius-sm);padding:10px 16px;font:400 14px/20px var(--font-sans);opacity:0;transition:opacity .2s;pointer-events:none}
 .toast.show{opacity:1}
@@ -155,6 +164,12 @@ footer{padding:var(--space-xl) 0;font:400 13px/20px var(--font-sans);color:var(-
     </div>
     <div id="health"></div>
     <p class="hint" id="updated">جارٍ التحميل…</p>
+  </section>
+
+  <section class="card" id="salons-card" aria-labelledby="h-salons" hidden>
+    <h2 id="h-salons">🎪 المعارض القادمة (30 يوماً)</h2>
+    <p class="hint">من الموقع الرسمي algeriaexhibitions.dz (مجمع SAFEX). فرصة للتنشيط: راسل المنظّم قبل بدء المعرض.</p>
+    <div id="salons"></div>
   </section>
 
   <section class="card" aria-labelledby="h-filter">
@@ -286,6 +301,33 @@ function renderStatus(st){
 
 function toast(msg){ const t = $("#toast"); t.textContent = msg; t.classList.add("show"); setTimeout(() => t.classList.remove("show"), 2500); }
 
+
+function safeUrl(u){ return /^https?:\/\//i.test(u || "") ? u : ""; }
+function salonHtml(e){
+  const when = e.start === e.end ? e.start : `${e.start} → ${e.end}`;
+  const ph = (e.phones || []).map(p => `<a href="tel:${esc(p)}" dir="ltr">${esc(p)}</a>`).join(" · ");
+  const em = (e.emails || []).map(m => `<a href="mailto:${esc(m)}" dir="ltr">${esc(m)}</a>`).join(" · ");
+  const reg = safeUrl(e.register_url), web = safeUrl(e.website);
+  return `<article class="salon">
+    <div class="meta"><span class="pill event">${esc(e.audience || "")} · ${Number(e.hostess_score) || 0}/10</span><span class="when"><bdi dir="ltr">${esc(when)}</bdi>${e.pavilion ? " · " + esc(e.pavilion) : ""}</span></div>
+    <h3 dir="auto">${esc(e.name)}</h3>
+    <p class="sub" dir="auto">${esc(e.title || "")}</p>
+    ${e.organizer ? `<p class="sub">المنظّم: ${esc(e.organizer)}</p>` : ""}
+    ${ph || em ? `<div class="meta">${ph}${ph && em ? " · " : ""}${em}</div>` : ""}
+    <div class="actions">${reg ? `<a class="btn" href="${esc(reg)}" target="_blank" rel="noopener noreferrer">تسجيل الزوار</a>` : ""}${web ? `<a class="btn" href="${esc(web)}" target="_blank" rel="noopener noreferrer">الموقع الرسمي</a>` : ""}</div>
+  </article>`;
+}
+async function loadSalons(bust){
+  try {
+    const r = await fetch("data/salons.json" + bust);
+    if (!r.ok) return;
+    const list = await r.json();
+    if (!Array.isArray(list) || !list.length) return;
+    $("#salons").innerHTML = list.map(salonHtml).join("");
+    $("#salons-card").hidden = false;
+  } catch { /* section simplement cachee */ }
+}
+
 async function load(){
   const bust = "?t=" + Math.floor(Date.now() / 600000);
   try {
@@ -300,6 +342,7 @@ async function load(){
   $("#st-events").textContent = state.offers.filter(o => o.event).length;
   try { const s = await fetch("data/status.json" + bust); renderStatus(s.ok ? await s.json() : null); } catch { renderStatus(null); }
   if (state.offers.length) render();
+  loadSalons(bust);
 }
 
 document.addEventListener("click", e => {
