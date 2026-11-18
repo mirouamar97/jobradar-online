@@ -1,7 +1,7 @@
 {
- "generated_at": "2026-11-18T12:01",
- "offers": 84,
- "events": 14,
+ "generated_at": "2026-11-18T15:13",
+ "offers": 88,
+ "events": 15,
  "sources": [
   {
    "id": "emploitic",
@@ -12,11 +12,8 @@
    "kept": 3,
    "error": "",
    "rejected": {
-    "note < 3": 12,
-    "ancien (10 j)": 2,
-    "ancien (23 j)": 1,
-    "ancien (14 j)": 1,
-    "ancien (35 j)": 1
+    "note < 3": 16,
+    "exclu": 1
    }
   },
   {
@@ -39,7 +36,7 @@
    "ok": false,
    "cards": 0,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.optioncarriere.dz', port=443): Max retries exceeded with url: /emploi?s=&l=Alger (Caused by ConnectTimeoutError(<HTTPSCo"
+   "error": "aucun element lu (site change ou requete bloquee)"
   },
   {
    "id": "sfnemploi",
@@ -62,12 +59,12 @@
    "kept": 1,
    "error": "",
    "rejected": {
-    "exclu": 10,
+    "exclu": 9,
+    "note < 3": 2,
     "ancien (11 j)": 2,
     "ancien (31 j)": 2,
     "ancien (32 j)": 1,
     "ancien (50 j)": 1,
-    "note < 3": 1,
     "ancien (16 j)": 1,
     "ancien (22 j)": 1
    }
@@ -145,8 +142,8 @@
    "kept": 0,
    "error": "",
    "rejected": {
-    "note < 3": 16,
-    "ancien (8 j)": 4
+    "note < 3": 18,
+    "ancien (8 j)": 2
    }
   },
   {
@@ -164,11 +161,11 @@
    "kind": "telegram",
    "ok": true,
    "cards": 20,
-   "kept": 0,
+   "kept": 1,
    "error": "",
    "rejected": {
     "annonce sans recrutement": 11,
-    "note < 3": 9
+    "note < 3": 8
    }
   },
   {

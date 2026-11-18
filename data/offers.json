@@ -162,6 +162,24 @@
   "senior": false
  },
  {
+  "uid": "c030f5487d719eeaa8f83751d271585b464c3b21",
+  "found_at": "2026-11-18T15:13",
+  "source": "SFN Emploi (Telegram)",
+  "platform": "telegram",
+  "score": 4,
+  "url": "https://t.me/sfnemploi/9772",
+  "phones": "",
+  "emails": "",
+  "text": "#الأحداث_والمعارض 📅 فندق Naya يعلن عن يوم مفتوح للتوظيف الجماعي في عدة تخصصات بالجزائر العاصمة أعلن فندق Hôtel Naya عن تنظيم يوم مفتوح للتوظيف الجماعي، يوم الأحد 22 نوفمبر 2026، بهدف تدعيم طواقمه المهنية بعدد من الكفاءات والعمال في مختلف الأقسام الفندقية والخدماتية. 🔗 https://sfnemploi.com/?p=48489&utm_source=telegram&utm_medium=social&utm_campaign=social",
+  "status": "new",
+  "salary": "",
+  "whatsapp_url": "",
+  "gig_badge": "🎪 معارض وأحداث",
+  "event": true,
+  "years_required": 0,
+  "senior": false
+ },
+ {
   "uid": "e82da456cf613d6295ae4af8a668a49131d9d864",
   "found_at": "2026-11-13T03:36",
   "source": "Emploitic",
@@ -468,6 +486,24 @@
   "senior": false
  },
  {
+  "uid": "a6e2cfc7e83350eca0e919ea41032feb481e5f51",
+  "found_at": "2026-11-18T15:13",
+  "source": "Emploitic",
+  "platform": "web",
+  "score": 5,
+  "url": "https://emploitic.com/entreprises/legrand/offres-d-emploi/services/charge-e-support-client-jw1vm",
+  "phones": "",
+  "emails": "",
+  "text": "Chargé (e) Support Client Legrand Hydra, Daïra Bir Mourad Rais, Alger, Algérie Aujourd'hui Confirmé / Expérimenté (1 À 2 Ans) Rattaché(e) au Service Commercial, le/la titulaire du poste assure une mission polyvalente de support et de coordination, avec pour objectif de contribuer à la qualité de la relation client, au suivi des demandes et à l'efficacité des activités commerciales. Missions et tâches :</st",
+  "status": "new",
+  "salary": "",
+  "whatsapp_url": "",
+  "gig_badge": "",
+  "event": false,
+  "years_required": 1,
+  "senior": false
+ },
+ {
   "uid": "2d9d87111996b4e2d2e42d43c97ed54c2e7704fa",
   "found_at": "2026-11-17T15:37",
   "source": "Emploitic",
@@ -701,6 +737,24 @@
   "event": false,
   "years_required": 0,
   "senior": false
+ },
+ {
+  "uid": "40d87fb33378ef224b7d11f5375bc940f354405e",
+  "found_at": "2026-11-18T15:13",
+  "source": "Emploitic",
+  "platform": "web",
+  "score": 4,
+  "url": "https://emploitic.com/entreprises/mindakcragency2025/offres-d-emploi/informatique-telecom-internet/commercial-e8g9c",
+  "phones": "",
+  "emails": "",
+  "text": "Commercial mindakCRagency2025 El Achour, Daïra Draria, Alger, Algérie Aujourd'hui Débutant / Junior (1 À 2 Ans) Description: Nous recherchons un(e) Commercial(e) dynamique et motivé(e) pour rejoindre notre équipe basée à El Achour, Daïra Draria, Alger. Le candidat idéal possède entre 1 et 5 ans d'expérience dans le domaine commercial, technico-commercial ou service client, et détient un diplôme all",
+  "status": "new",
+  "salary": "",
+  "whatsapp_url": "",
+  "gig_badge": "",
+  "event": false,
+  "years_required": 5,
+  "senior": true
  },
  {
   "uid": "6e037e42ed903c217517d17062194deb8d0b92c5",
@@ -1061,6 +1115,24 @@
   "event": false,
   "years_required": 0,
   "senior": false
+ },
+ {
+  "uid": "9de0b91f2ebae434a6d43332db7da3922d2948e9",
+  "found_at": "2026-11-18T15:13",
+  "source": "Emploitic",
+  "platform": "web",
+  "score": 3,
+  "url": "https://emploitic.com/entreprises/sarl-esquirol/offres-d-emploi/industries/superviseur-trade-marketing-gify3",
+  "phones": "",
+  "emails": "",
+  "text": "Superviseur Trade Marketing Sarl Esquirol Daïra Birtouta, Alger, Algérie Aujourd'hui Confirmé / Expérimenté (3 À 5 Ans) Responsabilités: Développer et mettre en œuvre les plans trade marketing en collaboration avec les équipes commerciales et marketing. Analyser les performances des campagnes promotionnelles et proposer des actions correctives pour maximiser les résultats. <l",
+  "status": "new",
+  "salary": "",
+  "whatsapp_url": "",
+  "gig_badge": "",
+  "event": false,
+  "years_required": 3,
+  "senior": true
  },
  {
   "uid": "50ae32e42791194d78ff7935492779009022cc61",
