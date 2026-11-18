@@ -1117,6 +1117,24 @@
   "senior": false
  },
  {
+  "uid": "d04d5401ec7b350eb7f299edb849df055196e922",
+  "found_at": "2026-11-18T23:06",
+  "source": "Emploitic",
+  "platform": "web",
+  "score": 3,
+  "url": "https://emploitic.com/entreprises/cscec/offres-d-emploi/btp-construction-immobilier/ingenieur-contrat-commercial-btp-tiy61",
+  "phones": "",
+  "emails": "",
+  "text": "Ingénieur Contrat Commercial BTP CSCEC Staoueli, Daïra Zéralda, Alger, Algérie Aujourd'hui Confirmé / Expérimenté (3 À 5 Ans) Présentation de l’entreprise Fondée en 1982 et cotée à la Bourse de Shanghai depuis 2009, la China State Construction Engineering Corporation Ltd. (CSCEC) est une entreprise publique de construction et d’ingénierie dont le siège social se trouve à Pékin. C",
+  "status": "new",
+  "salary": "",
+  "whatsapp_url": "",
+  "gig_badge": "",
+  "event": false,
+  "years_required": 3,
+  "senior": true
+ },
+ {
   "uid": "60429f4b79e824f778375b0a498ac042cee89d2f",
   "found_at": "2026-11-18T19:49",
   "source": "SFN Emploi (Telegram)",
