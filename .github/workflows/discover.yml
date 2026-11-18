@@ -1,0 +1,65 @@
+name: Discover Telegram channels
+
+# M10.4 : chaque semaine, cherche de nouveaux canaux Telegram PUBLICS (liens t.me dans data/offers.json et mentions
+# dans les apercus t.me/s/ des canaux connus), les note avec collect.score_offer et ecrit data/candidates.json.
+#  - data/candidates.json est publie comme les autres fichiers de donnees (commit direct, comme collect.yml) ;
+#  - les canaux « promoted » modifient tools/sources.json UNIQUEMENT via une pull request a relire (jamais de push direct).
+# Aucun secret : seul GITHUB_TOKEN est utilise. Le texte des canaux n'est jamais injecte dans ce fichier ni dans un shell :
+# le script ne renvoie qu'un nombre (added) et ecrit le texte de la PR dans un fichier.
+# Prealable pour la PR : Settings > Actions > General > « Allow GitHub Actions to create and approve pull requests ».
+on:
+  schedule:
+    - cron: "41 5 * * 1"      # lundi 05:41 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: discover
+  cancel-in-progress: false
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: tools/requirements.txt
+
+      - run: pip install -r tools/requirements.txt
+
+      - name: Tests
+        run: python -m pytest -q tools/tests
+
+      - name: Discover
+        id: discover
+        run: python tools/discover.py --update-sources --pr-body "$RUNNER_TEMP/discover_pr.md"
+
+      - name: Commit candidates (only when it changed)
+        run: |
+          git config user.name "jobradar-collector"
+          git config user.email "jobradar-collector@users.noreply.github.com"
+          git add data/candidates.json
+          if ! git diff --cached --quiet; then
+            git commit -m "data: update candidates [skip ci]"
+            git pull --rebase --autostash || true
+            git push
+          fi
+
+      - name: Pull request for promoted channels
+        if: steps.discover.outputs.added && steps.discover.outputs.added != '0'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: discover/promoted-channels
+          add-paths: tools/sources.json
+          commit-message: "sources: add discovered Telegram channels"
+          title: "Discovery: new Telegram channels to review"
+          body-path: ${{ runner.temp }}/discover_pr.md
+          delete-branch: true
