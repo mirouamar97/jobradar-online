@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-20T09:23",
+ "generated_at": "2026-11-20T14:07",
  "offers": 99,
  "events": 16,
  "sources": [
@@ -9,11 +9,10 @@
    "kind": "page",
    "ok": true,
    "cards": 20,
-   "kept": 3,
+   "kept": 2,
    "error": "",
    "rejected": {
-    "note < 3": 16,
-    "ancien (16 j)": 1
+    "note < 3": 18
    }
   },
   {
@@ -21,11 +20,12 @@
    "name": "AlgerieJob",
    "kind": "page",
    "ok": true,
-   "cards": 140,
-   "kept": 34,
+   "cards": 142,
+   "kept": 33,
    "error": "",
    "rejected": {
-    "note < 3": 105,
+    "note < 3": 107,
+    "ancien (338 j)": 1,
     "arnaque: investissement": 1
    }
   },
@@ -61,12 +61,12 @@
    "rejected": {
     "exclu": 10,
     "note < 3": 2,
-    "ancien (12 j)": 2,
-    "ancien (33 j)": 1,
-    "ancien (51 j)": 1,
-    "ancien (17 j)": 1,
-    "ancien (23 j)": 1,
-    "ancien (32 j)": 1
+    "ancien (13 j)": 2,
+    "ancien (34 j)": 1,
+    "ancien (52 j)": 1,
+    "ancien (18 j)": 1,
+    "ancien (24 j)": 1,
+    "ancien (33 j)": 1
    }
   },
   {
@@ -78,21 +78,21 @@
    "kept": 4,
    "error": "",
    "rejected": {
-    "ancien (9 j)": 2,
-    "ancien (36 j)": 1,
-    "ancien (10 j)": 1,
-    "ancien (33 j)": 1,
+    "ancien (10 j)": 2,
     "ancien (37 j)": 1,
     "ancien (11 j)": 1,
-    "ancien (45 j)": 1,
-    "ancien (47 j)": 1,
-    "ancien (59 j)": 1,
-    "ancien (18 j)": 1,
-    "ancien (25 j)": 1,
-    "ancien (31 j)": 1,
-    "ancien (52 j)": 1,
-    "ancien (16 j)": 1,
-    "ancien (23 j)": 1
+    "ancien (34 j)": 1,
+    "ancien (38 j)": 1,
+    "ancien (12 j)": 1,
+    "ancien (46 j)": 1,
+    "ancien (48 j)": 1,
+    "ancien (60 j)": 1,
+    "ancien (19 j)": 1,
+    "ancien (26 j)": 1,
+    "ancien (32 j)": 1,
+    "ancien (53 j)": 1,
+    "ancien (17 j)": 1,
+    "ancien (24 j)": 1
    }
   },
   {
@@ -104,16 +104,68 @@
    "kept": 2,
    "error": "",
    "rejected": {
-    "ancien (17 j)": 4,
+    "ancien (18 j)": 4,
     "note < 3": 2,
-    "ancien (11 j)": 2,
     "ancien (12 j)": 2,
-    "ancien (15 j)": 2,
+    "ancien (13 j)": 2,
     "ancien (16 j)": 2,
-    "ancien (22 j)": 1,
-    "ancien (32 j)": 1,
-    "ancien (8 j)": 1,
-    "ancien (30 j)": 1
+    "ancien (17 j)": 2,
+    "ancien (23 j)": 1,
+    "ancien (33 j)": 1,
+    "ancien (9 j)": 1,
+    "ancien (31 j)": 1
+   }
+  },
+  {
+   "id": "tg_jobs_dz7",
+   "name": "JOBS DZ (Telegram)",
+   "kind": "telegram",
+   "ok": true,
+   "cards": 20,
+   "kept": 0,
+   "error": "",
+   "rejected": {
+    "ancien (13 j)": 11,
+    "ancien (10 j)": 5,
+    "annonce sans recrutement": 2,
+    "note < 3": 1,
+    "exclu": 1
+   }
+  },
+  {
+   "id": "tg_annexedzjob",
+   "name": "Annexe-dz (Telegram)",
+   "kind": "telegram",
+   "ok": true,
+   "cards": 20,
+   "kept": 0,
+   "error": "",
+   "rejected": {
+    "note < 3": 18,
+    "annonce sans recrutement": 2
+   }
+  },
+  {
+   "id": "tg_rcrdz1",
+   "name": "Recrutement-dz (Telegram)",
+   "kind": "telegram",
+   "ok": false,
+   "cards": 0,
+   "kept": 0,
+   "error": "aucun element lu (site change ou requete bloquee)"
+  },
+  {
+   "id": "tg_sfnemploi",
+   "name": "SFN Emploi (Telegram)",
+   "kind": "telegram",
+   "ok": true,
+   "cards": 20,
+   "kept": 0,
+   "error": "",
+   "rejected": {
+    "annonce sans recrutement": 12,
+    "note < 3": 7,
+    "arnaque: retraité": 1
    }
   },
   {
@@ -145,60 +197,6 @@
    "kept": 0,
    "error": "desactivee: les moteurs de recherche bloquent les serveurs GitHub Actions (0 resultat a chaque passage) ; la recherche web reste dans l'application (reseau du telephone)",
    "skipped": true
-  },
-  {
-   "id": "tg_jobs_dz7",
-   "name": "JOBS DZ (Telegram)",
-   "kind": "telegram",
-   "ok": true,
-   "cards": 20,
-   "kept": 0,
-   "error": "",
-   "rejected": {
-    "ancien (12 j)": 11,
-    "ancien (9 j)": 5,
-    "note < 3": 1,
-    "annonce sans recrutement": 1,
-    "exclu": 1,
-    "texte trop court": 1
-   }
-  },
-  {
-   "id": "tg_annexedzjob",
-   "name": "Annexe-dz (Telegram)",
-   "kind": "telegram",
-   "ok": true,
-   "cards": 20,
-   "kept": 0,
-   "error": "",
-   "rejected": {
-    "note < 3": 18,
-    "annonce sans recrutement": 1,
-    "ancien (7 j)": 1
-   }
-  },
-  {
-   "id": "tg_rcrdz1",
-   "name": "Recrutement-dz (Telegram)",
-   "kind": "telegram",
-   "ok": false,
-   "cards": 0,
-   "kept": 0,
-   "error": "aucun element lu (site change ou requete bloquee)"
-  },
-  {
-   "id": "tg_sfnemploi",
-   "name": "SFN Emploi (Telegram)",
-   "kind": "telegram",
-   "ok": true,
-   "cards": 20,
-   "kept": 1,
-   "error": "",
-   "rejected": {
-    "annonce sans recrutement": 11,
-    "note < 3": 7,
-    "arnaque: retraité": 1
-   }
   }
  ]
 }
