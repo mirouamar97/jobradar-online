@@ -1,50 +1,5 @@
 [
  {
-  "id": "sivecc-2026",
-  "name": "SIVECC 2026",
-  "title": "Salon International de la Ventilation, Électricité, Chauffage et Climatisation",
-  "start": "2026-11-16",
-  "end": "2026-11-19",
-  "place": "Palais des expositions, Pins Maritimes, Mohammadia- Alger",
-  "pavilion": "Palestine",
-  "hours": "10:00",
-  "organizer": "EURL MSPUB EVENT",
-  "phones": [
-   "0561753502",
-   "0560946037"
-  ],
-  "emails": [],
-  "website": "https://sivecc.dz/",
-  "register_url": "",
-  "source_url": "https://www.algeriaexhibitions.dz/manifestations/sivecc-2026",
-  "sectors": "Climatisation, Chauffage, Ventilation & Réfrigération",
-  "audience": "professionnel",
-  "hostess_score": 4
- },
- {
-  "id": "logistical-2026",
-  "name": "LOGISTICAL",
-  "title": "Salon International du Transport et de la Logistique",
-  "start": "2026-11-17",
-  "end": "2026-11-19",
-  "place": "Palais des expositions, Pins Maritimes, Mohammadia- Alger",
-  "pavilion": "Plusieurs pavillons (2)",
-  "hours": "10:00 – 18:00",
-  "organizer": "Algeria Exhibitions",
-  "phones": [
-   "023790059"
-  ],
-  "emails": [
-   "event@algeriaexhibitions.dz"
-  ],
-  "website": "https://www.algeriaexhibitions.dz/event/logistical-2026/",
-  "register_url": "",
-  "source_url": "https://www.algeriaexhibitions.dz/manifestations/logistical-2026",
-  "sectors": "Automobile, Transport & Mobilité, Logistique, Fret & Services Portuaires",
-  "audience": "mixte",
-  "hostess_score": 7
- },
- {
   "id": "woodtech-2026",
   "name": "WOODTECH 2026",
   "title": "Salon International du Bois, Menuiserie, Équipements et Technologies",
@@ -112,26 +67,184 @@
   "hostess_score": 5
  },
  {
-  "id": "bevalg-2026",
-  "name": "Salon international de l’industrie des boissons et des aliments liquides- BEVALG 2026",
-  "title": "BEVALG® | Salon international des boissons et aliments liquides",
-  "start": "2026-11-30",
+  "id": "lift-expo-algeria-2026",
+  "name": "LIFT EXPO ALGERIA",
+  "title": "Salon International des Techniques des Ascenseurs et des Escaliers Mécaniques",
+  "start": "2026-12-01",
   "end": "2026-12-03",
   "place": "Palais des expositions, Pins Maritimes, Mohammadia- Alger",
-  "pavilion": "Casbah",
-  "hours": "",
-  "organizer": "TADAMSA EXPO",
+  "pavilion": "Union",
+  "hours": "10:00",
+  "organizer": "EKSPERT INT. FAIR COMPANY",
+  "phones": [],
+  "emails": [
+   "info@expertexpo.com.tr"
+  ],
+  "website": "https://www.liftexpo-algeria.com/",
+  "register_url": "https://www.liftexpo-algeria.com/visitor-profile/#stand",
+  "source_url": "https://www.algeriaexhibitions.dz/manifestations/lift-expo-algeria-2026",
+  "sectors": "Industrie, Production & Manufactures, Bâtiment, Travaux Publics & Infrastructures",
+  "audience": "professionnel",
+  "hostess_score": 4
+ },
+ {
+  "id": "salon-international-de-surete-securite-feu-et-urgences-en-afrique-du-nord-secura-2027",
+  "name": "SECURA 2026",
+  "title": "SECURA Algeria 2026 | Salon Sécurité, Sûreté et Protection Incendie",
+  "start": "2026-12-01",
+  "end": "2026-12-03",
+  "place": "Palais des expositions, Pins Maritimes, Mohammadia- Alger",
+  "pavilion": "Palestine",
+  "hours": "09:00 - 17:00",
+  "organizer": "EURL EASYFAIRS ALGERIA",
   "phones": [
-   "0561612023"
+   "0550853033"
   ],
   "emails": [
-   "contact@tadamsaexpo.com"
+   "feriel.bachiri@easyfairs.com"
   ],
-  "website": "https://bevalg.com/",
-  "register_url": "https://bevalg.com/visitors/become-visitor",
-  "source_url": "https://www.algeriaexhibitions.dz/manifestations/bevalg-2026",
-  "sectors": "Agriculture, Agroalimentaire & Pêche",
+  "website": "https://www.securanorthafrica.com/fr/",
+  "register_url": "",
+  "source_url": "https://www.algeriaexhibitions.dz/manifestations/salon-international-de-surete-securite-feu-et-urgences-en-afrique-du-nord-secura-2027",
+  "sectors": "Sécurité, Protection & Défense",
   "audience": "professionnel",
   "hostess_score": 5
+ },
+ {
+  "id": "salon-international-pour-lindustrie-en-algerie-sinaa-2027",
+  "name": "SINAA 2026",
+  "title": "SINAA 2026 – Salon International pour l’Industrie en Algérie",
+  "start": "2026-12-01",
+  "end": "2026-12-03",
+  "place": "Palais des expositions, Pins Maritimes, Mohammadia- Alger",
+  "pavilion": "Palestine",
+  "hours": "09:00 - 18:00",
+  "organizer": "EURL EASYFAIRS ALGERIA",
+  "phones": [],
+  "emails": [
+   "contact@sinaadz.com"
+  ],
+  "website": "https://www.sinaadz.com/",
+  "register_url": "https://www.sinaadz.com/visiter/pourquoi-visiter/",
+  "source_url": "https://www.algeriaexhibitions.dz/manifestations/salon-international-pour-lindustrie-en-algerie-sinaa-2027",
+  "sectors": "Industrie, Production & Manufactures",
+  "audience": "professionnel",
+  "hostess_score": 5
+ },
+ {
+  "id": "taswik",
+  "name": "TASWIQ EXPO",
+  "title": "TASWIQ EXPO 2026 | Salon Marketing, Communication et Publicité",
+  "start": "2026-12-01",
+  "end": "2026-12-03",
+  "place": "Palais des Expositions des Pins Maritimes, Mohammadia, Alger, Algérie",
+  "pavilion": "Gourara",
+  "hours": "",
+  "organizer": "SARL OFFLINE",
+  "phones": [
+   "0770386302"
+  ],
+  "emails": [
+   "contact@taswiqexpo.com"
+  ],
+  "website": "https://taswiqexpo.com/",
+  "register_url": "",
+  "source_url": "https://www.algeriaexhibitions.dz/manifestations/taswik",
+  "sectors": "Communication, Marketing, Publicité & Médias, Événementiel, Congrès & Services aux Entreprises",
+  "audience": "professionnel",
+  "hostess_score": 5
+ },
+ {
+  "id": "clinvest-2026",
+  "name": "CLINVEST EXPO 2026",
+  "title": "CLINVEST EXPO – Salon de l’investissement et de l’entreprise en Algérie",
+  "start": "2026-12-03",
+  "end": "2026-12-05",
+  "place": "Palais des expositions, Pins Maritimes, Mohammadia- Alger",
+  "pavilion": "Ahaggar",
+  "hours": "09:00 – 17:00",
+  "organizer": "CREA",
+  "phones": [
+   "0560616740"
+  ],
+  "emails": [
+   "contact@clinvestexpo.com"
+  ],
+  "website": "https://clinvestexpo.com/",
+  "register_url": "https://clinvest.egc1988.com:9443/CLINVEST_WEB/FR/",
+  "source_url": "https://www.algeriaexhibitions.dz/manifestations/clinvest-2026",
+  "sectors": "Santé, Médical & Bien-être",
+  "audience": "professionnel",
+  "hostess_score": 5
+ },
+ {
+  "id": "siat-2026",
+  "name": "SIAT",
+  "title": "Salon International de l'Artisanat",
+  "start": "2026-12-03",
+  "end": "2026-12-07",
+  "place": "Palais des expositions, Pins Maritimes, Mohammadia- Alger",
+  "pavilion": "Concorde (central)",
+  "hours": "10:00",
+  "organizer": "Ministère du Tourisme et de l'Artisanat",
+  "phones": [
+   "021000800",
+   "021000826"
+  ],
+  "emails": [
+   "algercam16@hotmail.com"
+  ],
+  "website": "https://www.mta.gov.dz/salon-international-de-lartisanat-traditionnel-siat/?lang=fr",
+  "register_url": "",
+  "source_url": "https://www.algeriaexhibitions.dz/manifestations/siat-2026",
+  "sectors": "Artisanat, Arts & Industries Culturelles",
+  "audience": "mixte",
+  "hostess_score": 7
+ },
+ {
+  "id": "expofinances-2026",
+  "name": "EXPOFINANCES 2026",
+  "title": "Salon des Banques, Assurances et Produits Financiers",
+  "start": "2026-12-17",
+  "end": "2026-12-26",
+  "place": "Palais des expositions, Pins Maritimes, Mohammadia- Alger",
+  "pavilion": "Casbah",
+  "hours": "10:00",
+  "organizer": "Algeria Exhibitions",
+  "phones": [
+   "023790059",
+   "023795971"
+  ],
+  "emails": [
+   "event@algeriaexhibitions.dz"
+  ],
+  "website": "https://www.algeriaexhibitions.dz/event/expofinances-2026/",
+  "register_url": "",
+  "source_url": "https://www.algeriaexhibitions.dz/manifestations/expofinances-2026",
+  "sectors": "Finance, Banque, Assurance & Services",
+  "audience": "professionnel",
+  "hostess_score": 4
+ },
+ {
+  "id": "fpa-2026",
+  "name": "FPA 2026",
+  "title": "Foire de la Production Algérienne 2026 | FPA — 17-26 Déc.",
+  "start": "2026-12-17",
+  "end": "2026-12-26",
+  "place": "Palais des expositions, Pins Maritimes, Mohammadia- Alger",
+  "pavilion": "Plusieurs pavillons (8)",
+  "hours": "10:00",
+  "organizer": "Algeria Exhibitions",
+  "phones": [
+   "023790059",
+   "023795971"
+  ],
+  "emails": [],
+  "website": "https://www.algeriaexhibitions.dz/event/fpa-2026/",
+  "register_url": "",
+  "source_url": "https://www.algeriaexhibitions.dz/manifestations/fpa-2026",
+  "sectors": "Industrie, Production & Manufactures, Commerce, Distribution & Grande Consommation, Finance, Banque, Assurance & Services",
+  "audience": "mixte",
+  "hostess_score": 6
  }
 ]
