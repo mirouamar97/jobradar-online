@@ -246,8 +246,6 @@ const L10N = {
   en: { open: "Open in app", miss: "App did not open? Open the original ad" },
 };
 const T = L10N[(navigator.language || "ar").slice(0, 2)] || L10N.ar;
-/* Seuls http(s) sont ouverts depuis une carte : une URL scrapee « javascript: » ou « data: » est ignoree. */
-const safeUrl = u => /^https?:\/\//i.test(String(u || "")) ? String(u) : "";
 function appLink(uid){ return UID_RE.test(String(uid || "")) ? `jobradar://offer/${uid}` : ""; }
 
 function offerHtml(o, i){

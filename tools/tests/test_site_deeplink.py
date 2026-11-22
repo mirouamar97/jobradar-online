@@ -43,4 +43,5 @@ def test_only_http_urls_reach_offers_json():
 
 def test_index_refuses_non_http_ad_links():
     html = (ROOT / "index.html").read_text(encoding="utf8")
-    assert "const safeUrl" in html and "if (safeUrl(o.url))" in html
+    assert html.count("safeUrl =") + html.count("function safeUrl") == 1      # une seule definition (sinon SyntaxError)
+    assert "if (safeUrl(o.url))" in html
