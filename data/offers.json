@@ -1405,6 +1405,24 @@
   "senior": false
  },
  {
+  "uid": "6acf7f05bb05b6566250d73f0c631f0b71e42727",
+  "found_at": "2026-11-22T09:06",
+  "source": "Emploitic",
+  "platform": "web",
+  "score": 3,
+  "url": "https://emploitic.com/entreprises/sarl-mosta-glaces/offres-d-emploi/industries/superviseur-commercial-wxrp1",
+  "phones": "",
+  "emails": "",
+  "text": "Superviseur Commercial SARL MOSTA GLACES Alger, Algérie (Hybride) Aujourd'hui Confirmé / Expérimenté (3 À 5 Ans) Missions Prospection et fidélisation de la clientèle. Pré-vente et suivi des commandes. Développement du portefeuille clients sur la zone attribuée. Participation à l’atteinte des objectifs commerciaux fixés par la socié",
+  "status": "new",
+  "salary": "",
+  "whatsapp_url": "",
+  "gig_badge": "",
+  "event": false,
+  "years_required": 3,
+  "senior": true
+ },
+ {
   "uid": "6c67729ebaab95293c4b98d1832e386d152b4fb5",
   "found_at": "2026-11-21T12:21",
   "source": "SFN Emploi (Telegram)",
