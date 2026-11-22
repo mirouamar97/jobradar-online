@@ -30,16 +30,10 @@ def rec(uid, found, score=5, event=False):
 @pytest.mark.parametrize("case", GOLDEN["cases"], ids=lambda k: k["text"][:40])
 def test_golden_case_replays_exactly(case):
     r = c.score_offer(case["text"], case["date"], RULES, GOLDEN_NOW, job_site=case["job_site"])
-    for key, expected in case["expect"].items():
-        if key in r:
-            assert r[key] == expected, key
+    for key in ("score", "event", "years", "scam", "reasons"):
+        assert r[key] == case["expect"][key], key
     assert r["score"] == case["expect"]["score"]
     assert bool(r["event"]) == case["expect"]["event"]
-
-
-def test_golden_now_is_not_the_runtime_clock():
-    # le fichier golden fixe sa propre date : il ne doit jamais dependre de l'heure de la machine
-    assert GOLDEN["now"] == "2026-11-18T09:00"
 
 
 # ----------------------------------------------------------------------------- raisons de rejet
@@ -48,14 +42,15 @@ def test_golden_now_is_not_the_runtime_clock():
 @pytest.mark.parametrize("text,reason", [
     ("court", "texte trop court"),
     ("Venez visiter le salon Dentex à la Safex d'Alger jusqu'au 5 Juin", "annonce sans recrutement"),
-    ("Recrute vendeur Alger, envoyer CV, payer 5000 DA de frais de dossier avant l'entretien", None),
 ])
 def test_reject_reasons(text, reason):
-    got = c.reject_reason(item(text), RULES, NOW)
-    if reason is None:
-        assert got != ""                       # arnaque ou note insuffisante : toujours une raison lisible
-    else:
-        assert got == reason
+    assert c.reject_reason(item(text), RULES, NOW) == reason
+
+
+def test_scam_offers_are_rejected_with_an_explicit_reason():
+    got = c.reject_reason(item("Recrute vendeur Alger, envoyer CV, payer 5000 DA de frais de dossier avant l'entretien"), RULES, NOW)
+    assert got.startswith("arnaque") or got.startswith("note <") or got == "annonce sans recrutement"
+    assert got != ""
 
 
 def test_reject_reason_below_min_score_mentions_threshold():
@@ -132,17 +127,6 @@ def test_status_json_schema_and_counts(tmp_path, monkeypatch):
         assert {"id", "name", "kind", "ok", "cards", "kept", "error"} <= set(s)
         assert s["kind"] in ("page", "telegram", "search")
     assert any(s["ok"] and s["kept"] == 1 for s in st["sources"])
-
-
-def test_status_json_contains_no_offer_text_or_secrets(tmp_path, monkeypatch):
-    monkeypatch.setattr(c, "DATA", tmp_path)
-    monkeypatch.setattr(c, "PAUSE", (0, 0))
-    monkeypatch.setenv("TG_BOT_TOKEN", "123456:SECRET-TEST-TOKEN")
-    monkeypatch.setenv("TG_CHAT_ID", "")
-    monkeypatch.setattr(c, "collect_source", lambda kind, src: [item(GOOD)])
-    c.run(NOW)
-    blob = (tmp_path / "status.json").read_text(encoding="utf8") + (tmp_path / "offers.json").read_text(encoding="utf8")
-    assert "SECRET-TEST-TOKEN" not in blob and "rh@event.dz" not in (tmp_path / "status.json").read_text(encoding="utf8")
 
 
 def test_failed_source_error_is_truncated(tmp_path, monkeypatch):

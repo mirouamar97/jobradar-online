@@ -326,19 +326,50 @@ def test_discover_finds_candidates_from_text_mentions_on_real_shaped_pages():
     sources = {"pages": [], "searches": [], "telegram": [{"id": "tg_jobs_dz7", "name": "J", "channel": "Jobs_dz7"}]}
     cands: dict = {}
     stats = d.discover(NOW, fetch, RULES, sources, [], cands)
-    assert stats["discovered"] >= 2 and set(cands) >= {"tg:alger" "hostessjobs", "tg:eventstaffdz"}
+    assert stats["discovered"] >= 2 and {"tg:algerhostessjobs", "tg:eventstaffdz"} <= set(cands)
+    # sans evaluation, la file contient exactement les deux noms vus en texte brut (le canal connu n'est jamais candidat)
+    only = d.discover(NOW, FakeFetch({"Jobs_dz7": fixture("tg_real_shape_no_links.html")}), RULES, sources, [], {}, max_channels=0)
+    assert only["discovered"] == 2
     assert "tg:jobs_dz7" not in cands
 
 
 def test_seed_pages_are_read_a_few_pages_deep():
-    older = fixture("tg_real_shape_no_links.html").replace("@AlgerHostessJobs", "@OlderPageChannel")
+    older = fixture("tg_real_shape_no_links.html").replace("@AlgerHostessJobs", "@OlderPageChannel").replace("data-before=\"2\"", "data-before=\"1\"").replace("Jobs_dz7/2\"", "Jobs_dz7/1\"")
     fetch = PagedFetch({"Jobs_dz7": fixture("tg_real_shape_no_links.html")}, {"Jobs_dz7": older})
     sources = {"pages": [], "searches": [], "telegram": [{"id": "tg_jobs_dz7", "name": "J", "channel": "Jobs_dz7"}]}
-    cands: dict = {}
-    d.discover(NOW, fetch, RULES, sources, [], cands, max_channels=0)
+    stats = d.discover(NOW, fetch, RULES, sources, [], {}, max_channels=0)
     assert "https://t.me/s/Jobs_dz7?before=2" in fetch.calls
-    assert d.discover(NOW, PagedFetch({"Jobs_dz7": fixture("tg_real_shape_no_links.html")}, {"Jobs_dz7": older}),
-                      RULES, sources, [], {}, max_channels=0)["discovered"] >= 3
+    assert stats["seed_pages"] == 2
+    assert stats["discovered"] == 3          # AlgerHostessJobs, EventStaffDz (page 1) + OlderPageChannel (page 2)
+
+
+def test_seed_pagination_stops_when_the_page_does_not_move_back():
+    page = fixture("tg_real_shape_no_links.html")          # plus ancien id = 2 : l'ancienne page renvoie le meme id
+    fetch = PagedFetch({"Jobs_dz7": page}, {"Jobs_dz7": page})
+    sources = {"pages": [], "searches": [], "telegram": [{"id": "tg_jobs_dz7", "name": "J", "channel": "Jobs_dz7"}]}
+    stats = d.discover(NOW, fetch, RULES, sources, [], {}, max_channels=0)
+    assert stats["seed_pages"] == 2 and len([c for c in fetch.calls if "before=" in c]) == 1
+
+
+def test_css_and_script_text_is_not_mistaken_for_mentions():
+    html = ("<style>@media screen{} @keyframes spin{} @import url(x);</style><script>var a='@Foo_bar12';</script>"
+            "<div class='tgme_widget_message_text'>Contact @RealRecruiterDz pour le stand</div>")
+    assert d.extract_mentions(html) == ["RealRecruiterDz"]
+
+
+def test_global_deadline_stops_cleanly():
+    fetch = FakeFetch({"Jobs_dz7": fixture("tg_real_shape_no_links.html")})
+    sources = {"pages": [], "searches": [], "telegram": [{"id": "tg_jobs_dz7", "name": "J", "channel": "Jobs_dz7"}]}
+    cands: dict = {}
+    stats = d.discover(NOW, fetch, RULES, sources, [], cands, expired=lambda: True)
+    assert stats["seed_pages"] == 0 and stats["evaluated"] == 0 and fetch.calls == []
+
+
+def test_names_without_public_preview_are_never_published(tmp_path):
+    cands = {"tg:someuser": dict(d.make_candidate("SomeUser", NOW), status="rejected", posts=0),
+             "tg:realchan": dict(d.make_candidate("RealChan", NOW), status="rejected", posts=30, relevance=0.1)}
+    out = d.dump_candidates(cands, NOW)["candidates"]
+    assert [c["name"] for c in out] == ["RealChan"]
 
 
 def test_manual_seed_names_are_queued_and_invalid_ones_dropped():
