@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-21T21:01",
+ "generated_at": "2026-11-22T01:18",
  "offers": 107,
  "events": 16,
  "sources": [
@@ -174,8 +174,9 @@
    "kept": 0,
    "error": "",
    "rejected": {
-    "note < 3": 18,
-    "annonce sans recrutement": 2
+    "note < 3": 17,
+    "annonce sans recrutement": 2,
+    "ancien (7 j)": 1
    }
   },
   {
