@@ -48,9 +48,8 @@ def test_reject_reasons(text, reason):
 
 
 def test_scam_offers_are_rejected_with_an_explicit_reason():
-    got = c.reject_reason(item("Recrute vendeur Alger, envoyer CV, payer 5000 DA de frais de dossier avant l'entretien"), RULES, NOW)
-    assert got.startswith("arnaque") or got.startswith("note <") or got == "annonce sans recrutement"
-    assert got != ""
+    text = "Agence recrute 5 animateurs pour le salon SAFEX Alger, payer 5000 DA de frais de dossier avant l'entretien"
+    assert c.reject_reason(item(text), RULES, NOW) == "arnaque: frais de dossier"
 
 
 def test_reject_reason_below_min_score_mentions_threshold():
