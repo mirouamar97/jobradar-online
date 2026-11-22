@@ -289,3 +289,71 @@ def test_http_get_caps_size_and_does_not_follow_redirects():
     assert d.http_get("https://t.me/s/EventJobsDz", th, Session(Resp(302))) is None
     with pytest.raises(d.FetchError):
         d.http_get("https://t.me/s/EventJobsDz", th, Session(Resp(503)))
+
+
+# ----------------------------------------------------------------------------- regression : candidates.json vide
+# Cause : les vraies pages t.me/s/ ne contiennent que des liens vers elles-memes (pas de t.me/<autre canal>), donc la
+# decouverte ne voyait jamais rien. On lit aussi les mentions « @nom » du texte, quelques pages plus anciennes, et un
+# fichier de graines facultatif.
+
+
+def test_mentions_in_plain_text_are_found_and_filtered():
+    names = d.extract_mentions(fixture("tg_real_shape_no_links.html"))
+    assert names == ["AlgerHostessJobs", "Jobs_dz7", "EventStaffDz"]   # ni e-mail, ni bot, ni nom trop court
+
+
+def test_real_shaped_page_without_links_yields_no_link_names():
+    assert d.extract_channel_names(fixture("tg_real_shape_no_links.html")) == ["Jobs_dz7"]
+
+
+class PagedFetch(FakeFetch):
+    """Comme FakeFetch, mais sert une page plus ancienne pour ?before=."""
+
+    def __init__(self, pages, older):
+        super().__init__(pages)
+        self.older = older
+
+    def __call__(self, url):
+        if "?before=" in url:
+            self.calls.append(url)
+            return self.older.get(url.removeprefix("https://t.me/s/").split("?")[0])
+        return super().__call__(url)
+
+
+def test_discover_finds_candidates_from_text_mentions_on_real_shaped_pages():
+    fetch = FakeFetch({"Jobs_dz7": fixture("tg_real_shape_no_links.html"), "AlgerHostessJobs": fixture("tg_relevant.html"),
+                       "EventStaffDz": fixture("tg_irrelevant.html")})
+    sources = {"pages": [], "searches": [], "telegram": [{"id": "tg_jobs_dz7", "name": "J", "channel": "Jobs_dz7"}]}
+    cands: dict = {}
+    stats = d.discover(NOW, fetch, RULES, sources, [], cands)
+    assert stats["discovered"] >= 2 and set(cands) >= {"tg:alger" "hostessjobs", "tg:eventstaffdz"}
+    assert "tg:jobs_dz7" not in cands
+
+
+def test_seed_pages_are_read_a_few_pages_deep():
+    older = fixture("tg_real_shape_no_links.html").replace("@AlgerHostessJobs", "@OlderPageChannel")
+    fetch = PagedFetch({"Jobs_dz7": fixture("tg_real_shape_no_links.html")}, {"Jobs_dz7": older})
+    sources = {"pages": [], "searches": [], "telegram": [{"id": "tg_jobs_dz7", "name": "J", "channel": "Jobs_dz7"}]}
+    cands: dict = {}
+    d.discover(NOW, fetch, RULES, sources, [], cands, max_channels=0)
+    assert "https://t.me/s/Jobs_dz7?before=2" in fetch.calls
+    assert d.discover(NOW, PagedFetch({"Jobs_dz7": fixture("tg_real_shape_no_links.html")}, {"Jobs_dz7": older}),
+                      RULES, sources, [], {}, max_channels=0)["discovered"] >= 3
+
+
+def test_manual_seed_names_are_queued_and_invalid_ones_dropped():
+    fetch = FakeFetch({"ManualSeedDz": fixture("tg_relevant.html")})
+    sources = {"pages": [], "searches": [], "telegram": []}
+    cands: dict = {}
+    stats = d.discover(NOW, fetch, RULES, sources, [], cands, extra_seeds=["ManualSeedDz", "bad name;rm", "x"])
+    assert "tg:manualseeddz" in cands and stats["discovered"] >= 1
+    assert not any("bad" in k or k == "tg:x" for k in cands)
+
+
+def test_load_seeds_file(tmp_path):
+    p = tmp_path / "seeds.json"
+    assert d.load_seeds(p) == []                                           # absent : liste vide
+    p.write_text(json.dumps({"telegram": ["GoodChannelDz", "bad name", 5, "GoodChannelDz"]}), encoding="utf8")
+    assert d.load_seeds(p) == ["GoodChannelDz"]
+    p.write_text("{not json", encoding="utf8")
+    assert d.load_seeds(p) == []

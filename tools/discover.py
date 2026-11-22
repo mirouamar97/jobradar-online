@@ -17,6 +17,7 @@ sans suivre de redirection, avec une taille de reponse plafonnee.
 """
 from __future__ import annotations
 
+import html as htmllib
 import json
 import logging
 import os
@@ -45,7 +46,8 @@ TIMEOUT = 20                 # secondes
 MAX_BYTES = 1_500_000        # taille maximale lue par reponse
 MAX_CHANNELS = 25            # canaux evalues par passage
 MAX_POSTS = 30               # messages evalues par canal
-MAX_SEED_PAGES = 15          # pages de canaux connus lues pour trouver des mentions
+MAX_SEED_PAGES = 15          # canaux connus lus pour trouver des mentions
+SEED_EXTRA_PAGES = 2         # pages plus anciennes lues en plus de la derniere, par canal connu
 MAX_CANDIDATES = 500         # taille maximale de data/candidates.json
 EVAL_MAX_AGE_DAYS = 30       # fenetre d'evaluation (le collecteur, lui, ne garde que 7 jours)
 
@@ -83,6 +85,49 @@ def extract_channel_names(text: str) -> list[str]:
         if valid_name(name) and name.lower() not in seen:
             seen.add(name.lower())
             out.append(name)
+    return out
+
+
+# Mentions « @nom » dans le texte des messages. Pas d'e-mail (caractere avant @), pas de nom trop court ou de bot.
+_MENTION_RE = re.compile(r"(?<![A-Za-z0-9_./@+\-])@([A-Za-z0-9_]{5,32})(?![A-Za-z0-9_@])")
+_TAG_RE = re.compile(r"<[^>]*>")
+
+
+def extract_mentions(html: str) -> list[str]:
+    """Noms de canaux cites en texte brut (« @nom ») dans une page d'apercu, sans doublon (casse ignoree)."""
+    text = htmllib.unescape(_TAG_RE.sub(" ", html or ""))
+    out: list[str] = []
+    seen: set[str] = set()
+    for m in _MENTION_RE.finditer(text):
+        name = m.group(1)
+        if valid_name(name) and name.lower() not in seen:
+            seen.add(name.lower())
+            out.append(name)
+    return out
+
+
+def names_in_page(html: str) -> list[str]:
+    """Liens t.me puis mentions @nom d'une page d'apercu (les vraies pages ne lient presque jamais d'autres canaux)."""
+    seen: set[str] = set()
+    out: list[str] = []
+    for n in extract_channel_names(html) + extract_mentions(html):
+        if n.lower() not in seen:
+            seen.add(n.lower())
+            out.append(n)
+    return out
+
+
+def load_seeds(path: Path) -> list[str]:
+    """Graines facultatives fournies par le proprietaire (tools/discovery_seeds.json) : {"telegram": ["nom", ...]}."""
+    try:
+        raw = json.loads(path.read_text(encoding="utf8"))
+    except (OSError, json.JSONDecodeError):
+        return []
+    names = raw.get("telegram", []) if isinstance(raw, dict) else []
+    out: list[str] = []
+    for n in names if isinstance(names, list) else []:
+        if isinstance(n, str) and valid_name(n) and n.lower() not in {o.lower() for o in out}:
+            out.append(n)
     return out
 
 
@@ -323,22 +368,29 @@ def names_from_offers(offers: list) -> list[str]:
 
 
 def discover(now: datetime, fetch: Fetcher, rules: dict, sources: dict, offers: list,
-             cands: dict[str, dict], max_channels: int = MAX_CHANNELS) -> dict:
+             cands: dict[str, dict], max_channels: int = MAX_CHANNELS, extra_seeds: Iterable[str] = ()) -> dict:
     """Coeur testable (aucun acces disque). Modifie [cands] ; renvoie des statistiques."""
     known = {n.lower() for n in known_channels(sources)}
     stats = {"seed_pages": 0, "discovered": 0, "evaluated": 0, "errors": 0, "promoted": 0, "rejected": 0}
-    found: list[str] = names_from_offers(offers)
+    found: list[str] = names_from_offers(offers) + [n for n in extra_seeds if valid_name(n)]
 
     seeds = known_channels(sources) + [c["name"] for c in cands.values() if c["status"] == "promoted"]
     for name in seeds[:MAX_SEED_PAGES]:
-        try:
-            html = fetch(preview_url(name))
-        except FetchError as e:
-            log.warning("graine %s : %s", name, e)
-            stats["errors"] += 1
-            continue
-        stats["seed_pages"] += 1
-        found += extract_channel_names(html or "")
+        before = None
+        for _ in range(1 + SEED_EXTRA_PAGES):
+            try:
+                html = fetch(preview_url(name, before))
+            except FetchError as e:
+                log.warning("graine %s : %s", name, e)
+                stats["errors"] += 1
+                break
+            if html is None:
+                break
+            stats["seed_pages"] += 1
+            found += names_in_page(html)
+            before = oldest_post_id(html)
+            if not before or before <= 1:
+                break
 
     def is_new(n: str) -> bool:
         return n.lower() not in known and candidate_id(n) not in cands
@@ -348,6 +400,9 @@ def discover(now: datetime, fetch: Fetcher, rules: dict, sources: dict, offers: 
         if is_new(n) and n.lower() not in {q.lower() for q in queue}:
             queue.append(n)
     stats["discovered"] = len(queue)
+    if not queue and stats["seed_pages"]:
+        log.warning("aucune mention nouvelle dans %d pages lues : ajoutez des graines dans tools/discovery_seeds.json",
+                    stats["seed_pages"])
     # Puis les candidats a re-evaluer, le plus ancien controle d'abord.
     retry = sorted((c for c in cands.values() if should_evaluate(c, now) and c["name"].lower() not in known),
                    key=lambda c: c["last_checked"])
@@ -375,7 +430,7 @@ def discover(now: datetime, fetch: Fetcher, rules: dict, sources: dict, offers: 
             stats[ev.status] += 1
         log.info("%s : %d messages, pertinence %.2f -> %s", name, ev.posts, ev.relevance, ev.status)
         for page in ev.pages:           # mentions trouvees chez un candidat : evaluees dans ce passage si la limite le permet
-            for n in extract_channel_names(page):
+            for n in names_in_page(page):
                 if is_new(n) and n.lower() not in done and n.lower() not in {q.lower() for q in queue}:
                     queue.insert(0, n)
                     stats["discovered"] += 1
@@ -417,7 +472,7 @@ def run(argv: list[str] | None = None) -> int:
     session = requests.Session()
     throttle = Throttle()
     stats = discover(now, lambda url: http_get(url, throttle, session), rules, sources, offers, cands,
-                     max(0, min(a.max_channels, MAX_CHANNELS)))
+                     max(0, min(a.max_channels, MAX_CHANNELS)), load_seeds(HERE / "discovery_seeds.json"))
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(dump_candidates(cands, now), ensure_ascii=False, indent=1) + "\n", encoding="utf8")
     log.info("bilan : %s", stats)
