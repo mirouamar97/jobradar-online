@@ -29,3 +29,12 @@ python -m pytest -q tools/tests
 
 ## الترخيص
 MIT
+
+## Identifiants d'offres et lien profond vers l'appli (sens unique)
+- **Identifiant** : `uid` de chaque entree de `data/offers.json` = SHA-1 hexadecimal (40 caracteres `[0-9a-f]`) calcule par
+  `tools/collect.py:uid_of` : sur l'URL de l'annonce, ou, si l'URL est vide / racine de canal (`t.me`, `emploitic.com`),
+  sur le texte normalise (300 premiers caracteres). Stable d'un passage a l'autre ; il change si l'URL ou le texte change.
+  Les salons utilisent leur `id` (slug) dans `data/salons.json` (pas de lien profond pour l'instant).
+- **Lien** : chaque carte propose « Ouvrir dans l'appli » = `jobradar://offer/<uid>` (valide par `^[0-9a-f]{40}$` avant d'etre ecrit).
+  Si l'appli n'est pas installee, apres 1,5 s un lien « annonce d'origine » apparait (repli web normal).
+- **Sens unique** : le site ne recoit rien de l'appli ; aucun cookie, compte ni donnee personnelle.
