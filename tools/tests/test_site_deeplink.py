@@ -25,3 +25,22 @@ def test_site_sends_nothing_to_the_app():
     html = (ROOT / "index.html").read_text(encoding="utf8")
     assert "sendBeacon" not in html and "XMLHttpRequest" not in html
     assert len(re.findall(r"\bfetch\(", html)) == len(re.findall(r'fetch\("data/', html))  # lectures de data/ seulement
+
+
+def test_only_http_urls_reach_offers_json():
+    import sys
+    sys.path.insert(0, str(ROOT / "tools"))
+    import collect as c
+    from datetime import datetime
+    rules = json.loads((c.HERE / "rules.json").read_text(encoding="utf8"))
+    now = datetime(2026, 11, 10, 12, 0, tzinfo=c.ALGIERS)
+    text = "Agence recrute 5 animateurs pour le salon SAFEX Alger, envoyez CV rh@event.dz"
+    bad = c.build_record({"text": text, "url": "javascript:alert(1)", "platform": "web", "date": ""}, "S", rules, now)
+    good = c.build_record({"text": text, "url": "https://x.dz/1", "platform": "web", "date": ""}, "S", rules, now)
+    assert bad is not None and bad["url"] == ""
+    assert good["url"] == "https://x.dz/1"
+
+
+def test_index_refuses_non_http_ad_links():
+    html = (ROOT / "index.html").read_text(encoding="utf8")
+    assert "const safeUrl" in html and "if (safeUrl(o.url))" in html

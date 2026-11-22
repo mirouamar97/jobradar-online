@@ -246,6 +246,8 @@ const L10N = {
   en: { open: "Open in app", miss: "App did not open? Open the original ad" },
 };
 const T = L10N[(navigator.language || "ar").slice(0, 2)] || L10N.ar;
+/* Seuls http(s) sont ouverts depuis une carte : une URL scrapee « javascript: » ou « data: » est ignoree. */
+const safeUrl = u => /^https?:\/\//i.test(String(u || "")) ? String(u) : "";
 function appLink(uid){ return UID_RE.test(String(uid || "")) ? `jobradar://offer/${uid}` : ""; }
 
 function offerHtml(o, i){
@@ -255,9 +257,9 @@ function offerHtml(o, i){
   if (o.event) pills.push(`<span class="pill event">فعاليات وتنشيط</span>`);
   if (o.senior) pills.push(`<span class="pill muted">خبرة ${+o.years_required || 3}+ سنوات</span>`);
   const acts = [];
-  if (o.url) acts.push(`<a class="btn filled" href="${esc(o.url)}" target="_blank" rel="noopener nofollow">فتح الإعلان</a>`);
+  if (safeUrl(o.url)) acts.push(`<a class="btn filled" href="${esc(o.url)}" target="_blank" rel="noopener nofollow">فتح الإعلان</a>`);
   const deep = appLink(o.uid);
-  if (deep) acts.push(`<a class="btn app" href="${deep}" data-app="1" data-fallback="${esc(o.url || "")}">${esc(T.open)}</a>`);
+  if (deep) acts.push(`<a class="btn app" href="${deep}" data-app="1" data-fallback="${esc(safeUrl(o.url))}">${esc(T.open)}</a>`);
   if (o.whatsapp_url) acts.push(`<a class="btn wa" href="${esc(o.whatsapp_url)}" target="_blank" rel="noopener nofollow">واتساب</a>`);
   if (phones[0]) acts.push(`<a class="btn" href="tel:${esc(phones[0].replace(/\s/g, ""))}">اتصال</a>`);
   if (mails[0]) acts.push(`<a class="btn" href="mailto:${esc(mails[0])}">بريد</a>`);
