@@ -93,11 +93,12 @@ header.top p{margin:0;font:400 13px/20px var(--font-sans);color:var(--on-surface
 .text.clamp{display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
 .more{align-self:flex-start;font:500 14px/20px var(--font-sans);background:none;border:0;color:var(--primary);cursor:pointer;padding:0}
 .actions{display:flex;flex-wrap:wrap;gap:var(--space-s)}
-.btn{display:inline-flex;align-items:center;gap:6px;font:500 14px/20px var(--font-sans);text-decoration:none;border-radius:var(--radius-full);padding:8px 16px;min-height:40px;border:1px solid var(--outline);color:var(--on-surface);background:transparent;cursor:pointer}
+.btn{display:inline-flex;align-items:center;gap:6px;font:500 14px/20px var(--font-sans);text-decoration:none;border-radius:var(--radius-full);padding:8px 16px;min-height:44px;border:1px solid var(--outline);color:var(--on-surface);background:transparent;cursor:pointer}
 .btn.filled{background:var(--primary);color:var(--on-primary);border-color:transparent}
 .btn.wa{border-color:var(--whatsapp);color:var(--whatsapp)}
 .btn.app{border-color:var(--primary);color:var(--primary)}
-.miss{flex-basis:100%;font:400 13px/20px var(--font-sans);color:var(--on-surface-variant)}
+.miss-slot{flex-basis:100%}
+.miss{display:flex;align-items:center;min-height:44px;font:400 13px/20px var(--font-sans);color:var(--on-surface-variant)}
 
 /* ScoreBadge */
 .score{position:relative;width:48px;height:48px;flex:none}
@@ -245,7 +246,9 @@ const L10N = {
   fr: { open: "Ouvrir dans l'appli", miss: "L'appli ne s'est pas ouverte ? Ouvrir l'annonce d'origine" },
   en: { open: "Open in app", miss: "App did not open? Open the original ad" },
 };
-const T = L10N[(navigator.language || "ar").slice(0, 2)] || L10N.ar;
+const LANG = L10N[(navigator.language || "ar").slice(0, 2)] ? (navigator.language || "ar").slice(0, 2) : "ar";
+const T = L10N[LANG];
+const IS_ANDROID = /Android/i.test(navigator.userAgent || "");   // jobradar:// n'existe que sur Android
 function appLink(uid){ return UID_RE.test(String(uid || "")) ? `jobradar://offer/${uid}` : ""; }
 
 function offerHtml(o, i){
@@ -257,7 +260,7 @@ function offerHtml(o, i){
   const acts = [];
   if (safeUrl(o.url)) acts.push(`<a class="btn filled" href="${esc(o.url)}" target="_blank" rel="noopener nofollow">فتح الإعلان</a>`);
   const deep = appLink(o.uid);
-  if (deep) acts.push(`<a class="btn app" href="${deep}" data-app="1" data-fallback="${esc(safeUrl(o.url))}">${esc(T.open)}</a>`);
+  if (deep && IS_ANDROID) acts.push(`<a class="btn app" href="${deep}" lang="${LANG}" dir="auto" data-app="1" data-fallback="${esc(safeUrl(o.url))}">${esc(T.open)}</a><span class="miss-slot" role="status"></span>`);
   if (o.whatsapp_url) acts.push(`<a class="btn wa" href="${esc(o.whatsapp_url)}" target="_blank" rel="noopener nofollow">واتساب</a>`);
   if (phones[0]) acts.push(`<a class="btn" href="tel:${esc(phones[0].replace(/\s/g, ""))}">اتصال</a>`);
   if (mails[0]) acts.push(`<a class="btn" href="mailto:${esc(mails[0])}">بريد</a>`);
@@ -368,13 +371,20 @@ document.addEventListener("click", e => {
   }
   const app = e.target.closest("a[data-app]");
   if (app) {
-    // Si l'appli n'est pas installee la page reste visible : on propose alors l'annonce d'origine (repli web normal).
+    // Si l'appli s'ouvre, la page passe en arriere-plan (visibilitychange / pagehide / blur) : pas de lien de repli.
+    // Sinon, apres 1,5 s, on annonce (zone role=status) l'annonce d'origine (repli web normal).
     const fb = app.dataset.fallback;
+    let left = false;
+    const mark = () => { left = true; };
+    ["pagehide", "blur", "visibilitychange"].forEach(ev => window.addEventListener(ev, mark, { once: true }));
     setTimeout(() => {
-      if (document.visibilityState !== "visible" || !/^https?:\/\//.test(fb) || app.nextElementSibling?.classList.contains("miss")) return;
+      ["pagehide", "blur", "visibilitychange"].forEach(ev => window.removeEventListener(ev, mark));
+      const slot = app.nextElementSibling;
+      if (left || document.visibilityState !== "visible" || !/^https?:\/\//.test(fb) || !slot || slot.firstChild) return;
       const a = document.createElement("a");
       a.className = "miss"; a.href = fb; a.target = "_blank"; a.rel = "noopener nofollow"; a.textContent = T.miss;
-      app.after(a);
+      a.lang = LANG; a.dir = "auto";
+      slot.appendChild(a);
     }, 1500);
     return;
   }
