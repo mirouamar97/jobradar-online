@@ -400,6 +400,8 @@ def build_record(item: dict, source_name: str, rules: dict, now: datetime) -> di
     r = score_offer(text, item.get("date", ""), rules, now, bool(item.get("job_site")))
     if r["score"] < rules["min_score"] or r["scam"]:
         return None
+    if item.get("url") and not str(item["url"]).lower().startswith(("http://", "https://")):
+        item = dict(item, url="")     # jamais de javascript:, data: ... dans offers.json (affiche par le site)
     phones = mobiles(text)
     return {
         "uid": uid_of(item), "found_at": now.strftime("%Y-%m-%dT%H:%M"), "source": source_name, "platform": item["platform"],
