@@ -1,28 +1,5 @@
 [
  {
-  "id": "woodtech-2026",
-  "name": "WOODTECH 2026",
-  "title": "Salon International du Bois, Menuiserie, Équipements et Technologies",
-  "start": "2026-11-21",
-  "end": "2026-11-24",
-  "place": "Palais des expositions, Pins Maritimes, Mohammadia- Alger",
-  "pavilion": "Plusieurs pavillons (2)",
-  "hours": "10:00",
-  "organizer": "SARL CGCOM EVENT",
-  "phones": [
-   "0560188651"
-  ],
-  "emails": [
-   "info@algeriawood.com"
-  ],
-  "website": "https://algeriawood.com/",
-  "register_url": "https://algeriawood.com/preinscription.php",
-  "source_url": "https://www.algeriaexhibitions.dz/manifestations/woodtech-2026",
-  "sectors": "Industrie, Production & Manufactures, Bois, Ameublement & Décoration",
-  "audience": "mixte",
-  "hostess_score": 7
- },
- {
   "id": "algest-2026",
   "name": "ALGEST 2026",
   "title": "Salon de la Sous-Traitance Industrielle",
