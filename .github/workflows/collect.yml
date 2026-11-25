@@ -1,7 +1,7 @@
 name: Collect offers
 
 # Serveur gratuit du site ET de l'appli : lit des sources publiques, note les offres (priorite animation/evenementiel),
-# publie data/offers.json + data/status.json, et alerte Amar sur Telegram pour chaque nouvelle offre d'animation.
+# publie data/offers.json + data/status.json, et alerte Amar sur Telegram pour les nouvelles offres tres pertinentes.
 #  - toutes les heures : passage complet (sites + Telegram)
 #  - toutes les 15 min : passage rapide Telegram seulement (les canaux publient le plus vite)
 on:

@@ -428,13 +428,18 @@ def merge(old: list[dict], new: list[dict], now: datetime) -> list[dict]:
     return kept[:MAX_OFFERS]
 
 
-ALERT_MIN_SCORE = 6       # alerte seulement pour les offres evenementiel/animation assez bonnes
+ALERT_MIN_SCORE = 7       # les offres tres pertinentes sont signalees rapidement
+ALERT_EVENT_MIN_SCORE = 6 # seuil plus bas pour les evenements / animations
+ALERT_MAX_PER_RUN = 10
 ALERTED_KEEP = 1000
 
 
 def alert_text(o: dict) -> str:
-    """Message Telegram court pour une nouvelle offre evenementiel/animation."""
-    lines = [f"🎪 عرض أنيماسيون/فعاليات جديد — {o.get('score', 0)}/10", f"📍 {o.get('source', '')}", "",
+    """Message Telegram court pour une nouvelle offre pertinente."""
+    title = str(o.get("text", "")).splitlines()[0][:180]
+    category = "🎪 فعاليات / تنشيط" if o.get("event") else "💼 فرصة عمل مناسبة"
+    lines = [f"🔔 عرض جديد — {o.get('score', 0)}/10 · {category}", f"📌 {title}",
+             f"📍 {o.get('source', '')}", f"🕒 {o.get('found_at', '')}", "",
              str(o.get("text", ""))[:700]]
     if o.get("whatsapp_url"):
         lines += ["", "واتساب: " + o["whatsapp_url"]]
@@ -458,15 +463,19 @@ def send_telegram(token: str, chat_id: str, text: str) -> str:
         return type(e).__name__
 
 
-def alert_new_events(merged: list[dict], token: str, chat_id: str, sender=send_telegram) -> int:
-    """Alerte Telegram pour chaque offre evenementiel jamais signalee. Memoire : data/alerted.json (uids seulement)."""
+def alert_new_offers(merged: list[dict], token: str, chat_id: str, sender=send_telegram) -> int:
+    """Alerte Telegram pour chaque offre tres pertinente jamais signalee."""
     path = DATA / "alerted.json"
     seen = json.loads(path.read_text(encoding="utf8")) if path.exists() else []
     first_run = not path.exists()
-    fresh = [o for o in merged if o.get("event") and int(o.get("score", 0)) >= ALERT_MIN_SCORE and o["uid"] not in seen]
+    fresh = [o for o in merged
+             if not o.get("senior")
+             and (int(o.get("score", 0)) >= ALERT_MIN_SCORE
+                  or (o.get("event") and int(o.get("score", 0)) >= ALERT_EVENT_MIN_SCORE))
+             and o.get("uid") and o["uid"] not in seen]
     sent = 0
     if token and chat_id and not first_run:     # premier passage : on memorise sans inonder Amar d'anciennes offres
-        for o in fresh[:10]:
+        for o in fresh[:ALERT_MAX_PER_RUN]:
             if sender(token, chat_id, alert_text(o)) == "":
                 sent += 1
     seen = (seen + [o["uid"] for o in fresh])[-ALERTED_KEEP:]
@@ -539,7 +548,7 @@ def run(now: datetime | None = None, only: str = "", verbose: bool = False, kind
         ran = {e["id"] for e in status}
         status = [e for e in prev if e.get("id") not in ran] + status
     import os
-    n_alerts = alert_new_events(merged, os.environ.get("TG_BOT_TOKEN", ""), os.environ.get("TG_CHAT_ID", ""))
+    n_alerts = alert_new_offers(merged, os.environ.get("TG_BOT_TOKEN", ""), os.environ.get("TG_CHAT_ID", ""))
     if n_alerts:
         log.info("%d alerte(s) Telegram envoyee(s)", n_alerts)
     (DATA / "status.json").write_text(json.dumps({

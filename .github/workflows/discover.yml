@@ -9,7 +9,7 @@ name: Discover Telegram channels
 # Prealable pour la PR : Settings > Actions > General > « Allow GitHub Actions to create and approve pull requests ».
 on:
   schedule:
-    - cron: "41 5 * * 1"      # lundi 05:41 UTC
+    - cron: "41 */6 * * *"      # toutes les 6 heures
   workflow_dispatch:
 
 permissions:
