@@ -256,12 +256,13 @@ def test_event_alerts_are_sent_once_and_not_on_first_run(tmp_path, monkeypatch):
     ev = {"uid": "e1", "event": True, "score": 8, "text": "Recrute animatrices SAFEX", "source": "JOBS DZ", "phones": "0555 12 34 56"}
     plain = {"uid": "p1", "event": False, "score": 9, "text": "Recrute vendeur", "source": "X"}
     weak = {"uid": "w1", "event": True, "score": 3, "text": "animation ?", "source": "X"}
-    assert c.alert_new_events([ev], "t", "c", fake) == 0          # premier passage : memorise seulement
+    assert c.alert_new_offers([ev], "t", "c", fake) == 0          # premier passage : memorise seulement
     ev2 = dict(ev, uid="e2")
-    assert c.alert_new_events([ev, ev2, plain, weak], "t", "c", fake) == 1
-    assert len(sent) == 1 and "8/10" in sent[0] and "0555 12 34 56" in sent[0]
-    assert c.alert_new_events([ev, ev2], "t", "c", fake) == 0     # deja signale
-    assert c.alert_new_events([dict(ev, uid="e3")], "", "", fake) == 0   # sans secrets : rien n'est envoye
+    # main (0940e4b) : une offre non evenementielle tres bien notee est aussi signalee ; une offre faible ne l'est pas
+    assert c.alert_new_offers([ev, ev2, plain, weak], "t", "c", fake) == 2
+    assert len(sent) == 2 and "8/10" in sent[0] and "0555 12 34 56" in sent[0] and "9/10" in sent[1]
+    assert c.alert_new_offers([ev, ev2], "t", "c", fake) == 0     # deja signale
+    assert c.alert_new_offers([dict(ev, uid="e3")], "", "", fake) == 0   # sans secrets : rien n'est envoye
 
 
 def test_fast_run_keeps_status_of_other_sources(tmp_path, monkeypatch):
