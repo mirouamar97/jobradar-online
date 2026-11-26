@@ -64,6 +64,25 @@ SAMPLES: list[tuple[str, str, bool]] = [
     ("SAFEX salon : on recrute des hôtesses, merci d'envoyer photo et CV, Alger", "", False),
     ("Recrute assistante administrative débutante, Alger, urgent, 0550 12 12 12", "", False),
     ("Recruiting event hostesses for exhibition in Algiers, experience not required, send CV to hr@fair-dz.com", "", False),
+    # regles v2 : darija / arabizi, anciennete d'entreprise, fourchettes, villes, frais nies, penalites
+    ("Rah nkhdmou animatris f stand tae cosmetique f dar el beida, 2500 da, 0770 40 50 60", "", False),
+    ("khasna hotess l salon f safex had semana 0555 70 80 90", "", False),
+    ("salam khawti n7awes 3la khedma serveur wela vendeur f bab ezzouar", "", False),
+    ("راني نحوس على خدمة كمنشط في العاصمة", "", False),
+    ("Agence forte de 10 ans d'expérience recrute des hôtesses pour un congrès à El Harrach", "", False),
+    ("Nous recrutons un assistant événementiel à Mohammadia, entre 1 et 3 ans d'expérience", "", False),
+    ("Recrute hôtesses pour foire à Gué de Constantine, 2 jours", "", False),
+    ("On recrute serveurs à Bab El Oued, temps partiel soir, étudiants acceptés", "", False),
+    ("مطلوب منشطين لمعسكر شتوي للأطفال بالعاصمة", "", False),
+    ("مطلوب منشطين لمعرض في وهران، الجزائر", "", False),
+    ("محل في الحراش يوظف بائعة بدوام جزئي، بدون رسوم التسجيل، 0664 33 55 77", "", False),
+    ("Recrute hôtesses salon SAFEX, envoyez la copie de votre carte d'identité", "", False),
+    ("مطلوب موظفين للعمل من المنزل، ادفع مبلغ التسجيل", "", False),
+    ("Recrute téléconseiller en télétravail, société basée à Oran, débutant accepté", "", False),
+    ("مطلوب منشطين خبرة خمس سنوات بالعاصمة", "", False),
+    ("Medecin généraliste recherché pour clinique privée à Kouba 0562 33 44 55", "", False),
+    ("مطلوب سرفور في باب الزوار ٠٥٥٠١٢٣٤٥٦", "", False),
+    ("Société recrute inventoristes pour inventaire de 3 jours à Rouiba, 0554 55 77 99", "", False),
 ]
 
 
@@ -76,6 +95,7 @@ def build() -> dict:
             "text": text, "date": date, "job_site": job_site,
             "expect": {
                 "score": r["score"], "event": r["event"], "years": r["years"], "scam": r["scam"], "reasons": r["reasons"],
+                "keep": collect.is_kept(r, rules),
                 "mobiles": collect.mobiles(text), "emails": collect.emails(text),
                 "is_event": collect.is_event(text), "required_years": collect.required_years(text),
                 "normalized": collect.normalize(text),

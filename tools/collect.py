@@ -162,65 +162,124 @@ def age_days(date_text: str, now: datetime) -> float | None:
     return None
 
 
-# ----------------------------------------------------------------------------- evenementiel et experience
+# ----------------------------------------------------------------------------- evenementiel, experience, villes, arnaques
+# Toutes les listes de mots et tous les seuils sont dans rules.json (source unique : collecteur, extension et appli).
 
-EVENT_WORDS = [
-    "evenementiel", "evenementielle", "evenement", "evenements", "event", "events", "event manager", "animateur", "animatrice",
-    "animation", "hotesse", "hote d'accueil", "stand", "safex", "salon", "salons", "foire", "exposition", "degustation",
-    "regisseur", "regie", "wedding planner", "festival", "congres", "street marketing", "brand ambassador",
-    "ambassadeur de marque", "promoteur", "promotrice",
-    "منشط", "منشطة", "تنشيط", "فعاليات",
-    "ايفنت", "مضيفة", "مضيفات", "معرض", "معارض",
-]
-_EVENT_NEG = [re.compile(p) for p in (
-    r"stand[ -]?up", r"salon de (?:coiffure|the|beaute|esthetique|massage)",
-    r"anim\w* (?:de |du |des |d')?(?:contenu|digital|reseaux|social|community|3d|2d|motion|video|graphique|securite|hse)",
-    r"animation (?:3d|2d|motion|graphique|video|digitale)",
-    # gestion d'equipe / formation : pas de l'evenementiel (« animation de l'equipe de vente », « تنشيط الدورات »)
-    r"anim\w* (?:de |d'|du |des )?(?:l'|la |les )?(?:equipe|equipes|personnel|collaborateurs|reseau|formation|formations|reunion|reunions|atelier|ateliers)",
-    "تنشيط (?:ال)?(?:دورات|دوره|فريق|فرق|ورشات|ورشه|تكوين|اجتماعات)")]
+_RULES: dict | None = None
 
 
-def is_event(text: str) -> bool:
-    tn = normalize(text)
-    for neg in _EVENT_NEG:
-        tn = neg.sub(" ", tn)
-    return any(has_word(tn, w) for w in EVENT_WORDS)
+def default_rules() -> dict:
+    global _RULES
+    if _RULES is None:
+        _RULES = json.loads((HERE / "rules.json").read_text(encoding="utf8"))
+    return _RULES
 
 
-_RANGE = re.compile(r"(\d{1,2})\s*(?:a|-|to)\s*(\d{1,2})\s*(?:ans?|years?)")
-_CTX = [re.compile(p) for p in (
-    r"(?:plus de|minimum|au moins|min\.?|superieure? a)\s*(\d{1,2})\s*(?:ans?|years?)",
-    r"(\d{1,2})\s*\+?\s*(?:ans?|years?)\s*(?:d'|de )?(?:experience|exp)",
-    r"experience\s*(?:de |d'au moins |minimum |professionnelle de )?(\d{1,2})\s*(?:ans?|years?)",
-    "خبره\\s*(?:لا تقل عن |اكثر من |تفوق |تزيد عن )?(\\d{1,2})\\s*سنوات?",
-    "(\\d{1,2})\\s*سنوات?\\s*خبره")]
+def mentions(tn: str, word: str) -> bool:
+    """Latin : mot entier (+ pluriel / feminin) ; sinon inclusion."""
+    return has_word(tn, word) if _LATIN.fullmatch(normalize(word)) else has(tn, word)
 
 
-def required_years(text: str) -> int:
-    tn = normalize(text)
-    best = 0
-    vals = [int(m[1]) for m in _RANGE.finditer(tn)]
-    for rx in _CTX:
-        vals += [int(m[1]) for m in rx.finditer(tn)]
-    for v in vals:
-        if 1 <= v <= 15:      # 16 et plus = un age (« 18 a 30 ans »), pas une experience
-            best = max(best, v)
-    return best
+def has_city(tn: str, word: str) -> bool:
+    """Nom de lieu : mot entier ; en arabe avec au plus deux proclitiques (و ب ل ف ك) et sans lettre apres."""
+    w = normalize(word)
+    if not w:
+        return False
+    if _LATIN.fullmatch(w):
+        return has_word(tn, w)
+    return re.search("(?<![ء-ي])[وبلفك]{0,2}" + re.escape(w) + "(?![ء-ي])", tn) is not None
+
+
+def prepare(text: str, rules: dict) -> str:
+    """Texte normalise + mots canoniques des variantes darija / arabizi trouvees (rules.json « aliases »)."""
+    tn = ascii_digits(normalize(text))
+    extra = [normalize(canon) for canon, variants in rules["aliases"] if any(mentions(tn, v) for v in variants)]
+    return tn + "".join(" | " + e for e in extra)
+
+
+def _is_event(prepared: str, rules: dict) -> bool:
+    for neg in rules["event_negative"]:
+        prepared = re.sub(neg, " ", prepared)
+    return any(has_word(prepared, w) for w in rules["event_words"])
+
+
+def is_event(text: str, rules: dict | None = None) -> bool:
+    rules = rules or default_rules()
+    return _is_event(prepare(text, rules), rules)
+
+
+def required_years(text: str, rules: dict | None = None) -> int:
+    """Annees d'experience exigees (0 = aucune). Une fourchette compte pour sa borne basse ; l'anciennete de l'entreprise
+    (« forte de 10 ans d'experience ») et les ages (16 et plus) ne comptent pas."""
+    x = (rules or default_rules())["experience"]
+    tn = ascii_digits(normalize(text))
+    for old, new in x["number_words"]:
+        tn = tn.replace(normalize(old), new)
+
+    def company(m: re.Match) -> bool:
+        return bool(re.search(x["company_before"], tn[:m.start()]) or re.search(x["company_after"], tn[m.end():]))
+
+    values: list[int] = []
+    spans: list[tuple[int, int]] = []
+    for rx in x["range"]:
+        for m in re.finditer(rx, tn):
+            spans.append(m.span())
+            if not company(m):
+                values.append(int(m[1]))
+    for rx in x["context"]:
+        for m in re.finditer(rx, tn):
+            if any(a <= m.start(1) < b for a, b in spans) or company(m):
+                continue
+            values.append(int(m[1]))
+    return max((v for v in values if 1 <= v <= 15), default=0)      # 16 et plus = un age (« 18 a 30 ans »)
+
+
+def _occurrences(tn: str, word: str) -> list[int]:
+    w = normalize(word)
+    if not w:
+        return []
+    prefix = "(?<![a-z0-9])" if _LATIN.fullmatch(w) else ""
+    return [m.start() for m in re.finditer(prefix + re.escape(w), tn)]
+
+
+def _negated(tn: str, at: int, negations: list[str]) -> bool:
+    before = tn[:at].rstrip()
+    return any(before == n or before.endswith(" " + n) for n in negations)
+
+
+def scam_hits(prepared: str, rules: dict) -> list[str]:
+    """Signes d'arnaque / argent / documents ; « sans frais d'inscription » n'en est pas un."""
+    negations = [normalize(x) for x in rules["negations"]]
+    return [w for w in rules["scam_flags"] if any(not _negated(prepared, i, negations) for i in _occurrences(prepared, w))]
+
+
+def far_city(prepared: str, rules: dict) -> str:
+    """Ville eloignee a ecarter ("" sinon) : jamais si un lieu proche est cite ou si le travail est a distance."""
+    first = next((w for w in rules["far_cities"] if has_city(prepared, w)), "")
+    if not first or any(mentions(prepared, w) for w in rules["remote_words"]):
+        return ""
+    weak = {normalize(w) for w in rules["weak_locations"]}
+    far = {normalize(w) for w in rules["far_cities"]}
+    near = list(rules["locations"])
+    for place in rules["places"]:
+        if place["km"] <= rules["far_km"] and not any(normalize(a) in far for a in place["aliases"]):
+            near += place["aliases"]
+    if any(has_city(prepared, w) for w in near if normalize(w) not in weak):
+        return ""
+    return first
 
 
 # ----------------------------------------------------------------------------- notation
 
-_CONTEXT_ONLY = {"safex", "salon", "stand", "evenementiel", "evenement", "sila"}
-
 
 def score_offer(text: str, date: str, rules: dict, now: datetime, job_site: bool = False) -> dict:
-    """Meme principe que filtering.score_post du bot (+2 evenementiel, penalite d'experience).
-    [job_site] : la carte vient d'un site d'emploi (chaque carte est une offre) ; vaut un mot de recrutement."""
-    tn = normalize(text)
+    """Note de 0 a 10 ; negative quand un filtre dur ecarte l'offre (exclu, pas un recrutement, ancienne, experience, loin).
+    [job_site] : la carte vient d'un site d'emploi (chaque carte est une offre) ; vaut un mot de recrutement.
+    Meme calcul que l'appli (core/rank/CollectorScore.kt) et l'extension (scoring.js), verifie par golden_cases.json."""
+    tn = prepare(text, rules)
     res = {"score": 0, "reasons": [], "scam": [], "event": False, "years": 0}
     for w in rules["exclude"]:
-        if has_word(tn, w) if _LATIN.fullmatch(normalize(w)) else has(tn, w):
+        if mentions(tn, w):
             res.update(score=-100, reasons=["exclu: " + w])
             return res
     job_hits = [w for w in rules["job_words"] if has_word(tn, w)] or (["(site d'emploi)"] if job_site else [])
@@ -229,37 +288,40 @@ def score_offer(text: str, date: str, rules: dict, now: datetime, job_site: bool
     s = min(len(job_hits), 2) + sum(p for _, p in role_hits[:3])
     if loc_hits:
         s += loc_hits[0][1]
-    else:
-        far = [w for w in rules["far_cities"] if has_word(tn, w)]
-        if far:
-            s -= rules["far_penalty"]
-            res["reasons"].append("loin: " + far[0])
+    s += sum(p for w, p in rules["penalties"].items() if has(tn, w))
     if mobiles(text) or emails(text):
         s += 1
-    res["scam"] = [w for w in rules["scam_flags"] if has(tn, w)]
+    res["scam"] = scam_hits(tn, rules)
     if res["scam"]:
         s -= 2
-    only_context = bool(role_hits) and all(normalize(w) in _CONTEXT_ONLY for w, _ in role_hits)
+    context_only = {normalize(w) for w in rules["context_only"]}
+    only_context = bool(role_hits) and all(normalize(w) in context_only for w, _ in role_hits)
     if not job_hits and (not role_hits or only_context):
         res.update(score=-100, reasons=["annonce sans recrutement"])
         return res
-    res["event"] = is_event(text)
+    res["event"] = _is_event(tn, rules)
     if res["event"]:
         s += 2
-    res["years"] = required_years(text)
-    if res["years"] >= 5:      # experience exigee : l'offre reste visible (drapeau « senior ») mais descend
-        s -= 4
-    elif res["years"] >= 3:
-        s -= 2
+    res["years"] = required_years(text, rules)
     age = age_days(date, now)
     if age is not None and age > rules["max_age_days"]:
         res.update(score=-50, reasons=[f"ancien ({age:.0f} j)"])
         return res
+    if res["years"] > rules["max_experience_years"]:
+        res.update(score=-40, reasons=[f"experience: {res['years']} ans"])
+        return res
+    far = far_city(tn, rules)
+    if far:
+        res.update(score=-30, reasons=["loin: " + far])
+        return res
     res["score"] = max(0, min(10, s))
-    res["reasons"] += [w for w, _ in role_hits[:3]] + [w for w, _ in loc_hits[:1]]
+    res["reasons"] = [w for w, _ in role_hits[:3]] + [w for w, _ in loc_hits[:1]]
     return res
 
 
+def is_kept(result: dict, rules: dict) -> bool:
+    """Decision « garder » commune au collecteur, a l'extension et a l'appli."""
+    return result["score"] >= rules["min_score"] and not result["scam"]
 
 
 # ----------------------------------------------------------------------------- extraction (BeautifulSoup)
@@ -398,7 +460,7 @@ def build_record(item: dict, source_name: str, rules: dict, now: datetime) -> di
     if len(text) < 25:
         return None
     r = score_offer(text, item.get("date", ""), rules, now, bool(item.get("job_site")))
-    if r["score"] < rules["min_score"] or r["scam"]:
+    if not is_kept(r, rules):
         return None
     if item.get("url") and not str(item["url"]).lower().startswith(("http://", "https://")):
         item = dict(item, url="")     # jamais de javascript:, data: ... dans offers.json (affiche par le site)
