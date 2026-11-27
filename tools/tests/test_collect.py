@@ -55,10 +55,10 @@ def test_required_years():
     assert c.required_years("Recrute hôtesse, âge 18 à 30 ans, sans expérience") == 0
 
 
-def test_senior_event_offer_is_kept_but_flagged():
+def test_senior_event_offer_is_dropped_above_two_years():
     rec = c.build_record(item("Chef de projet événementiel recrute, Confirmé / Expérimenté (3 À 5 Ans), Alger"),
                          "Emploitic", RULES, NOW)
-    assert rec and rec["event"] and rec["senior"] and rec["years_required"] == 3
+    assert rec is None          # filtre dur partage avec l'appli : plus de 2 ans exiges
 
 
 def test_scam_and_low_scores_are_dropped():

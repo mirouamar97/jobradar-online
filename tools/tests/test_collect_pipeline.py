@@ -32,7 +32,7 @@ def test_golden_case_replays_exactly(case):
     r = c.score_offer(case["text"], case["date"], RULES, GOLDEN_NOW, job_site=case["job_site"])
     for key in ("score", "event", "years", "scam", "reasons"):
         assert r[key] == case["expect"][key], key
-    assert r["score"] == case["expect"]["score"]
+    assert c.is_kept(r, RULES) == case["expect"]["keep"]
     assert bool(r["event"]) == case["expect"]["event"]
 
 
@@ -53,8 +53,13 @@ def test_scam_offers_are_rejected_with_an_explicit_reason():
 
 
 def test_reject_reason_below_min_score_mentions_threshold():
-    got = c.reject_reason(item("Nous recrutons un comptable pour un cabinet à Oran, envoyez votre CV"), RULES, NOW)
+    got = c.reject_reason(item("Nous recrutons un comptable pour un cabinet, envoyez votre CV"), RULES, NOW)
     assert got == f"note < {RULES['min_score']}"
+
+
+def test_hard_filters_have_their_own_reject_reason():
+    assert c.reject_reason(item("Recrute animateurs pour salon à Oran, envoyez votre CV"), RULES, NOW) == "loin"
+    assert c.reject_reason(item("Recrute animateurs à Alger, 5 ans d'expérience minimum"), RULES, NOW) == "experience"
 
 
 def test_build_record_drops_rejected_and_keeps_good():

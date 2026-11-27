@@ -19,7 +19,17 @@
   "عرض عمل",
   "نبحث عن",
   "ارسل cv",
-  "hiring"
+  "hiring",
+  "recrutons",
+  "recruter",
+  "recherchons",
+  "cherchons",
+  "recruiting",
+  "نوظف",
+  "يوظف",
+  "توظف",
+  "نحتاج",
+  "مطلوبين"
  ],
  "roles": {
   "animateur": 3,
@@ -62,7 +72,36 @@
   "مندوب مبيعات": 3,
   "خدمة العملاء": 3,
   "موزع": 2,
-  "طالب": 1
+  "طالب": 1,
+  "serveuse": 3,
+  "vendeuse": 3,
+  "hostess": 3,
+  "standiste": 3,
+  "caissier": 2,
+  "promoteur": 2,
+  "promotrice": 2,
+  "promoter": 2,
+  "merchandiser": 2,
+  "chauffeur": 1,
+  "accueil": 1,
+  "inventaire": 2,
+  "inventoriste": 2,
+  "enquêteur": 2,
+  "enquêteuse": 2,
+  "call centre": 3,
+  "event": 1,
+  "assistante administrative": 2,
+  "استقبال": 2,
+  "معرض": 2,
+  "صالون": 1,
+  "سافكس": 3,
+  "كاشير": 2,
+  "مروج": 2,
+  "فعاليات": 2,
+  "brand ambassador": 3,
+  "ambassadeur de marque": 3,
+  "ambassadrice de marque": 3,
+  "wedding planner": 2
  },
  "locations": {
   "bab ezzouar": 3,
@@ -81,7 +120,8 @@
   "الجزائر": 1,
   "hydra": 1,
   "kouba": 1,
-  "rouiba": 1
+  "rouiba": 1,
+  "العاصمة": 1
  },
  "far_penalty": 5,
  "far_cities": [
@@ -139,8 +179,6 @@
   "تبسة",
   "guelma",
   "قالمة",
-  "mascara",
-  "معسكر",
   "relizane",
   "غليزان",
   "tiaret",
@@ -162,7 +200,47 @@
   "souk ahras",
   "سوق أهراس",
   "el tarf",
-  "الطارف"
+  "الطارف",
+  "adrar",
+  "أدرار",
+  "tizi-ouzou",
+  "wilaya de saida",
+  "ولاية سعيدة",
+  "wilaya de mascara",
+  "ولاية معسكر",
+  "el bayadh",
+  "ولاية البيض",
+  "tissemsilt",
+  "تيسمسيلت",
+  "el oued",
+  "ولاية الوادي",
+  "وادي سوف",
+  "wilaya de mila",
+  "ولاية ميلة",
+  "ain defla",
+  "عين الدفلى",
+  "naama",
+  "النعامة",
+  "timimoun",
+  "تيميمون",
+  "bordj badji mokhtar",
+  "برج باجي مختار",
+  "ouled djellal",
+  "أولاد جلال",
+  "beni abbes",
+  "بني عباس",
+  "ain salah",
+  "عين صالح",
+  "in guezzam",
+  "عين قزام",
+  "touggourt",
+  "تقرت",
+  "djanet",
+  "جانت",
+  "el meghaier",
+  "ولاية المغير",
+  "el menia",
+  "ولاية المنيعة"
  ],
  "exclude": [
   "pour filles uniquement",
@@ -173,7 +251,13 @@
   "hse",
   "hygiène sécurité environnement",
   "مسابقة على أساس الشهادة",
-  "concours sur titre"
+  "concours sur titre",
+  "je cherche un travail",
+  "je cherche du travail",
+  "je recherche un emploi",
+  "cherche emploi",
+  "ابحث عن عمل",
+  "نحوس على خدمة"
  ],
  "scam_flags": [
   "contactez-moi en privé",
@@ -192,7 +276,27 @@
   "frais de dossier",
   "inscription payante",
   "revenu passif",
-  "راسلني خاص"
+  "راسلني خاص",
+  "frais de formation",
+  "formation payante",
+  "gain facile",
+  "argent facile",
+  "forex",
+  "crypto",
+  "travail à domicile",
+  "عمل من المنزل",
+  "العمل من المنزل",
+  "تسويق شبكي",
+  "رسوم الملف",
+  "دفع رسوم",
+  "ادفع مبلغ",
+  "copie de votre carte d'identité",
+  "copie de la carte d'identité",
+  "photo de votre carte d'identité",
+  "envoyez votre ccp",
+  "صورة بطاقة التعريف",
+  "نسخة من بطاقة التعريف",
+  "ارسل بطاقة التعريف"
  ],
  "salon_keywords": {
   "wide": [
@@ -259,5 +363,669 @@
    "صناعة",
    "مال"
   ]
+ },
+ "version": 2,
+ "max_experience_years": 2,
+ "penalties": {
+  "ingénieur": -3,
+  "bac+5": -3,
+  "médecin": -4,
+  "infirmi": -3
+ },
+ "negations": [
+  "sans",
+  "aucun",
+  "aucune",
+  "pas de",
+  "pas d'",
+  "zéro",
+  "بدون",
+  "بلا",
+  "دون"
+ ],
+ "far_km": 70,
+ "weak_locations": [
+  "الجزائر"
+ ],
+ "remote_words": [
+  "télétravail",
+  "travail à distance",
+  "à distance",
+  "remote",
+  "عن بعد"
+ ],
+ "context_only": [
+  "safex",
+  "salon",
+  "stand",
+  "evenementiel",
+  "evenement",
+  "sila",
+  "event",
+  "معرض",
+  "صالون"
+ ],
+ "event_words": [
+  "evenementiel",
+  "evenementielle",
+  "evenement",
+  "evenements",
+  "event",
+  "events",
+  "event manager",
+  "animateur",
+  "animatrice",
+  "animation",
+  "hotesse",
+  "hote d'accueil",
+  "hotes d'accueil",
+  "hostess",
+  "stand",
+  "standiste",
+  "safex",
+  "salon",
+  "salons",
+  "foire",
+  "exposition",
+  "exhibition",
+  "degustation",
+  "regisseur",
+  "regie",
+  "wedding planner",
+  "festival",
+  "congres",
+  "street marketing",
+  "brand ambassador",
+  "ambassadeur de marque",
+  "ambassadrice de marque",
+  "promoteur",
+  "promotrice",
+  "منشط",
+  "منشطة",
+  "منشطين",
+  "تنشيط",
+  "فعاليات",
+  "فعالية",
+  "ايفنت",
+  "مضيفة",
+  "مضيفات",
+  "معرض",
+  "معارض"
+ ],
+ "event_negative": [
+  "stand[ -]?up",
+  "salon de (?:coiffure|the|beaute|esthetique|massage)",
+  "anim[a-z0-9_]* (?:de |du |des |d')?(?:contenu|digital|reseaux|social|community|3d|2d|motion|video|graphique|securite|hse)",
+  "animation (?:3d|2d|motion|graphique|video|digitale)",
+  "anim[a-z0-9_]* (?:de |d'|du |des )?(?:l'|la |les )?(?:equipe|equipes|personnel|collaborateurs|reseau|formation|formations|reunion|reunions|atelier|ateliers)",
+  "صالون (?:حلاقه|تجميل|شاي)",
+  "تنشيط (?:ال)?(?:دورات|دوره|فريق|فرق|ورشات|ورشه|تكوين|اجتماعات)"
+ ],
+ "experience": {
+  "number_words": [
+   [
+    "moins d'un an a",
+    "0 a"
+   ],
+   [
+    "سنتين",
+    "2 سنوات"
+   ],
+   [
+    "سنتان",
+    "2 سنوات"
+   ],
+   [
+    "عامين",
+    "2 سنوات"
+   ],
+   [
+    "ثلاث سنوات",
+    "3 سنوات"
+   ],
+   [
+    "ثلاثه سنوات",
+    "3 سنوات"
+   ],
+   [
+    "اربع سنوات",
+    "4 سنوات"
+   ],
+   [
+    "خمس سنوات",
+    "5 سنوات"
+   ],
+   [
+    "ست سنوات",
+    "6 سنوات"
+   ],
+   [
+    "عشر سنوات",
+    "10 سنوات"
+   ],
+   [
+    "trois ans",
+    "3 ans"
+   ],
+   [
+    "quatre ans",
+    "4 ans"
+   ],
+   [
+    "cinq ans",
+    "5 ans"
+   ],
+   [
+    "dix ans",
+    "10 ans"
+   ]
+  ],
+  "range": [
+   "(\\d{1,2})\\s*(?:a|-|to|et|ou|/|الي|حتي)\\s*\\d{1,2}\\s*(?:ans?|annees?|years?|سنوات|سنين)"
+  ],
+  "context": [
+   "(?:plus de|minimum|au moins|min\\.?|superieure? a)\\s*(\\d{1,2})\\s*(?:ans?|annees?|years?)",
+   "(\\d{1,2})\\s*\\+?\\s*(?:ans?|annees?|years?)\\s*(?:d'|de |of )?(?:experience|exp)",
+   "experience[a-z' ]{0,30}?:?\\s*(?:de |d')?(\\d{1,2})\\s*\\+?\\s*(?:ans?|annees?|years?)",
+   "(\\d{1,2})\\s*(?:ans?|annees?)\\s*(?:minimum|au moins)",
+   "(?:خبره|اقدميه)[^0-9.]{0,30}?(\\d{1,2})\\s*(?:سنوات|سنه|سنين|اعوام)",
+   "(\\d{1,2})\\s*(?:سنوات|سنه|سنين|اعوام)\\s*(?:من\\s*)?(?:ال)?(?:خبره|اقدميه)"
+  ],
+  "company_before": "(?:forte? d[e']\\s*(?:plus de )?|forte? d'une (?:longue |solide )?|forte? de (?:ses|son) |riche d[e']\\s*(?:plus de )?|riche d'une |depuis (?:plus de )?|(?:cumule|cumulons|comptons|compte) (?:plus de )?)$",
+  "company_after": "^[ ,]*(?:d'experience )?(?:sur|dans) le marche|^\\s*(?:من الخبره )?في السوق"
+ },
+ "aliases": [
+  [
+   "recrute",
+   [
+    "mtloub",
+    "matloub",
+    "matlob",
+    "mtlob",
+    "nhtajou",
+    "nhtadjou",
+    "n7tajou",
+    "yekhasna",
+    "khasna",
+    "lazemna",
+    "rah nkhdmou",
+    "محتاجين"
+   ]
+  ],
+  [
+   "serveur",
+   [
+    "serbour",
+    "sarfour",
+    "servor",
+    "سرفور",
+    "سيرفور",
+    "سربور",
+    "نوادل"
+   ]
+  ],
+  [
+   "vendeur",
+   [
+    "vandor",
+    "vandeur",
+    "بياع"
+   ]
+  ],
+  [
+   "animateur",
+   [
+    "animatour",
+    "animator"
+   ]
+  ],
+  [
+   "animatrice",
+   [
+    "animatris",
+    "animatriss",
+    "animatrisse"
+   ]
+  ],
+  [
+   "hotesse",
+   [
+    "hotess",
+    "otess",
+    "otesse"
+   ]
+  ],
+  [
+   "caissier",
+   [
+    "kessier"
+   ]
+  ],
+  [
+   "livreur",
+   [
+    "livror",
+    "livrour",
+    "ليفرور"
+   ]
+  ],
+  [
+   "stand",
+   [
+    "ستاند"
+   ]
+  ],
+  [
+   "bab ezzouar",
+   [
+    "bab zouar",
+    "babzouar",
+    "bab ez zouar",
+    "bab ezouar"
+   ]
+  ],
+  [
+   "alger",
+   [
+    "dzair",
+    "الدزاير"
+   ]
+  ],
+  [
+   "dar el beida",
+   [
+    "dar lbeida",
+    "darbeida",
+    "dar el baida"
+   ]
+  ],
+  [
+   "je cherche un emploi",
+   [
+    "nhawes 3la khedma",
+    "n7awes 3la khedma",
+    "n7aws 3la khedma",
+    "nhawes ala khedma",
+    "rani nhawes",
+    "راني نحوس",
+    "نحوس على خدمة"
+   ]
+  ]
+ ],
+ "places": [
+  {"id": "bab_ezzouar", "kind": "commune", "fr": "Bab Ezzouar", "ar": "باب الزوار", "km": 0, "aliases": ["Bab Ezzouar", "باب الزوار", "bab zouar"]},
+  {"id": "dar_el_beida", "kind": "commune", "fr": "Dar El Beïda", "ar": "الدار البيضاء", "km": 3, "aliases": ["Dar El Beïda", "الدار البيضاء", "dar el beida"]},
+  {"id": "bordj_el_kiffan", "kind": "commune", "fr": "Bordj El Kiffan", "ar": "برج الكيفان", "km": 3, "aliases": ["Bordj El Kiffan", "برج الكيفان"]},
+  {"id": "mohammadia", "kind": "commune", "fr": "Mohammadia", "ar": "المحمدية", "km": 3, "aliases": ["Mohammadia", "المحمدية"]},
+  {"id": "pins_maritimes", "kind": "commune", "fr": "Pins Maritimes", "ar": "الصنوبر البحري", "km": 3, "aliases": ["Pins Maritimes", "الصنوبر البحري", "الصفائح البحرية"]},
+  {"id": "safex", "kind": "commune", "fr": "SAFEX", "ar": "سافكس", "km": 3, "aliases": ["SAFEX", "سافكس", "palais des expositions", "قصر المعارض"]},
+  {"id": "oued_smar", "kind": "commune", "fr": "Oued Smar", "ar": "وادي السمار", "km": 3, "aliases": ["Oued Smar", "وادي السمار"]},
+  {"id": "el_harrach", "kind": "commune", "fr": "El Harrach", "ar": "الحراش", "km": 4, "aliases": ["El Harrach", "الحراش", "harrach"]},
+  {"id": "bachdjerrah", "kind": "commune", "fr": "Bachdjerrah", "ar": "باش جراح", "km": 6, "aliases": ["Bachdjerrah", "باش جراح", "bach djerrah"]},
+  {"id": "bourouba", "kind": "commune", "fr": "Bourouba", "ar": "بوروبة", "km": 6, "aliases": ["Bourouba", "بوروبة"]},
+  {"id": "magharia", "kind": "commune", "fr": "El Magharia", "ar": "المقرية", "km": 7, "aliases": ["El Magharia", "المقرية"]},
+  {"id": "les_eucalyptus", "kind": "commune", "fr": "Les Eucalyptus", "ar": "الكاليتوس", "km": 7, "aliases": ["Les Eucalyptus", "الكاليتوس", "eucalyptus"]},
+  {"id": "bordj_el_bahri", "kind": "commune", "fr": "Bordj El Bahri", "ar": "برج البحري", "km": 9, "aliases": ["Bordj El Bahri", "برج البحري"]},
+  {"id": "el_marsa", "kind": "commune", "fr": "El Marsa", "ar": "المرسى البحري", "km": 11, "aliases": ["El Marsa", "المرسى البحري", "el marsa"]},
+  {"id": "ain_taya", "kind": "commune", "fr": "Aïn Taya", "ar": "عين طاية", "km": 12, "aliases": ["Aïn Taya", "عين طاية"]},
+  {"id": "rouiba", "kind": "commune", "fr": "Rouïba", "ar": "الرويبة", "km": 9, "aliases": ["Rouïba", "الرويبة", "rouiba", "رويبة"]},
+  {"id": "heraoua", "kind": "commune", "fr": "H'raoua", "ar": "هراوة", "km": 12, "aliases": ["H'raoua", "هراوة", "heraoua"]},
+  {"id": "reghaia", "kind": "commune", "fr": "Reghaïa", "ar": "الرغاية", "km": 14, "aliases": ["Reghaïa", "الرغاية", "reghaia", "رغاية"]},
+  {"id": "hussein_dey", "kind": "commune", "fr": "Hussein Dey", "ar": "حسين داي", "km": 8, "aliases": ["Hussein Dey", "حسين داي"]},
+  {"id": "kouba", "kind": "commune", "fr": "Kouba", "ar": "القبة", "km": 9, "aliases": ["Kouba", "القبة"]},
+  {"id": "gue_de_constantine", "kind": "commune", "fr": "Gué de Constantine", "ar": "جسر قسنطينة", "km": 9, "aliases": ["Gué de Constantine", "جسر قسنطينة", "djasr kasentina"]},
+  {"id": "baraki", "kind": "commune", "fr": "Baraki", "ar": "براقي", "km": 10, "aliases": ["Baraki", "براقي"]},
+  {"id": "sidi_moussa", "kind": "commune", "fr": "Sidi Moussa", "ar": "سيدي موسى", "km": 16, "aliases": ["Sidi Moussa", "سيدي موسى"]},
+  {"id": "el_madania", "kind": "commune", "fr": "El Madania", "ar": "حي المدنية", "km": 11, "aliases": ["El Madania", "حي المدنية", "el madania"]},
+  {"id": "belouizdad", "kind": "commune", "fr": "Belouizdad", "ar": "بلوزداد", "km": 11, "aliases": ["Belouizdad", "بلوزداد"]},
+  {"id": "sidi_mhamed", "kind": "commune", "fr": "Sidi M'Hamed", "ar": "سيدي امحمد", "km": 12, "aliases": ["Sidi M'Hamed", "سيدي امحمد", "sidi mhamed"]},
+  {"id": "alger_centre", "kind": "commune", "fr": "Alger Centre", "ar": "الجزائر الوسطى", "km": 12, "aliases": ["Alger Centre", "الجزائر الوسطى"]},
+  {"id": "casbah", "kind": "commune", "fr": "La Casbah", "ar": "القصبة", "km": 13, "aliases": ["La Casbah", "القصبة", "casbah"]},
+  {"id": "bab_el_oued", "kind": "commune", "fr": "Bab El Oued", "ar": "باب الوادي", "km": 14, "aliases": ["Bab El Oued", "باب الوادي"]},
+  {"id": "oued_koriche", "kind": "commune", "fr": "Oued Koriche", "ar": "وادي قريش", "km": 14, "aliases": ["Oued Koriche", "وادي قريش"]},
+  {"id": "bologhine", "kind": "commune", "fr": "Bologhine", "ar": "بولوغين", "km": 15, "aliases": ["Bologhine", "بولوغين"]},
+  {"id": "rais_hamidou", "kind": "commune", "fr": "Raïs Hamidou", "ar": "الرايس حميدو", "km": 18, "aliases": ["Raïs Hamidou", "الرايس حميدو", "rais hamidou"]},
+  {"id": "el_mouradia", "kind": "commune", "fr": "El Mouradia", "ar": "المرادية", "km": 13, "aliases": ["El Mouradia", "المرادية"]},
+  {"id": "bir_mourad_rais", "kind": "commune", "fr": "Bir Mourad Raïs", "ar": "بئر مراد رايس", "km": 12, "aliases": ["Bir Mourad Raïs", "بئر مراد رايس", "bir mourad rais"]},
+  {"id": "hydra", "kind": "commune", "fr": "Hydra", "ar": "حيدرة", "km": 14, "aliases": ["Hydra", "حيدرة"]},
+  {"id": "el_biar", "kind": "commune", "fr": "El Biar", "ar": "الأبيار", "km": 14, "aliases": ["El Biar", "الأبيار"]},
+  {"id": "birkhadem", "kind": "commune", "fr": "Birkhadem", "ar": "بئر خادم", "km": 12, "aliases": ["Birkhadem", "بئر خادم"]},
+  {"id": "saoula", "kind": "commune", "fr": "Saoula", "ar": "السحاولة", "km": 14, "aliases": ["Saoula", "السحاولة"]},
+  {"id": "bouzareah", "kind": "commune", "fr": "Bouzaréah", "ar": "بوزريعة", "km": 16, "aliases": ["Bouzaréah", "بوزريعة", "bouzareah"]},
+  {"id": "ben_aknoun", "kind": "commune", "fr": "Ben Aknoun", "ar": "بن عكنون", "km": 16, "aliases": ["Ben Aknoun", "بن عكنون"]},
+  {"id": "birtouta", "kind": "commune", "fr": "Birtouta", "ar": "بئر توتة", "km": 19, "aliases": ["Birtouta", "بئر توتة"]},
+  {"id": "ouled_chebel", "kind": "commune", "fr": "Ouled Chebel", "ar": "أولاد الشبل", "km": 22, "aliases": ["Ouled Chebel", "أولاد الشبل"]},
+  {"id": "draria", "kind": "commune", "fr": "Draria", "ar": "الدرارية", "km": 17, "aliases": ["Draria", "الدرارية"]},
+  {"id": "khraicia", "kind": "commune", "fr": "Khraïcia", "ar": "خرايسية", "km": 18, "aliases": ["Khraïcia", "خرايسية", "khraissia"]},
+  {"id": "el_achour", "kind": "commune", "fr": "El Achour", "ar": "العاشور", "km": 17, "aliases": ["El Achour", "العاشور"]},
+  {"id": "dely_ibrahim", "kind": "commune", "fr": "Dély Ibrahim", "ar": "دالي ابراهيم", "km": 18, "aliases": ["Dély Ibrahim", "دالي ابراهيم", "dely brahim"]},
+  {"id": "beni_messous", "kind": "commune", "fr": "Beni Messous", "ar": "بني مسوس", "km": 19, "aliases": ["Beni Messous", "بني مسوس"]},
+  {"id": "hammamet", "kind": "commune", "fr": "El Hammamet", "ar": "الحمامات", "km": 20, "aliases": ["El Hammamet", "الحمامات", "hammamet"]},
+  {"id": "baba_hassen", "kind": "commune", "fr": "Baba Hassen", "ar": "بابا حسن", "km": 19, "aliases": ["Baba Hassen", "بابا حسن"]},
+  {"id": "cheraga", "kind": "commune", "fr": "Chéraga", "ar": "الشراقة", "km": 20, "aliases": ["Chéraga", "الشراقة", "cheraga"]},
+  {"id": "ouled_fayet", "kind": "commune", "fr": "Ouled Fayet", "ar": "أولاد فايت", "km": 21, "aliases": ["Ouled Fayet", "أولاد فايت"]},
+  {"id": "douera", "kind": "commune", "fr": "Douéra", "ar": "الدويرة", "km": 22, "aliases": ["Douéra", "الدويرة"]},
+  {"id": "tessala_el_merdja", "kind": "commune", "fr": "Tessala El Merdja", "ar": "تسالة المرجة", "km": 24, "aliases": ["Tessala El Merdja", "تسالة المرجة"]},
+  {"id": "ain_benian", "kind": "commune", "fr": "Aïn Benian", "ar": "عين البنيان", "km": 25, "aliases": ["Aïn Benian", "عين البنيان"]},
+  {"id": "souidania", "kind": "commune", "fr": "Souidania", "ar": "السويدانية", "km": 24, "aliases": ["Souidania", "السويدانية"]},
+  {"id": "rahmania", "kind": "commune", "fr": "Rahmania", "ar": "الرحمانية", "km": 25, "aliases": ["Rahmania", "الرحمانية"]},
+  {"id": "staoueli", "kind": "commune", "fr": "Staouéli", "ar": "سطاوالي", "km": 26, "aliases": ["Staouéli", "سطاوالي"]},
+  {"id": "mahelma", "kind": "commune", "fr": "Mahelma", "ar": "المعالمة", "km": 28, "aliases": ["Mahelma", "المعالمة"]},
+  {"id": "zeralda", "kind": "commune", "fr": "Zéralda", "ar": "زرالدة", "km": 30, "aliases": ["Zéralda", "زرالدة"]},
+  {"id": "adrar", "kind": "wilaya", "fr": "Adrar", "ar": "أدرار", "km": 1037, "aliases": ["Adrar", "أدرار"]},
+  {"id": "chlef", "kind": "wilaya", "fr": "Chlef", "ar": "الشلف", "km": 177, "aliases": ["Chlef", "الشلف"]},
+  {"id": "laghouat", "kind": "wilaya", "fr": "Laghouat", "ar": "الأغواط", "km": 327, "aliases": ["Laghouat", "الأغواط"]},
+  {"id": "oum_el_bouaghi", "kind": "wilaya", "fr": "Oum El Bouaghi", "ar": "أم البواقي", "km": 364, "aliases": ["Oum El Bouaghi", "أم البواقي"]},
+  {"id": "batna", "kind": "wilaya", "fr": "Batna", "ar": "باتنة", "km": 298, "aliases": ["Batna", "باتنة"]},
+  {"id": "bejaia", "kind": "wilaya", "fr": "Béjaïa", "ar": "بجاية", "km": 169, "aliases": ["Béjaïa", "بجاية"]},
+  {"id": "biskra", "kind": "wilaya", "fr": "Biskra", "ar": "بسكرة", "km": 310, "aliases": ["Biskra", "بسكرة"]},
+  {"id": "bechar", "kind": "wilaya", "fr": "Béchar", "ar": "بشار", "km": 754, "aliases": ["Béchar", "بشار"]},
+  {"id": "blida", "kind": "wilaya", "fr": "Blida", "ar": "البليدة", "km": 42, "aliases": ["Blida", "البليدة"]},
+  {"id": "bouira", "kind": "wilaya", "fr": "Bouira", "ar": "البويرة", "km": 75, "aliases": ["Bouira", "البويرة"]},
+  {"id": "tamanrasset", "kind": "wilaya", "fr": "Tamanrasset", "ar": "تمنراست", "km": 1566, "aliases": ["Tamanrasset", "تمنراست"]},
+  {"id": "tebessa", "kind": "wilaya", "fr": "Tébessa", "ar": "تبسة", "km": 468, "aliases": ["Tébessa", "تبسة"]},
+  {"id": "tlemcen", "kind": "wilaya", "fr": "Tlemcen", "ar": "تلمسان", "km": 455, "aliases": ["Tlemcen", "تلمسان"]},
+  {"id": "tiaret", "kind": "wilaya", "fr": "Tiaret", "ar": "تيارت", "km": 225, "aliases": ["Tiaret", "تيارت"]},
+  {"id": "tizi_ouzou", "kind": "wilaya", "fr": "Tizi Ouzou", "ar": "تيزي وزو", "km": 77, "aliases": ["Tizi Ouzou", "تيزي وزو", "tizi-ouzou"]},
+  {"id": "alger", "kind": "wilaya", "fr": "Alger", "ar": "الجزائر العاصمة", "km": 14, "aliases": ["Alger", "العاصمة", "algiers", "الجزائر", "الجزائر العاصمة"]},
+  {"id": "djelfa", "kind": "wilaya", "fr": "Djelfa", "ar": "الجلفة", "km": 229, "aliases": ["Djelfa", "الجلفة"]},
+  {"id": "jijel", "kind": "wilaya", "fr": "Jijel", "ar": "جيجل", "km": 231, "aliases": ["Jijel", "جيجل"]},
+  {"id": "setif", "kind": "wilaya", "fr": "Sétif", "ar": "سطيف", "km": 208, "aliases": ["Sétif", "سطيف"]},
+  {"id": "saida", "kind": "wilaya", "fr": "Saïda", "ar": "ولاية سعيدة", "km": 345, "aliases": ["ولاية سعيدة", "wilaya de saida"]},
+  {"id": "skikda", "kind": "wilaya", "fr": "Skikda", "ar": "سكيكدة", "km": 332, "aliases": ["Skikda", "سكيكدة"]},
+  {"id": "sidi_bel_abbes", "kind": "wilaya", "fr": "Sidi Bel Abbès", "ar": "سيدي بلعباس", "km": 383, "aliases": ["Sidi Bel Abbès", "سيدي بلعباس"]},
+  {"id": "annaba", "kind": "wilaya", "fr": "Annaba", "ar": "عنابة", "km": 409, "aliases": ["Annaba", "عنابة"]},
+  {"id": "guelma", "kind": "wilaya", "fr": "Guelma", "ar": "قالمة", "km": 380, "aliases": ["Guelma", "قالمة"]},
+  {"id": "constantine", "kind": "wilaya", "fr": "Constantine", "ar": "قسنطينة", "km": 309, "aliases": ["Constantine", "قسنطينة"]},
+  {"id": "medea", "kind": "wilaya", "fr": "Médéa", "ar": "المدية", "km": 65, "aliases": ["Médéa", "المدية"]},
+  {"id": "mostaganem", "kind": "wilaya", "fr": "Mostaganem", "ar": "مستغانم", "km": 291, "aliases": ["Mostaganem", "مستغانم"]},
+  {"id": "msila", "kind": "wilaya", "fr": "M'Sila", "ar": "المسيلة", "km": 167, "aliases": ["M'Sila", "المسيلة", "msila"]},
+  {"id": "mascara", "kind": "wilaya", "fr": "Mascara", "ar": "ولاية معسكر", "km": 311, "aliases": ["ولاية معسكر", "wilaya de mascara"]},
+  {"id": "ouargla", "kind": "wilaya", "fr": "Ouargla", "ar": "ورقلة", "km": 566, "aliases": ["Ouargla", "ورقلة"]},
+  {"id": "oran", "kind": "wilaya", "fr": "Oran", "ar": "وهران", "km": 361, "aliases": ["Oran", "وهران"]},
+  {"id": "el_bayadh", "kind": "wilaya", "fr": "El Bayadh", "ar": "ولاية البيض", "km": 392, "aliases": ["El Bayadh", "ولاية البيض"]},
+  {"id": "illizi", "kind": "wilaya", "fr": "Illizi", "ar": "إليزي", "km": 1244, "aliases": ["Illizi", "إليزي"]},
+  {"id": "bordj_bou_arreridj", "kind": "wilaya", "fr": "Bordj Bou Arréridj", "ar": "برج بوعريريج", "km": 159, "aliases": ["Bordj Bou Arréridj", "برج بوعريريج"]},
+  {"id": "boumerdes", "kind": "wilaya", "fr": "Boumerdès", "ar": "بومرداس", "km": 27, "aliases": ["Boumerdès", "بومرداس"]},
+  {"id": "el_tarf", "kind": "wilaya", "fr": "El Tarf", "ar": "الطارف", "km": 457, "aliases": ["El Tarf", "الطارف"]},
+  {"id": "tindouf", "kind": "wilaya", "fr": "Tindouf", "ar": "تندوف", "km": 1465, "aliases": ["Tindouf", "تندوف"]},
+  {"id": "tissemsilt", "kind": "wilaya", "fr": "Tissemsilt", "ar": "تيسمسيلت", "km": 175, "aliases": ["Tissemsilt", "تيسمسيلت"]},
+  {"id": "el_oued", "kind": "wilaya", "fr": "El Oued", "ar": "ولاية الوادي", "km": 501, "aliases": ["El Oued", "ولاية الوادي", "وادي سوف"]},
+  {"id": "khenchela", "kind": "wilaya", "fr": "Khenchela", "ar": "خنشلة", "km": 383, "aliases": ["Khenchela", "خنشلة"]},
+  {"id": "souk_ahras", "kind": "wilaya", "fr": "Souk Ahras", "ar": "سوق أهراس", "km": 429, "aliases": ["Souk Ahras", "سوق أهراس"]},
+  {"id": "tipaza", "kind": "wilaya", "fr": "Tipaza", "ar": "تيبازة", "km": 67, "aliases": ["Tipaza", "تيبازة", "tipasa"]},
+  {"id": "mila", "kind": "wilaya", "fr": "Mila", "ar": "ولاية ميلة", "km": 276, "aliases": ["ولاية ميلة", "wilaya de mila"]},
+  {"id": "ain_defla", "kind": "wilaya", "fr": "Aïn Defla", "ar": "عين الدفلى", "km": 120, "aliases": ["Aïn Defla", "عين الدفلى"]},
+  {"id": "naama", "kind": "wilaya", "fr": "Naâma", "ar": "النعامة", "km": 499, "aliases": ["Naâma", "النعامة"]},
+  {"id": "ain_temouchent", "kind": "wilaya", "fr": "Aïn Témouchent", "ar": "عين تموشنت", "km": 420, "aliases": ["Aïn Témouchent", "عين تموشنت"]},
+  {"id": "ghardaia", "kind": "wilaya", "fr": "Ghardaïa", "ar": "غرداية", "km": 473, "aliases": ["Ghardaïa", "غرداية"]},
+  {"id": "relizane", "kind": "wilaya", "fr": "Relizane", "ar": "غليزان", "km": 260, "aliases": ["Relizane", "غليزان"]},
+  {"id": "timimoun", "kind": "wilaya", "fr": "Timimoun", "ar": "تيميمون", "km": 875, "aliases": ["Timimoun", "تيميمون"]},
+  {"id": "bordj_badji_mokhtar", "kind": "wilaya", "fr": "Bordj Badji Mokhtar", "ar": "برج باجي مختار", "km": 1726, "aliases": ["Bordj Badji Mokhtar", "برج باجي مختار"]},
+  {"id": "ouled_djellal", "kind": "wilaya", "fr": "Ouled Djellal", "ar": "أولاد جلال", "km": 308, "aliases": ["Ouled Djellal", "أولاد جلال"]},
+  {"id": "beni_abbes", "kind": "wilaya", "fr": "Béni Abbès", "ar": "بني عباس", "km": 885, "aliases": ["Béni Abbès", "بني عباس"]},
+  {"id": "in_salah", "kind": "wilaya", "fr": "In Salah", "ar": "عين صالح", "km": 1062, "aliases": ["In Salah", "عين صالح", "ain salah"]},
+  {"id": "in_guezzam", "kind": "wilaya", "fr": "In Guezzam", "ar": "عين قزام", "km": 1924, "aliases": ["In Guezzam", "عين قزام"]},
+  {"id": "touggourt", "kind": "wilaya", "fr": "Touggourt", "ar": "تقرت", "km": 481, "aliases": ["Touggourt", "تقرت"]},
+  {"id": "djanet", "kind": "wilaya", "fr": "Djanet", "ar": "جانت", "km": 1481, "aliases": ["Djanet", "جانت"]},
+  {"id": "el_meghaier", "kind": "wilaya", "fr": "El M'Ghair", "ar": "ولاية المغير", "km": 396, "aliases": ["El M'Ghair", "ولاية المغير", "el meghaier"]},
+  {"id": "el_menia", "kind": "wilaya", "fr": "El Menia", "ar": "ولاية المنيعة", "km": 684, "aliases": ["El Menia", "ولاية المنيعة"]}
+ ],
+ "categories": [
+  {"id": "wedding", "words": ["mariage", "noces", "wedding", "salle des fetes", "salle de fetes", "fete de mariage", "traiteur mariage", "حفل زفاف", "زفاف", "اعراس", "عرس", "حفلات", "قاعة افراح", "قاعة الحفلات"]},
+  {"id": "promo", "words": ["animation commerciale", "animatrice commerciale", "animateur commercial", "degustation", "tasting", "sampling", "promotrice", "promoteur", "promoter", "promotion des ventes", "distribution d'echantillons", "street marketing", "brand ambassador", "ambassadeur de marque", "ambassadrice de marque", "ترويج", "تذوق", "عينات مجانية", "توزيع عينات", "مروج"]},
+  {"id": "survey", "words": ["enqueteur", "enqueteuse", "enquete terrain", "enquete de terrain", "sondage", "recensement", "استبيان", "استطلاع", "باحث ميداني", "مستجوب"]},
+  {"id": "inventory", "words": ["inventaire", "inventoriste", "comptage de stock", "comptage physique", "جرد المخزون", "لجرد", "الجرد"]},
+  {"id": "event", "words": ["accueil"], "needs_event": true},
+  {"id": "freelance", "words": ["freelance", "par projet", "graphiste", "motion design", "community manager", "creation site", "sous-traitance", "prestataire", "مستقل", "بالقطعة", "مشروع مصغر", "صانع محتوى", "تصميم جرافيك", "تطوير موقع", "مونتاج"]},
+  {"id": "student", "words": ["temps partiel", "mi-temps", "etudiant", "weekend", "week-end", "part time", "part-time", "cours de soutien", "دوام جزئي", "طلبة", "طالب", "جامعيين", "نصف دوام", "عطلة أسبوع", "ساعات مسائية", "دروس خصوصية"]},
+  {"id": "delivery", "words": ["livraison", "livreur", "coursier", "chauffeur avec vehicule", "yassir", "heetch", "manutentionnaire", "توصيل", "سائق", "موصل طلبات", "شحن وتفريغ"]},
+  {"id": "day", "words": ["journalier", "temporaire", "remplacement", "saisonnier", "mission courte", "vacataire", "renfort", "يومي", "أجرة يومية", "مؤقت", "استخلاف", "موسمي", "أيام محددة"]},
+  {"id": "seasonal", "words": ["ramadan", "saison estivale", "saison d'ete", "job d'ete", "vacances d'ete", "aid el", "fetes de fin d'annee", "رمضان", "عطلة صيفية", "الموسم الصيفي", "العيد", "الاعياد"]},
+  {"id": "waiter", "words": ["serveur", "serveuse", "restaurant", "restauration", "traiteur", "pizzeria", "cafeteria", "fast food", "fast-food", "barista", "chef de rang", "commis de salle", "نادل", "نوادل", "مطعم", "ممون"]},
+  {"id": "call_center", "words": ["teleconseiller", "call center", "call centre", "centre d'appel", "centre d'appels", "teleoperateur", "televente", "service client", "مركز اتصال", "مركز النداء", "كول سنتر", "خدمة العملاء"]},
+  {"id": "reception", "words": ["receptionniste", "reception", "standardiste", "secretaire", "استقبال", "سكرتيرة"]},
+  {"id": "sales", "words": ["vendeur", "vendeuse", "commercial", "commerciale", "magasin", "boutique", "showroom", "caissier", "superette", "بائع", "مبيعات", "محل", "كاشير"]}
+ ],
+ "urgency_words": [
+  "urgent",
+  "urgence",
+  "immediat",
+  "immediatement",
+  "au plus vite",
+  "ce soir",
+  "aujourd'hui",
+  "demain",
+  "عاجل",
+  "مستعجل",
+  "فورا",
+  "الليلة",
+  "غدا",
+  "ghadwa"
+ ],
+ "prefs_words": {
+  "temporary": [
+   "cdd",
+   "temporaire",
+   "mission",
+   "saisonnier",
+   "saisonniere",
+   "evenementiel",
+   "extra",
+   "journalier",
+   "مؤقت",
+   "مؤقته",
+   "موسمي",
+   "عقد محدد"
+  ],
+  "part_time": [
+   "temps partiel",
+   "mi-temps",
+   "mi temps",
+   "part time",
+   "part-time",
+   "دوام جزئي",
+   "نصف دوام"
+  ],
+  "full_time": [
+   "temps plein",
+   "plein temps",
+   "cdi",
+   "full time",
+   "full-time",
+   "دوام كامل"
+  ],
+  "availability": {
+   "WEEKENDS": [
+    "week-end",
+    "weekend",
+    "week end",
+    "fin de semaine",
+    "نهايه الاسبوع",
+    "عطله الاسبوع"
+   ],
+   "EVENINGS": [
+    "soir",
+    "soiree",
+    "nuit",
+    "de nuit",
+    "مساء",
+    "مسائي",
+    "ليلي",
+    "الليل"
+   ],
+   "MORNINGS": [
+    "matin",
+    "matinee",
+    "صباح",
+    "صباحي"
+   ],
+   "FULL_DAYS": [
+    "journee complete",
+    "toute la journee",
+    "يوم كامل",
+    "طول اليوم"
+   ],
+   "WEEKDAYS": [
+    "en semaine",
+    "du dimanche au jeudi",
+    "dimanche au jeudi",
+    "من الاحد الى الخميس",
+    "ايام الاسبوع"
+   ]
+  }
+ },
+ "reliability": {
+  "base": 50,
+  "job_boards": [
+   "emploitic",
+   "algeriejob",
+   "anem"
+  ],
+  "job_sites": [
+   "emploitic",
+   "algeriejob",
+   "anem",
+   "jobradar online"
+  ],
+  "job_board": 25,
+  "ai_search": -5,
+  "web": 15,
+  "jobbot": 15,
+  "gmail": 10,
+  "linkedin": 10,
+  "telegram": 5,
+  "whatsapp": -10,
+  "social": -5,
+  "link": 10,
+  "contact": 10,
+  "contact_in_text": 5,
+  "contact_poster": -5,
+  "no_contact": -10,
+  "scam": -30
+ },
+ "dedupe": {
+  "confirmed": 0.85,
+  "confirmed_contact": 0.6,
+  "probable": 0.5,
+  "probable_contact": 0.3
+ },
+ "taste": {
+  "applied": 8,
+  "interview": 12,
+  "starred": 5,
+  "ignored": -6,
+  "swiped": -4,
+  "min": -50,
+  "max": 50,
+  "divisor": 6,
+  "term_bonus_max": 4,
+  "stop_words": [
+   "من",
+   "في",
+   "على",
+   "إلى",
+   "عن",
+   "مع",
+   "هذا",
+   "هذه",
+   "التي",
+   "الذي",
+   "أن",
+   "أو",
+   "هو",
+   "هي",
+   "شركة",
+   "مؤسسة",
+   "مطلوب",
+   "عمل",
+   "توظيف",
+   "عرض",
+   "de",
+   "la",
+   "le",
+   "les",
+   "un",
+   "une",
+   "des",
+   "pour",
+   "dans",
+   "avec",
+   "sur",
+   "par",
+   "et",
+   "ou",
+   "en",
+   "est",
+   "sont",
+   "nous",
+   "vous"
+  ]
+ },
+ "rank": {
+  "fit_weight": 4,
+  "category": {
+   "event": 20,
+   "promo": 19,
+   "wedding": 16,
+   "student": 12,
+   "survey": 12,
+   "inventory": 10,
+   "day": 10,
+   "seasonal": 10,
+   "waiter": 8,
+   "reception": 8,
+   "call_center": 7,
+   "sales": 7,
+   "delivery": 4,
+   "freelance": 4,
+   "other": 0
+  },
+  "priority_categories": [
+   "event",
+   "promo",
+   "wedding"
+  ],
+  "distance": [
+   [
+    5,
+    15
+   ],
+   [
+    10,
+    12
+   ],
+   [
+    20,
+    8
+   ],
+   [
+    35,
+    4
+   ],
+   [
+    70,
+    0
+   ]
+  ],
+  "distance_beyond": -5,
+  "distance_unknown": 4,
+  "freshness_points": 15,
+  "freshness_half_life_days": 3,
+  "pay_good_day_da": 2000,
+  "pay_good": 6,
+  "pay_stated": 3,
+  "pay_below_min": -8,
+  "urgent": 5,
+  "deadline_soon_days": 3,
+  "deadline_soon": 5,
+  "reliability_divisor": 10,
+  "contact": 3,
+  "pref_point": 3,
+  "taste_point": 2,
+  "taste_max": 8,
+  "now_min_score": 65,
+  "now_max_age_days": 3,
+  "default_min_fit": 4
  }
 }
