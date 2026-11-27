@@ -1,49 +1,5 @@
 [
  {
-  "id": "algest-2026",
-  "name": "ALGEST 2026",
-  "title": "Salon de la Sous-Traitance Industrielle",
-  "start": "2026-11-23",
-  "end": "2026-11-25",
-  "place": "Palais des expositions, Pins Maritimes, Mohammadia- Alger",
-  "pavilion": "Ahaggar",
-  "hours": "10:00",
-  "organizer": "WTCA",
-  "phones": [
-   "0555029294"
-  ],
-  "emails": [
-   "a.hanifi@wtcalgiers.com"
-  ],
-  "website": "https://www.algest.dz/",
-  "register_url": "https://www.algest.dz/index.php?lang=fr&content=registration-form&ex=1&m=2",
-  "source_url": "https://www.algeriaexhibitions.dz/manifestations/algest-2026",
-  "sectors": "Industrie, Production & Manufactures",
-  "audience": "professionnel",
-  "hostess_score": 5
- },
- {
-  "id": "sitp-2026",
-  "name": "SITP 2026",
-  "title": "SITP 2026 – Salon International des Travaux Publics en Algérie",
-  "start": "2026-11-23",
-  "end": "2026-11-26",
-  "place": "Palais des expositions, Pins Maritimes, Mohammadia- Alger",
-  "pavilion": "Concorde (central)",
-  "hours": "10:00 – 18:00",
-  "organizer": "Algeria Exhibitions",
-  "phones": [
-   "023790059"
-  ],
-  "emails": [],
-  "website": "http://www.algeriaexhibitions.dz",
-  "register_url": "https://anovents.com/inscription/salon-international-des-travaux-publics-sitp-2026-1791982376/visiteur-visitor-zayr/conditions",
-  "source_url": "https://www.algeriaexhibitions.dz/manifestations/SITP-2026",
-  "sectors": "Industrie, Production & Manufactures, Bâtiment, Travaux Publics & Infrastructures",
-  "audience": "professionnel",
-  "hostess_score": 5
- },
- {
   "id": "lift-expo-algeria-2026",
   "name": "LIFT EXPO ALGERIA",
   "title": "Salon International des Techniques des Ascenseurs et des Escaliers Mécaniques",
@@ -105,29 +61,6 @@
   "register_url": "https://www.sinaadz.com/visiter/pourquoi-visiter/",
   "source_url": "https://www.algeriaexhibitions.dz/manifestations/salon-international-pour-lindustrie-en-algerie-sinaa-2027",
   "sectors": "Industrie, Production & Manufactures",
-  "audience": "professionnel",
-  "hostess_score": 5
- },
- {
-  "id": "taswik",
-  "name": "TASWIQ EXPO",
-  "title": "TASWIQ EXPO 2026 | Salon Marketing, Communication et Publicité",
-  "start": "2026-12-01",
-  "end": "2026-12-03",
-  "place": "Palais des Expositions des Pins Maritimes, Mohammadia, Alger, Algérie",
-  "pavilion": "Gourara",
-  "hours": "",
-  "organizer": "SARL OFFLINE",
-  "phones": [
-   "0770386302"
-  ],
-  "emails": [
-   "contact@taswiqexpo.com"
-  ],
-  "website": "https://taswiqexpo.com/",
-  "register_url": "",
-  "source_url": "https://www.algeriaexhibitions.dz/manifestations/taswik",
-  "sectors": "Communication, Marketing, Publicité & Médias, Événementiel, Congrès & Services aux Entreprises",
   "audience": "professionnel",
   "hostess_score": 5
  },
