@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-28T14:41",
+ "generated_at": "2026-11-28T17:57",
  "offers": 110,
  "events": 16,
  "sources": [
@@ -13,10 +13,10 @@
    "error": "",
    "rejected": {
     "note < 3": 13,
-    "ancien (44 j)": 1,
-    "ancien (23 j)": 1,
-    "ancien (16 j)": 1,
-    "ancien (34 j)": 1
+    "ancien (45 j)": 1,
+    "ancien (24 j)": 1,
+    "ancien (17 j)": 1,
+    "ancien (35 j)": 1
    }
   },
   {
@@ -31,7 +31,7 @@
     "note < 3": 106,
     "exclu": 1,
     "arnaque: investissement": 1,
-    "ancien (345 j)": 1
+    "ancien (346 j)": 1
    }
   },
   {
@@ -65,13 +65,13 @@
    "error": "",
    "rejected": {
     "exclu": 10,
-    "ancien (12 j)": 2,
-    "ancien (20 j)": 2,
-    "ancien (41 j)": 1,
-    "ancien (59 j)": 1,
+    "ancien (13 j)": 2,
+    "ancien (21 j)": 2,
+    "ancien (42 j)": 1,
+    "ancien (60 j)": 1,
     "note < 3": 1,
-    "ancien (10 j)": 1,
-    "ancien (25 j)": 1
+    "ancien (11 j)": 1,
+    "ancien (26 j)": 1
    }
   },
   {
@@ -83,19 +83,19 @@
    "kept": 5,
    "error": "",
    "rejected": {
-    "ancien (12 j)": 2,
-    "ancien (17 j)": 2,
-    "ancien (13 j)": 1,
-    "ancien (18 j)": 1,
-    "ancien (41 j)": 1,
-    "ancien (45 j)": 1,
+    "ancien (13 j)": 2,
+    "ancien (18 j)": 2,
+    "ancien (14 j)": 1,
     "ancien (19 j)": 1,
-    "ancien (53 j)": 1,
-    "ancien (55 j)": 1,
-    "ancien (26 j)": 1,
-    "ancien (33 j)": 1,
-    "ancien (39 j)": 1,
-    "ancien (24 j)": 1
+    "ancien (42 j)": 1,
+    "ancien (46 j)": 1,
+    "ancien (20 j)": 1,
+    "ancien (54 j)": 1,
+    "ancien (56 j)": 1,
+    "ancien (27 j)": 1,
+    "ancien (34 j)": 1,
+    "ancien (40 j)": 1,
+    "ancien (25 j)": 1
    }
   },
   {
@@ -108,49 +108,19 @@
    "error": "",
    "rejected": {
     "note < 3": 2,
-    "ancien (12 j)": 2,
-    "ancien (19 j)": 2,
+    "ancien (13 j)": 2,
     "ancien (20 j)": 2,
-    "ancien (23 j)": 2,
+    "ancien (21 j)": 2,
     "ancien (24 j)": 2,
-    "ancien (30 j)": 1,
-    "ancien (40 j)": 1,
-    "ancien (25 j)": 1,
-    "ancien (9 j)": 1,
-    "ancien (44 j)": 1,
-    "ancien (11 j)": 1,
-    "ancien (16 j)": 1
+    "ancien (25 j)": 2,
+    "ancien (31 j)": 1,
+    "ancien (41 j)": 1,
+    "ancien (26 j)": 1,
+    "ancien (10 j)": 1,
+    "ancien (45 j)": 1,
+    "ancien (12 j)": 1,
+    "ancien (17 j)": 1
    }
-  },
-  {
-   "id": "s_salons",
-   "name": "Recherche - salons Alger",
-   "kind": "search",
-   "ok": false,
-   "cards": 0,
-   "kept": 0,
-   "error": "desactivee: les moteurs de recherche bloquent les serveurs GitHub Actions (0 resultat a chaque passage) ; la recherche web reste dans l'application (reseau du telephone)",
-   "skipped": true
-  },
-  {
-   "id": "s_events",
-   "name": "Recherche - événementiel Alger",
-   "kind": "search",
-   "ok": false,
-   "cards": 0,
-   "kept": 0,
-   "error": "desactivee: les moteurs de recherche bloquent les serveurs GitHub Actions (0 resultat a chaque passage) ; la recherche web reste dans l'application (reseau du telephone)",
-   "skipped": true
-  },
-  {
-   "id": "s_etudiant",
-   "name": "Recherche - emploi étudiant Alger",
-   "kind": "search",
-   "ok": false,
-   "cards": 0,
-   "kept": 0,
-   "error": "desactivee: les moteurs de recherche bloquent les serveurs GitHub Actions (0 resultat a chaque passage) ; la recherche web reste dans l'application (reseau du telephone)",
-   "skipped": true
   },
   {
    "id": "tg_jobs_dz7",
@@ -202,6 +172,36 @@
     "annonce sans recrutement": 13,
     "note < 3": 7
    }
+  },
+  {
+   "id": "s_salons",
+   "name": "Recherche - salons Alger",
+   "kind": "search",
+   "ok": false,
+   "cards": 0,
+   "kept": 0,
+   "error": "desactivee: les moteurs de recherche bloquent les serveurs GitHub Actions (0 resultat a chaque passage) ; la recherche web reste dans l'application (reseau du telephone)",
+   "skipped": true
+  },
+  {
+   "id": "s_events",
+   "name": "Recherche - événementiel Alger",
+   "kind": "search",
+   "ok": false,
+   "cards": 0,
+   "kept": 0,
+   "error": "desactivee: les moteurs de recherche bloquent les serveurs GitHub Actions (0 resultat a chaque passage) ; la recherche web reste dans l'application (reseau du telephone)",
+   "skipped": true
+  },
+  {
+   "id": "s_etudiant",
+   "name": "Recherche - emploi étudiant Alger",
+   "kind": "search",
+   "ok": false,
+   "cards": 0,
+   "kept": 0,
+   "error": "desactivee: les moteurs de recherche bloquent les serveurs GitHub Actions (0 resultat a chaque passage) ; la recherche web reste dans l'application (reseau du telephone)",
+   "skipped": true
   }
  ]
 }
